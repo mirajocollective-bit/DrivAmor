@@ -1,0 +1,1366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DrivAmor — Find Your Profile</title>
+  <meta name="description" content="40 questions. Four dimensions. One profile that explains how you love, how you lead, and what you actually need.">
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --drive: #1E5F8E;
+      --drive-light: #4A90C4;
+      --drive-tint: #EBF4FA;
+      --amor: #C42B28;
+      --amor-light: #E04A46;
+      --amor-tint: #FBF0EF;
+      --bridge: #3D2B5A;
+      --bridge-tint: #F4F0FA;
+      --dark: #0F0D16;
+      --white: #FFFFFF;
+      --off: #F8F6F2;
+      --ink: #141414;
+      --ink-mid: #555;
+      --ink-light: #999;
+      --radius: 12px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; }
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: var(--dark);
+      color: var(--white);
+      min-height: 100vh;
+    }
+
+    /* ── SCREENS ── */
+    .screen { display: none; min-height: 100vh; }
+    .screen.active { display: flex; flex-direction: column; }
+
+    /* ── INTRO ── */
+    #screen-intro {
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 48px 24px;
+      background: var(--dark);
+    }
+    .intro-logo {
+      font-family: 'Instrument Serif', serif;
+      font-size: 40px;
+      margin-bottom: 32px;
+      letter-spacing: -0.02em;
+    }
+    .intro-logo span.d { color: var(--drive-light); }
+    .intro-logo span.a { color: var(--amor-light); }
+    #screen-intro h1 {
+      font-family: 'Instrument Serif', serif;
+      font-size: clamp(28px, 5vw, 48px);
+      font-weight: 400;
+      line-height: 1.2;
+      max-width: 600px;
+      margin-bottom: 20px;
+    }
+    #screen-intro p {
+      font-size: 16px;
+      color: rgba(255,255,255,0.55);
+      max-width: 480px;
+      line-height: 1.7;
+      margin-bottom: 40px;
+    }
+    .stats-row {
+      display: flex;
+      gap: 40px;
+      justify-content: center;
+      margin-bottom: 48px;
+    }
+    .stat { text-align: center; }
+    .stat-num {
+      font-family: 'Instrument Serif', serif;
+      font-size: 32px;
+      color: var(--white);
+    }
+    .stat-label { font-size: 12px; color: rgba(255,255,255,0.45); letter-spacing: 0.06em; text-transform: uppercase; margin-top: 4px; }
+
+    /* ── BUTTONS ── */
+    .btn {
+      display: inline-block;
+      padding: 16px 40px;
+      border-radius: 4px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      cursor: pointer;
+      border: none;
+      transition: opacity 0.2s, transform 0.15s;
+      text-decoration: none;
+    }
+    .btn:hover { opacity: 0.88; transform: translateY(-1px); }
+    .btn-drive { background: var(--drive); color: #fff; }
+    .btn-amor { background: var(--amor); color: #fff; }
+    .btn-dark { background: var(--dark); color: #fff; border: 1px solid rgba(255,255,255,0.2); }
+    .btn-white { background: #fff; color: var(--dark); }
+    .btn-full { width: 100%; text-align: center; display: block; }
+
+    /* ── INTAKE ── */
+    #screen-intake {
+      align-items: center;
+      justify-content: center;
+      padding: 48px 24px;
+      background: var(--dark);
+    }
+    .intake-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: var(--radius);
+      padding: 48px 40px;
+      max-width: 480px;
+      width: 100%;
+    }
+    .intake-card h2 {
+      font-family: 'Instrument Serif', serif;
+      font-size: 28px;
+      font-weight: 400;
+      margin-bottom: 8px;
+    }
+    .intake-card p {
+      font-size: 14px;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 32px;
+      line-height: 1.6;
+    }
+    .form-group { margin-bottom: 20px; }
+    .form-group label {
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 8px;
+    }
+    .form-group input,
+    .form-group select {
+      width: 100%;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 6px;
+      padding: 12px 16px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 15px;
+      color: #fff;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .form-group input:focus,
+    .form-group select:focus { border-color: rgba(255,255,255,0.4); }
+    .form-group select option { background: #1a1a2e; color: #fff; }
+    .form-group select { appearance: none; cursor: pointer; }
+
+    /* ── SECTION INTRO ── */
+    #screen-section {
+      align-items: center;
+      justify-content: center;
+      padding: 48px 24px;
+      text-align: center;
+    }
+    #screen-section.drive { background: var(--drive-tint); }
+    #screen-section.drive * { color: var(--ink); }
+    #screen-section.amor { background: var(--amor-tint); }
+    #screen-section.amor * { color: var(--ink); }
+    #screen-section.bridge { background: var(--bridge-tint); }
+    #screen-section.bridge * { color: var(--ink); }
+    .section-card { max-width: 520px; }
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+      opacity: 0.5;
+    }
+    .section-card h2 {
+      font-family: 'Instrument Serif', serif;
+      font-size: clamp(26px, 4vw, 38px);
+      font-weight: 400;
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+    .section-card p {
+      font-size: 15px;
+      line-height: 1.75;
+      opacity: 0.7;
+      margin-bottom: 40px;
+    }
+
+    /* ── QUIZ ── */
+    #screen-quiz {
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    .quiz-header {
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    .quiz-header.drive { background: var(--drive-tint); }
+    .quiz-header.amor { background: var(--amor-tint); }
+    .quiz-header.bridge { background: var(--bridge-tint); }
+    .progress-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--ink-mid);
+      white-space: nowrap;
+      min-width: 60px;
+    }
+    .progress-bar {
+      flex: 1;
+      height: 4px;
+      background: rgba(0,0,0,0.1);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      border-radius: 2px;
+      transition: width 0.4s ease;
+    }
+    .drive .progress-fill { background: var(--drive); }
+    .amor .progress-fill { background: var(--amor); }
+    .bridge .progress-fill { background: var(--bridge); }
+
+    .quiz-body {
+      flex: 1;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 40px 24px 80px;
+    }
+    .quiz-body.drive { background: var(--drive-tint); }
+    .quiz-body.amor { background: var(--amor-tint); }
+    .quiz-body.bridge { background: var(--bridge-tint); }
+
+    .question-wrap { max-width: 620px; width: 100%; }
+    .q-number {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      margin-bottom: 16px;
+    }
+    .q-text {
+      font-family: 'Instrument Serif', serif;
+      font-size: clamp(20px, 3.5vw, 28px);
+      font-weight: 400;
+      color: var(--ink);
+      line-height: 1.4;
+      margin-bottom: 32px;
+    }
+    .options { display: flex; flex-direction: column; gap: 12px; }
+    .option {
+      background: #fff;
+      border: 2px solid transparent;
+      border-radius: var(--radius);
+      padding: 18px 22px;
+      font-size: 15px;
+      color: var(--ink);
+      line-height: 1.55;
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s, transform 0.15s;
+      text-align: left;
+    }
+    .option:hover { transform: translateY(-1px); box-shadow: 0 4px 16px rgba(0,0,0,0.08); }
+    .option.selected.drive-opt { border-color: var(--drive); background: var(--drive-tint); }
+    .option.selected.amor-opt { border-color: var(--amor); background: var(--amor-tint); }
+    .option.selected.bridge-opt { border-color: var(--bridge); background: var(--bridge-tint); }
+
+    .quiz-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 16px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(255,255,255,0.9);
+      backdrop-filter: blur(8px);
+      border-top: 1px solid rgba(0,0,0,0.08);
+    }
+    .btn-back {
+      background: none;
+      border: none;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 14px;
+      color: var(--ink-mid);
+      cursor: pointer;
+      padding: 8px 0;
+    }
+    .btn-next {
+      padding: 12px 32px;
+      border-radius: 4px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+    .btn-next:disabled { opacity: 0.35; cursor: default; }
+    .btn-next.drive { background: var(--drive); color: #fff; }
+    .btn-next.amor { background: var(--amor); color: #fff; }
+    .btn-next.bridge { background: var(--bridge); color: #fff; }
+
+    /* ── RESULTS ── */
+    #screen-results {
+      background: var(--off);
+      flex-direction: column;
+      align-items: center;
+    }
+    .results-hero {
+      background: var(--dark);
+      width: 100%;
+      text-align: center;
+      padding: 72px 24px 56px;
+    }
+    .results-hero .eyebrow {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      margin-bottom: 16px;
+    }
+    .results-hero h1 {
+      font-family: 'Instrument Serif', serif;
+      font-size: clamp(36px, 6vw, 64px);
+      font-weight: 400;
+      color: #fff;
+      margin-bottom: 12px;
+    }
+    .results-hero .profile-sub {
+      font-size: 14px;
+      color: rgba(255,255,255,0.4);
+      letter-spacing: 0.04em;
+    }
+    .results-hero .profile-sub span.d { color: var(--drive-light); }
+    .results-hero .profile-sub span.a { color: var(--amor-light); }
+
+    .report-section {
+      width: 100%;
+      max-width: 680px;
+      padding: 56px 24px;
+    }
+    .report-section h2 {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      margin-bottom: 16px;
+    }
+    .report-section h3 {
+      font-family: 'Instrument Serif', serif;
+      font-size: clamp(22px, 3vw, 30px);
+      font-weight: 400;
+      color: var(--ink);
+      margin-bottom: 20px;
+      line-height: 1.3;
+    }
+    .report-section p {
+      font-size: 16px;
+      color: var(--ink-mid);
+      line-height: 1.85;
+    }
+    .report-divider { width: 100%; height: 1px; background: rgba(0,0,0,0.08); }
+
+    .gap-card {
+      background: #fff;
+      border-radius: var(--radius);
+      padding: 32px;
+      margin: 24px 0;
+      border-left: 4px solid var(--drive);
+    }
+    .gap-card.amor { border-left-color: var(--amor); }
+    .gap-card h4 {
+      font-family: 'Instrument Serif', serif;
+      font-size: 20px;
+      font-weight: 400;
+      color: var(--ink);
+      margin-bottom: 10px;
+    }
+    .gap-card p { font-size: 15px; color: var(--ink-mid); line-height: 1.75; }
+
+    .match-card {
+      background: #fff;
+      border-radius: var(--radius);
+      padding: 24px 28px;
+      margin-bottom: 12px;
+    }
+    .match-card h4 { font-size: 16px; font-weight: 700; color: var(--ink); margin-bottom: 6px; }
+    .match-card p { font-size: 14px; color: var(--ink-mid); line-height: 1.65; }
+
+    .results-cta {
+      width: 100%;
+      background: var(--dark);
+      padding: 72px 24px;
+      text-align: center;
+    }
+    .results-cta h2 {
+      font-family: 'Instrument Serif', serif;
+      font-size: clamp(26px, 4vw, 40px);
+      font-weight: 400;
+      color: #fff;
+      max-width: 560px;
+      margin: 0 auto 16px;
+      line-height: 1.3;
+    }
+    .results-cta p {
+      font-size: 15px;
+      color: rgba(255,255,255,0.5);
+      max-width: 440px;
+      margin: 0 auto 40px;
+      line-height: 1.7;
+    }
+    .results-closing {
+      width: 100%;
+      max-width: 680px;
+      padding: 48px 24px 72px;
+      text-align: center;
+    }
+    .results-closing p {
+      font-size: 15px;
+      color: var(--ink-mid);
+      line-height: 1.8;
+      font-style: italic;
+    }
+
+    @media (max-width: 640px) {
+      .intake-card { padding: 32px 24px; }
+      .stats-row { gap: 24px; }
+      .quiz-body { padding: 28px 16px 80px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════ INTRO ══════════════ -->
+<div id="screen-intro" class="screen active">
+  <div class="intro-logo">
+    <span class="d">Driv</span><span class="a">Amor</span>
+  </div>
+  <h1>Know how you drive.<br>Know how you love.</h1>
+  <p>40 questions across four dimensions — your Drive, your Amor Code, and the gap between who you are and what you actually need.</p>
+  <div class="stats-row">
+    <div class="stat">
+      <div class="stat-num">40</div>
+      <div class="stat-label">Questions</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">8</div>
+      <div class="stat-label">Minutes</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">20</div>
+      <div class="stat-label">Profiles</div>
+    </div>
+  </div>
+  <button class="btn btn-white" onclick="showScreen('intake')">Find my profile</button>
+</div>
+
+<!-- ══════════════ INTAKE ══════════════ -->
+<div id="screen-intake" class="screen">
+  <div class="intake-card">
+    <h2>Before we begin.</h2>
+    <p>Your report will be sent to your email. We don't share your information — ever.</p>
+    <div class="form-group">
+      <label>First name</label>
+      <input type="text" id="intake-name" placeholder="Your first name" autocomplete="given-name">
+    </div>
+    <div class="form-group">
+      <label>Email</label>
+      <input type="email" id="intake-email" placeholder="your@email.com" autocomplete="email">
+    </div>
+    <div class="form-group">
+      <label>Age range</label>
+      <select id="intake-age">
+        <option value="" disabled selected>Select your age range</option>
+        <option value="18-24">18 – 24</option>
+        <option value="25-34">25 – 34</option>
+        <option value="35-44">35 – 44</option>
+        <option value="45-54">45 – 54</option>
+        <option value="55+">55+</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Right now, you are</label>
+      <select id="intake-status">
+        <option value="" disabled selected>Select one</option>
+        <option value="single">Single and open to finding the right person</option>
+        <option value="partnered">In a relationship and want to understand it better</option>
+        <option value="not-looking">Not looking — I took this for myself</option>
+      </select>
+    </div>
+    <button class="btn btn-drive btn-full" onclick="startQuiz()" style="margin-top:8px;">Start the assessment</button>
+  </div>
+</div>
+
+<!-- ══════════════ SECTION INTRO ══════════════ -->
+<div id="screen-section" class="screen">
+  <div class="section-card">
+    <div class="section-label" id="section-label"></div>
+    <h2 id="section-title"></h2>
+    <p id="section-desc"></p>
+    <button class="btn" id="section-btn" onclick="startSection()">Begin this section</button>
+  </div>
+</div>
+
+<!-- ══════════════ QUIZ ══════════════ -->
+<div id="screen-quiz" class="screen">
+  <div class="quiz-header" id="quiz-header">
+    <span class="progress-label" id="progress-label"></span>
+    <div class="progress-bar">
+      <div class="progress-fill" id="progress-fill" style="width:0%"></div>
+    </div>
+  </div>
+  <div class="quiz-body" id="quiz-body">
+    <div class="question-wrap">
+      <div class="q-number" id="q-number"></div>
+      <div class="q-text" id="q-text"></div>
+      <div class="options" id="options"></div>
+    </div>
+  </div>
+  <div class="quiz-nav">
+    <button class="btn-back" onclick="prevQuestion()">← Back</button>
+    <button class="btn-next drive" id="btn-next" onclick="nextQuestion()" disabled>Next →</button>
+  </div>
+</div>
+
+<!-- ══════════════ RESULTS ══════════════ -->
+<div id="screen-results" class="screen">
+  <div class="results-hero">
+    <div class="eyebrow" id="result-name-label"></div>
+    <h1 id="result-profile-name"></h1>
+    <div class="profile-sub" id="result-profile-sub"></div>
+  </div>
+
+  <div class="report-section">
+    <h2>Your Drive</h2>
+    <h3 id="result-drive-title">How you move.</h3>
+    <p id="result-drive-text"></p>
+  </div>
+
+  <div class="report-divider"></div>
+
+  <div class="report-section">
+    <h2>Your Amor Code</h2>
+    <h3 id="result-amor-title">How you love.</h3>
+    <p id="result-amor-text"></p>
+  </div>
+
+  <div class="report-divider"></div>
+
+  <div class="report-section" id="result-gap-section">
+    <h2>There's something else.</h2>
+    <h3>The gap most people never see.</h3>
+    <div class="gap-card" id="result-gap-card">
+      <h4 id="result-gap-title"></h4>
+      <p id="result-gap-text"></p>
+    </div>
+  </div>
+
+  <div class="report-divider"></div>
+
+  <div class="report-section">
+    <h2>Who you connect with</h2>
+    <h3>The profiles you naturally draw.</h3>
+    <div id="result-matches"></div>
+  </div>
+
+  <div class="results-cta">
+    <h2>The full picture is in the comprehensive report.</h2>
+    <p>Your secondary types, your Drive Gap, your Amor Gap, how your profile connects with others — and the pairing that will challenge you most.</p>
+    <button class="btn btn-white" onclick="upgradeToPaid()">Get the full report — $37</button>
+  </div>
+
+  <div class="results-closing">
+    <div class="report-section" style="padding-bottom:0;">
+      <p id="result-closing"></p>
+    </div>
+  </div>
+</div>
+
+<script>
+// ══════════════════════════════════════════
+// DATA
+// ══════════════════════════════════════════
+
+const SECTIONS = [
+  {
+    id: 'drive-lead',
+    theme: 'drive',
+    label: 'Section 1 of 5 — Drive Mode',
+    title: 'How you lead.',
+    desc: 'These questions are about you as an individual — how you naturally think, decide, and operate. Answer as you are, not as you think you should be.',
+    btnClass: 'btn-drive',
+    questions: [1,2,3,4,5,6,7]
+  },
+  {
+    id: 'drive-follow',
+    theme: 'drive',
+    label: 'Section 2 of 5 — Drive Mode',
+    title: 'How you follow.',
+    desc: 'Now we look at the other seat. When your partner or someone you trust takes the lead — what role do you naturally play?',
+    btnClass: 'btn-drive',
+    questions: [8,9,10,11,12,13,14,15]
+  },
+  {
+    id: 'amor-give',
+    theme: 'amor',
+    label: 'Section 3 of 5 — Amor Code',
+    title: 'How you love.',
+    desc: 'This section captures how you naturally express love — not how you think you should, but how you actually do.',
+    btnClass: 'btn-amor',
+    questions: [16,17,18,19,20,21,22]
+  },
+  {
+    id: 'amor-receive',
+    theme: 'amor',
+    label: 'Section 4 of 5 — Amor Code',
+    title: 'How you need to be loved.',
+    desc: 'This is often different from how you give. Answer honestly — what you actually need, not what feels acceptable to admit.',
+    btnClass: 'btn-amor',
+    questions: [23,24,25,26,27,28,29,30]
+  },
+  {
+    id: 'bridge',
+    theme: 'bridge',
+    label: 'Section 5 of 5 — The Bridge',
+    title: 'How it all connects.',
+    desc: 'The final section looks at how your Drive and Amor Code interact — especially under pressure. There are no right answers here.',
+    btnClass: 'btn-dark',
+    questions: [31,32,33,34,35,36,37,38,39,40]
+  }
+];
+
+const QUESTIONS = {
+  // ── DRIVE LEAD (Q1–7)
+  1: {
+    text: "When a problem lands in front of you, your first instinct is to:",
+    type: 'drive',
+    options: [
+      { text: "Handle it — find the fastest path and move", value: "B" },
+      { text: "Talk about it — you process out loud and bring others in", value: "Am" },
+      { text: "Sit with it — you don't rush before you're ready", value: "An" },
+      { text: "Study it — you want to understand it fully before you touch it", value: "Ar" }
+    ]
+  },
+  2: {
+    text: "In a group, you naturally:",
+    type: 'drive',
+    options: [
+      { text: "Take the lead — if there's a direction to set, you set it", value: "B" },
+      { text: "Set the tone — your energy shapes how everyone feels", value: "Am" },
+      { text: "Hold the room — you make sure people feel steady before anything moves", value: "An" },
+      { text: "Observe first — you take the full picture in before you engage", value: "Ar" }
+    ]
+  },
+  3: {
+    text: "How you make decisions:",
+    type: 'drive',
+    options: [
+      { text: "Fast — you trust your instinct and adjust if needed", value: "B" },
+      { text: "With others — you want alignment before you commit", value: "Am" },
+      { text: "Carefully — you need to feel settled before you step forward", value: "An" },
+      { text: "Thoroughly — you gather, consider, then decide", value: "Ar" }
+    ]
+  },
+  4: {
+    text: "Under pressure, you:",
+    type: 'drive',
+    options: [
+      { text: "Get sharper — pressure clears the noise and you move", value: "B" },
+      { text: "Get louder — your energy rises to meet the moment", value: "Am" },
+      { text: "Get steadier — you become the calm when everything else moves", value: "An" },
+      { text: "Get quieter — you need to think before you can act", value: "Ar" }
+    ]
+  },
+  5: {
+    text: "Your natural output — what you're known for at your best:",
+    type: 'drive',
+    options: [
+      { text: "Results. Things get done.", value: "B" },
+      { text: "Momentum. People believe and move.", value: "Am" },
+      { text: "Stability. Nothing falls through.", value: "An" },
+      { text: "Strategy. The plan is right.", value: "Ar" }
+    ]
+  },
+  6: {
+    text: "What frustrates you most in any environment:",
+    type: 'drive',
+    options: [
+      { text: "Inaction — when something needs to happen and nobody moves", value: "B" },
+      { text: "Disconnection — when the energy between people flatlines", value: "Am" },
+      { text: "Instability — when everything feels unpredictable and unsafe", value: "An" },
+      { text: "Shortsightedness — when nobody is thinking about where this leads", value: "Ar" }
+    ]
+  },
+  7: {
+    text: "At your best, people around you say:",
+    type: 'drive',
+    options: [
+      { text: "\"They get things done — if it needs handling, it's handled.\"", value: "B" },
+      { text: "\"They make everything feel possible.\"", value: "Am" },
+      { text: "\"They are the steadiest, safest person in the room.\"", value: "An" },
+      { text: "\"They always see what's coming before it arrives.\"", value: "Ar" }
+    ]
+  },
+  // ── DRIVE FOLLOW (Q8–15)
+  8: {
+    text: "When your partner takes the lead on something that matters, you:",
+    type: 'drive',
+    options: [
+      { text: "Stay engaged — you push toward the best outcome even from behind", value: "B" },
+      { text: "Get fully behind them — your energy becomes the wind at their back", value: "Am" },
+      { text: "Hold the background together — you make sure everything they need is in place", value: "An" },
+      { text: "Become the thinking partner — you help them pressure-test what they can't see", value: "Ar" }
+    ]
+  },
+  9: {
+    text: "When someone else is driving and moving faster than you're comfortable with, you:",
+    type: 'drive',
+    options: [
+      { text: "Push back — speed without direction is just chaos", value: "B" },
+      { text: "Match their energy and look for ways to channel it somewhere useful", value: "Am" },
+      { text: "Hold your ground — steady is also a contribution", value: "An" },
+      { text: "Ask questions until you understand the full picture", value: "Ar" }
+    ]
+  },
+  10: {
+    text: "When you disagree with the direction your partner is leading, you:",
+    type: 'drive',
+    options: [
+      { text: "Say so directly — you won't stay quiet about something that matters", value: "B" },
+      { text: "Find a way to redirect without shutting them down", value: "Am" },
+      { text: "Voice it once, then let them lead — loyalty matters more than being right", value: "An" },
+      { text: "Document your thinking and let the outcome speak", value: "Ar" }
+    ]
+  },
+  11: {
+    text: "In a supporting role, you show up as:",
+    type: 'drive',
+    options: [
+      { text: "Still results-focused — you push toward the outcome from wherever you stand", value: "B" },
+      { text: "The energy and encouragement behind the person leading", value: "Am" },
+      { text: "The stability — the thing they lean on when the pressure builds", value: "An" },
+      { text: "The strategist — you think ahead so they don't have to", value: "Ar" }
+    ]
+  },
+  12: {
+    text: "When your partner is leading through something difficult, your instinct is to:",
+    type: 'drive',
+    options: [
+      { text: "Take tasks off their plate — execution is how you support", value: "B" },
+      { text: "Keep their confidence up — remind them they're capable of this", value: "Am" },
+      { text: "Stay consistent — be the one constant they can count on", value: "An" },
+      { text: "Help them think through what they haven't considered yet", value: "Ar" }
+    ]
+  },
+  13: {
+    text: "When you're not in charge, the hardest thing for you is:",
+    type: 'drive',
+    options: [
+      { text: "Watching decisions get made slowly or poorly", value: "B" },
+      { text: "Not being able to shift the energy when it goes the wrong direction", value: "Am" },
+      { text: "Feeling like there's no stable ground to stand on", value: "An" },
+      { text: "Moving forward before all the angles have been thought through", value: "Ar" }
+    ]
+  },
+  14: {
+    text: "Your partner would say that when they lead and you follow, you:",
+    type: 'drive',
+    options: [
+      { text: "Hold them to a high standard — even from behind, you push them to be better", value: "B" },
+      { text: "Make them feel like they can do it — you are the belief behind the vision", value: "Am" },
+      { text: "Make them feel safe — they lead better because you're steady behind them", value: "An" },
+      { text: "Make them think more carefully — you catch what they miss", value: "Ar" }
+    ]
+  },
+  15: {
+    text: "The role you naturally drift toward when you're not the one leading:",
+    type: 'drive',
+    options: [
+      { text: "The executor — I turn their vision into action", value: "B" },
+      { text: "The motivator — I keep the energy and belief alive", value: "Am" },
+      { text: "The foundation — I make sure nothing falls apart", value: "An" },
+      { text: "The advisor — I think so they can move", value: "Ar" }
+    ]
+  },
+  // ── AMOR GIVE (Q16–22)
+  16: {
+    text: "When you love someone, it most naturally looks like:",
+    type: 'amor',
+    options: [
+      { text: "Telling them — specifically and often — what they mean to you", value: "E" },
+      { text: "Handling things before they have to ask", value: "D" },
+      { text: "Clearing your schedule and giving them all of you", value: "I" },
+      { text: "Staying close — physically present, within reach", value: "P" },
+      { text: "Letting them see parts of you that nobody else gets to see", value: "Im" }
+    ]
+  },
+  17: {
+    text: "When your partner is going through something hard, your first move is:",
+    type: 'amor',
+    options: [
+      { text: "Say something real — remind them of who they are", value: "E" },
+      { text: "Find something you can take off their plate", value: "D" },
+      { text: "Cancel whatever you had and just be there, fully", value: "I" },
+      { text: "Hold them — physical comfort before words or solutions", value: "P" },
+      { text: "Ask the question underneath the question — what's really going on", value: "Im" }
+    ]
+  },
+  18: {
+    text: "When you want someone to know they matter to you, you:",
+    type: 'amor',
+    options: [
+      { text: "Say it directly — not generally, but specifically", value: "E" },
+      { text: "Do something that proves it — without being asked", value: "D" },
+      { text: "Give them your time with no distractions and no agenda", value: "I" },
+      { text: "Stay near them — close, present, in the same space", value: "P" },
+      { text: "Open up — share something real that you don't share easily", value: "Im" }
+    ]
+  },
+  19: {
+    text: "In your work relationships, you build trust by:",
+    type: 'amor',
+    options: [
+      { text: "Communicating clearly and acknowledging people often", value: "E" },
+      { text: "Following through — every time, without fail", value: "D" },
+      { text: "Being fully present when you're with someone", value: "I" },
+      { text: "Showing up with calm, grounded energy people want to be near", value: "P" },
+      { text: "Going deeper than the surface — real conversations build real trust", value: "Im" }
+    ]
+  },
+  20: {
+    text: "How you show someone you're proud of them:",
+    type: 'amor',
+    options: [
+      { text: "You tell them — out loud, in detail", value: "E" },
+      { text: "You do something for them — celebrate through action", value: "D" },
+      { text: "You make time specifically to be with them in that moment", value: "I" },
+      { text: "You reach for them — a hand, a hug that means it", value: "P" },
+      { text: "You ask them to tell you how they got there — you want the whole story", value: "Im" }
+    ]
+  },
+  21: {
+    text: "When life is loud and you're stretched thin, you show love by:",
+    type: 'amor',
+    options: [
+      { text: "Still saying it — even in chaos, the words come", value: "E" },
+      { text: "Handling one more thing so they don't have to", value: "D" },
+      { text: "Carving out even 20 minutes of real, present time", value: "I" },
+      { text: "Reaching for them — a hand, a moment that says I'm still here", value: "P" },
+      { text: "Checking in on what's actually happening with them, not just logistics", value: "Im" }
+    ]
+  },
+  22: {
+    text: "Someone who has been loved by you well would say:",
+    type: 'amor',
+    options: [
+      { text: "\"They always made sure I knew exactly what I meant to them.\"", value: "E" },
+      { text: "\"They showed up. Every time. Without being asked.\"", value: "D" },
+      { text: "\"They gave me their time like it was the most valuable thing they had.\"", value: "I" },
+      { text: "\"They stayed close. I always felt wanted.\"", value: "P" },
+      { text: "\"They knew me in ways I didn't even know myself yet.\"", value: "Im" }
+    ]
+  },
+  // ── AMOR RECEIVE (Q23–30)
+  23: {
+    text: "When you feel most loved by your partner, it's because:",
+    type: 'amor',
+    options: [
+      { text: "They said something specific and true — not a generic \"I love you\" but a real one", value: "E" },
+      { text: "They did something for you without being asked — action, not words", value: "D" },
+      { text: "They gave you their full, undivided attention — phone down, eyes up", value: "I" },
+      { text: "They were physically close — near, warm, reaching for you", value: "P" },
+      { text: "They asked the kind of question that proved they actually know you", value: "Im" }
+    ]
+  },
+  24: {
+    text: "After a hard week, what you need most is:",
+    type: 'amor',
+    options: [
+      { text: "To hear that they see it — the work, the weight, what it cost you", value: "E" },
+      { text: "For them to handle something so you don't have to think about it", value: "D" },
+      { text: "Uninterrupted time together — just you two, nothing else", value: "I" },
+      { text: "Physical comfort — being held, being close, being touched", value: "P" },
+      { text: "A real conversation — one that goes somewhere true", value: "Im" }
+    ]
+  },
+  25: {
+    text: "Your partner loves you well — but in their language, not yours. What you're missing:",
+    type: 'amor',
+    options: [
+      { text: "Words — they show up in action but they don't say it enough", value: "E" },
+      { text: "Action — they say it beautifully but the doing isn't there", value: "D" },
+      { text: "Presence — they're around but not really with you", value: "I" },
+      { text: "Touch — emotionally available but physically distant", value: "P" },
+      { text: "Depth — you want the real version of them, not the managed one", value: "Im" }
+    ]
+  },
+  26: {
+    text: "When you feel loved the way you actually need, you feel:",
+    type: 'amor',
+    options: [
+      { text: "Seen — like your specific self has been acknowledged, not just your role", value: "E" },
+      { text: "Cared for — like someone is actively investing in your life", value: "D" },
+      { text: "Chosen — like you were made the priority in a world full of options", value: "I" },
+      { text: "Safe — grounded in something physical and real", value: "P" },
+      { text: "Known — like the version of you nobody else sees is still fully loved", value: "Im" }
+    ]
+  },
+  27: {
+    text: "The moments with your partner that stay with you longest are:",
+    type: 'amor',
+    options: [
+      { text: "The things they said — the words that landed exactly right", value: "E" },
+      { text: "The times they just handled something without being asked", value: "D" },
+      { text: "The evenings where time stopped and it was just you two", value: "I" },
+      { text: "Quiet physical moments — sitting close, a hand, a look that said everything", value: "P" },
+      { text: "Conversations that went somewhere neither of you planned", value: "Im" }
+    ]
+  },
+  28: {
+    text: "In conflict, what would make you feel like it's going to be okay:",
+    type: 'amor',
+    options: [
+      { text: "For them to say specifically what they still love about you", value: "E" },
+      { text: "For them to do something that demonstrates they care, without being told", value: "D" },
+      { text: "For them to stop everything and give you their full attention", value: "I" },
+      { text: "For them to move toward you physically — not away", value: "P" },
+      { text: "For them to be honest about what they're actually feeling", value: "Im" }
+    ]
+  },
+  29: {
+    text: "What would make you quietly question whether you're truly loved:",
+    type: 'amor',
+    options: [
+      { text: "If the words stopped — or became routine and hollow", value: "E" },
+      { text: "If the effort disappeared — intention without action feels empty", value: "D" },
+      { text: "If everything else kept becoming more important than time with you", value: "I" },
+      { text: "If the warmth faded — physical distance nobody named", value: "P" },
+      { text: "If they stopped being real — performing instead of trusting you", value: "Im" }
+    ]
+  },
+  30: {
+    text: "If your partner could do one thing differently starting tomorrow:",
+    type: 'amor',
+    options: [
+      { text: "Tell you more — specific, real, often", value: "E" },
+      { text: "Take something off your plate without waiting to be asked", value: "D" },
+      { text: "Put the phone down and actually be present when you're together", value: "I" },
+      { text: "Reach for you more — proximity, touch, closeness", value: "P" },
+      { text: "Go deeper — stop staying in the safe lane of conversation", value: "Im" }
+    ]
+  },
+  // ── BRIDGE (Q31–40)
+  31: {
+    text: "When your drive to move forward conflicts with what you need emotionally in the same moment, you:",
+    type: 'bridge',
+    options: [
+      { text: "Keep driving and hope the connection catches up", value: "A" },
+      { text: "Stop — you can't move well when something is broken underneath", value: "B" },
+      { text: "Find a way to do both — you love through action even when you're hurting", value: "C" },
+      { text: "Pause everything until both feel right — you don't move on a cracked foundation", value: "D" }
+    ]
+  },
+  32: {
+    text: "Under sustained pressure — not a bad day, but a hard season — the first thing that shifts in you is:",
+    type: 'bridge',
+    options: [
+      { text: "Your Drive tightens — you become more controlling, more focused, less flexible", value: "A" },
+      { text: "Your energy hollows — you keep performing but something inside goes quiet", value: "B" },
+      { text: "Your steadiness cracks — the person everyone leans on hits their limit", value: "C" },
+      { text: "You go further into your head — the plan becomes the only thing you trust", value: "D" }
+    ]
+  },
+  33: {
+    text: "In a relationship, which truth is harder for you to live with:",
+    type: 'bridge',
+    options: [
+      { text: "Being with someone so similar that nothing ever challenges you to grow", value: "growth" },
+      { text: "Being with someone so different that the friction never fully resolves", value: "natural" }
+    ]
+  },
+  34: {
+    text: "When a relationship asks you to love in a way that doesn't come naturally, you:",
+    type: 'bridge',
+    options: [
+      { text: "Lean in — stretching is the point, not the problem", value: "growth" },
+      { text: "Try, but drift back to what's natural when it gets hard", value: "balanced" },
+      { text: "Hold your ground — you need a partner who can meet you where you are", value: "natural" }
+    ]
+  },
+  35: {
+    text: "When your deepest need in love goes unmet for too long, the version of you that shows up:",
+    type: 'bridge',
+    options: [
+      { text: "Withdrawal — you go quiet and stop giving what you naturally give", value: "A" },
+      { text: "Over-functioning — you do more, give more, and wait for someone to notice", value: "B" },
+      { text: "Disappearing into work or purpose — pouring into what you can control", value: "C" },
+      { text: "Physical distance — you pull back without explaining why", value: "D" },
+      { text: "Closing the door — surface only, no more vulnerability", value: "E" }
+    ]
+  },
+  36: {
+    text: "In a partner, the Drive dynamic you need most is:",
+    type: 'bridge',
+    options: [
+      { text: "Someone who matches your Drive — you move better with someone who operates like you", value: "match" },
+      { text: "Someone who complements your Drive — the lead/follow rhythm feels natural", value: "complement" },
+      { text: "Someone who challenges your Drive — you grow most when someone operates differently", value: "challenge" }
+    ]
+  },
+  37: {
+    text: "In a partner, what you need most in how they love:",
+    type: 'bridge',
+    options: [
+      { text: "The same as yours — you want someone who loves the way you love", value: "match" },
+      { text: "Complementary to yours — someone who gives what you struggle to give yourself", value: "complement" },
+      { text: "Different from yours — you want to be stretched into a language you haven't spoken yet", value: "challenge" }
+    ]
+  },
+  38: {
+    text: "Right now, you are:",
+    type: 'bridge',
+    options: [
+      { text: "Single and open to finding the right person", value: "single" },
+      { text: "In a relationship and want to understand it better", value: "partnered" },
+      { text: "Not in a relationship and not actively looking — I took this for myself", value: "not-looking" }
+    ]
+  },
+  39: {
+    text: "When you think about the gap between how you love and how you need to be loved:",
+    type: 'bridge',
+    options: [
+      { text: "You already knew it — this just gave it a name", value: "A" },
+      { text: "You suspected it but never said it out loud", value: "B" },
+      { text: "You're surprised — you hadn't seen it clearly before now", value: "C" },
+      { text: "You don't think there's much of a gap", value: "D" }
+    ]
+  },
+  40: {
+    text: "The relationship you are building — or looking for — is fundamentally about:",
+    type: 'bridge',
+    options: [
+      { text: "Momentum — two people building something neither could build alone", value: "momentum" },
+      { text: "Connection — two people who are fully known and fully chosen", value: "connection" },
+      { text: "Stability — a relationship that is the foundation everything else stands on", value: "stability" },
+      { text: "Intention — a relationship that is designed, not just lived", value: "intention" }
+    ]
+  }
+};
+
+// ══════════════════════════════════════════
+// PROFILES & REPORT CONTENT
+// ══════════════════════════════════════════
+
+const PROFILES = {
+  'B+E': 'The Torchbearer', 'B+D': 'The Stronghold', 'B+I': 'The Craftsman',
+  'B+P': 'The Centurion', 'B+Im': 'The Forge',
+  'Am+E': 'The Resonance', 'Am+D': 'The Beacon', 'Am+I': 'The Conductor',
+  'Am+P': 'The Radiance', 'Am+Im': 'The Flame',
+  'An+E': 'The Covenant', 'An+D': 'The Sentinel', 'An+I': 'The Keeper',
+  'An+P': 'The Refuge', 'An+Im': 'The Tether',
+  'Ar+E': 'The Author', 'Ar+D': 'The Provision', 'Ar+I': 'The Tailor',
+  'Ar+P': 'The Compass', 'Ar+Im': 'The Sanctuary'
+};
+
+const DRIVE_LABELS = { B: 'Builder', Am: 'Amplifier', An: 'Anchor', Ar: 'Architect' };
+const AMOR_LABELS = { E: 'Expressive', D: 'Devoted', I: 'Intentional', P: 'Present', Im: 'Intimate' };
+
+const DRIVE_PARAS = {
+  B: "You are someone who moves. Not because you're impatient — because you understand that waiting is also a choice, and it's usually the wrong one. In the room, you are the force that shifts things from possibility to reality. The risk isn't that you push too hard. The risk is that the people around you forget you also need to be held sometimes — because you never slow down long enough to show them.",
+  Am: "You are someone who changes the temperature of every room you enter. Not by force — by presence. People feel more capable when you're near them. More seen. More possible. The risk isn't that you give too much energy. The risk is that nobody thinks to pour back into you — because you make it look effortless, and effortless things get taken for granted.",
+  An: "You are someone who holds. Not because you can't move, but because you understand that everything needs a foundation. You are the person people don't realize they're leaning on until they step back and notice the shape of the support. The risk isn't that you give too much steadiness. The risk is that your stillness gets mistaken for not needing anything — when you need just as deeply as anyone else. You just don't say it.",
+  Ar: "You are someone who sees. Not what's in front of you — what's coming. While others react to the present, you're already building the future in your head, running scenarios, accounting for what could go wrong. The risk isn't that you think too much. The risk is that the people you love feel like items on a blueprint instead of the reason you're building in the first place."
+};
+
+const AMOR_PARAS = {
+  E: "The way you love has a voice. You don't assume people know — you tell them. Specifically, often, in the exact words that hit the way you mean them to. This is rarer than you know. Most people in someone's life will never say the thing directly. You say it. The blind spot: you give in words, which means you also track love in words. When they stop coming from someone else, you notice immediately — even when they're showing up in every other way.",
+  D: "The way you love has hands. You show up. You handle things. You anticipate what's needed before anyone asks and move toward it without being told. The blind spot: your love is in the doing, which means the people you love may not always see it as love — they see it as helpfulness. And you may be pouring out constantly without anyone thinking to ask what you need in return.",
+  I: "The way you love has presence. You give people your time like it's the most valuable thing you own — because it is. When you're with someone, you're actually with them. The blind spot: because you give time so deliberately, you also notice when yours isn't being protected. Distraction from someone you love doesn't feel small. It lands like a statement.",
+  P: "The way you love has warmth. You stay close. Proximity is how you say what language can't always reach — a hand, a presence, a physical nearness that tells someone they are wanted and they are safe. The blind spot: because closeness is your language, distance is never neutral to you. Your body knows something is off before your mind catches up.",
+  Im: "The way you love goes deep. You don't do surface. You're not interested in the curated version of someone — you want the real one. This is a rare and demanding kind of love, and not everyone is ready for it. The blind spot: because you go deep, you also give depth — and when someone can't meet you there, it registers not just as a gap in connection but as a question about whether you're truly loved at all."
+};
+
+const AMOR_GAP_PARAS = {
+  'D+E': "You love through action. But you feel loved through words. You may be doing everything right and still feel like something is missing — because nobody is saying it. And the people you love may feel taken care of but not affirmed.",
+  'E+D': "You say it well. But what you actually need is for someone to do something. Words land, but what stays is the act — the handled thing, the shown-up moment, the proof.",
+  'I+P': "You give time. But what you need is closeness. You can be fully present with someone for hours and still feel disconnected if they never reach for you.",
+  'P+I': "You give closeness. But what you need is time — full, undivided, chosen. You can be physically next to someone all day and feel lonely if their attention was somewhere else.",
+  'D+Im': "You love through doing. But what you need is to be known. No amount of handled tasks fills the space inside you that needs someone to actually go deep.",
+  'Im+D': "You love by going deep. But what you need is for someone to do something. Depth is your offering. Action is your need.",
+  'E+I': "You say it. But you need time. Words are your love language — but what fills you is someone's complete, undivided attention.",
+  'I+E': "You give time. But you need words. You can spend hours with someone and leave without hearing the thing you needed to hear.",
+  'P+Im': "You stay close. But you need to be known. Physical warmth is your language — but what fills you is someone who knows the real version of you and stays.",
+  'Im+P': "You go deep. But you need closeness. Depth is your gift — proximity is your need. The soul and the body both need to be held."
+};
+
+const DRIVE_COMPLEMENTS = { B: ['An','Ar'], Am: ['An','B'], An: ['B','Am'], Ar: ['B','Am'] };
+const AMOR_COMPLEMENTS = { E: ['D','Im'], D: ['E','P'], I: ['P','Im'], P: ['I','D'], Im: ['E','I'] };
+
+const MATCH_SENTENCES = {
+  'B+An': "Their steadiness gives your drive a home — and your momentum gives their stability a direction.",
+  'B+Ar': "They think it, you build it — together you move faster and smarter than either does alone.",
+  'B+Am': "They energize the room you're already moving through — your outputs multiply when someone believes in them out loud.",
+  'Am+An': "Their groundedness gives your energy somewhere to land — and you give their steadiness a reason to move.",
+  'Am+B': "You raise the belief, they build the thing — this pairing turns vision into reality.",
+  'Am+Ar': "You sell the future they've already mapped — together the vision has both wings and a runway.",
+  'An+B': "They move, you hold — the relationship runs because you never both leave the foundation at the same time.",
+  'An+Am': "Their energy gives your steadiness life — and you give their energy something solid to return to.",
+  'An+Ar': "Two patient people building something that lasts — you hold the space, they hold the map.",
+  'Ar+B': "You think three steps ahead, they execute — together nothing stays on the drawing board.",
+  'Ar+Am': "You map it, they sell it — the vision exists and it has a plan.",
+  'Ar+An': "Two people who take the long view — unhurried, intentional, building something that won't have to be rebuilt.",
+  'E+D': "They do what you say — the relationship has both words and proof.",
+  'E+Im': "You give the language, they give the depth — together nothing important goes unnamed.",
+  'D+E': "They say what you show — the relationship has both the action and the acknowledgment.",
+  'D+P': "Two people who love through what they do with their bodies — warmth, action, closeness.",
+  'I+P': "Time and touch — two people who want to be fully with each other in every sense.",
+  'I+Im': "You create the space, they fill it with depth — this pairing goes slow and goes far.",
+  'P+I': "Touch and time — the relationship is warm, close, and fully inhabited.",
+  'P+D': "Warmth and action — two people who love through what they do, not just what they say.",
+  'Im+E': "You go deep, they give it language — nothing true between you stays unspoken.",
+  'Im+I': "Depth needs space — and they create it without being asked."
+};
+
+const CLOSINGS = {
+  single: "You now know something about yourself that most people spend years trying to name. The question isn't just who you're looking for — it's whether you know what you're bringing. You do now.\n\nWhen you're ready to go deeper into yourself before you go looking for someone else — you already have everything you need. MiRAjO will show you how to use it.",
+  partnered: "You now know something about yourself that most people never put into words. The next question is whether your partner knows it too.\n\nThe full report gives you the complete picture — your gaps, your secondary types, how your profile interacts with theirs, and what to do when the dynamic gets hard.\n\nYou already have everything you need. Now you have the language for it.",
+  'not-looking': "Sometimes the most important relationship you can understand is the one with yourself. You know more now than you did eight minutes ago.\n\nWhen you're ready to go further — the full report is there.\n\nYou already have everything you need. MiRAjO will show you how to use it."
+};
+
+// ══════════════════════════════════════════
+// STATE
+// ══════════════════════════════════════════
+
+let userData = {};
+let answers = {};
+let currentSectionIdx = -1;
+let currentQuestionIds = [];
+let currentQIdx = 0;
+let inQuiz = false;
+
+// ══════════════════════════════════════════
+// NAVIGATION
+// ══════════════════════════════════════════
+
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById('screen-' + id).classList.add('active');
+}
+
+function startQuiz() {
+  const name = document.getElementById('intake-name').value.trim();
+  const email = document.getElementById('intake-email').value.trim();
+  const age = document.getElementById('intake-age').value;
+  const status = document.getElementById('intake-status').value;
+  if (!name || !email || !age || !status) { alert('Please fill in all fields to continue.'); return; }
+  userData = { name, email, age, status };
+  // Pre-set Q38 from intake status
+  answers[38] = status;
+  currentSectionIdx = -1;
+  advanceToNextSection();
+}
+
+function advanceToNextSection() {
+  currentSectionIdx++;
+  if (currentSectionIdx >= SECTIONS.length) { showResults(); return; }
+  showSectionIntro(SECTIONS[currentSectionIdx]);
+}
+
+function showSectionIntro(section) {
+  const el = document.getElementById('screen-section');
+  el.className = 'screen ' + section.theme;
+  document.getElementById('section-label').textContent = section.label;
+  document.getElementById('section-title').textContent = section.title;
+  document.getElementById('section-desc').textContent = section.desc;
+  const btn = document.getElementById('section-btn');
+  btn.className = 'btn ' + section.btnClass;
+  showScreen('section');
+}
+
+function startSection() {
+  const section = SECTIONS[currentSectionIdx];
+  currentQuestionIds = section.questions;
+  currentQIdx = 0;
+  inQuiz = true;
+  renderQuestion();
+  showScreen('quiz');
+}
+
+function renderQuestion() {
+  const section = SECTIONS[currentSectionIdx];
+  const qId = currentQuestionIds[currentQIdx];
+  const q = QUESTIONS[qId];
+  const total = 40;
+  const answered = Object.keys(answers).filter(k => parseInt(k) !== 38).length;
+
+  // Header theme
+  const header = document.getElementById('quiz-header');
+  const body = document.getElementById('quiz-body');
+  header.className = 'quiz-header ' + section.theme;
+  body.className = 'quiz-body ' + section.theme;
+
+  // Progress
+  document.getElementById('progress-label').textContent = `${answered + 1} / ${total}`;
+  const pct = ((answered) / total) * 100;
+  document.getElementById('progress-fill').style.width = pct + '%';
+
+  // Question
+  document.getElementById('q-number').textContent = `Question ${qId}`;
+  document.getElementById('q-text').textContent = q.text;
+
+  // Options
+  const optEl = document.getElementById('options');
+  optEl.innerHTML = '';
+  q.options.forEach(opt => {
+    const btn = document.createElement('button');
+    btn.className = 'option ' + section.theme + '-opt';
+    btn.textContent = opt.text;
+    if (answers[qId] === opt.value) btn.classList.add('selected');
+    btn.onclick = () => selectOption(qId, opt.value, btn, section.theme);
+    optEl.appendChild(btn);
+  });
+
+  // Next button
+  const nextBtn = document.getElementById('btn-next');
+  nextBtn.className = 'btn-next ' + section.theme;
+  nextBtn.disabled = !answers[qId];
+  nextBtn.textContent = (currentSectionIdx === SECTIONS.length - 1 && currentQIdx === currentQuestionIds.length - 1) ? 'See my results →' : 'Next →';
+}
+
+function selectOption(qId, value, btnEl, theme) {
+  answers[qId] = value;
+  document.querySelectorAll('.option').forEach(b => b.classList.remove('selected'));
+  btnEl.classList.add('selected');
+  document.getElementById('btn-next').disabled = false;
+}
+
+function nextQuestion() {
+  if (currentQIdx < currentQuestionIds.length - 1) {
+    currentQIdx++;
+    renderQuestion();
+  } else {
+    advanceToNextSection();
+  }
+}
+
+function prevQuestion() {
+  if (currentQIdx > 0) {
+    currentQIdx--;
+    renderQuestion();
+  } else if (currentSectionIdx > 0) {
+    currentSectionIdx--;
+    const prevSection = SECTIONS[currentSectionIdx];
+    currentQuestionIds = prevSection.questions;
+    currentQIdx = currentQuestionIds.length - 1;
+    renderQuestion();
+  }
+}
+
+// ══════════════════════════════════════════
+// SCORING
+// ══════════════════════════════════════════
+
+function score(qIds, values) {
+  const counts = {};
+  values.forEach(v => counts[v] = 0);
+  qIds.forEach(id => { if (answers[id]) counts[answers[id]] = (counts[answers[id]] || 0) + 1; });
+  const sorted = Object.entries(counts).sort((a,b) => b[1]-a[1]);
+  return { primary: sorted[0][0], secondary: sorted[1] ? sorted[1][0] : sorted[0][0] };
+}
+
+function showResults() {
+  const driveLead = score([1,2,3,4,5,6,7], ['B','Am','An','Ar']);
+  const driveFollow = score([8,9,10,11,12,13,14,15], ['B','Am','An','Ar']);
+  const amorGive = score([16,17,18,19,20,21,22], ['E','D','I','P','Im']);
+  const amorReceive = score([23,24,25,26,27,28,29,30], ['E','D','I','P','Im']);
+
+  const profileKey = driveLead.primary + '+' + amorGive.primary;
+  const profileName = PROFILES[profileKey] || 'Your Profile';
+  const status = answers[38] || userData.status || 'not-looking';
+  const vision = answers[40] || 'momentum';
+
+  // Header
+  document.getElementById('result-name-label').textContent = userData.name + ', meet your profile.';
+  document.getElementById('result-profile-name').textContent = profileName;
+  document.getElementById('result-profile-sub').innerHTML =
+    `<span class="d">${DRIVE_LABELS[driveLead.primary]}</span> &nbsp;·&nbsp; <span class="a">${AMOR_LABELS[amorGive.primary]}</span>`;
+
+  // Drive
+  document.getElementById('result-drive-title').textContent = 'How you move — as a ' + DRIVE_LABELS[driveLead.primary] + '.';
+  document.getElementById('result-drive-text').textContent = DRIVE_PARAS[driveLead.primary];
+
+  // Amor Give
+  document.getElementById('result-amor-title').textContent = 'How you love — as ' + AMOR_LABELS[amorGive.primary] + '.';
+  document.getElementById('result-amor-text').textContent = AMOR_PARAS[amorGive.primary];
+
+  // Gap
+  const gapSection = document.getElementById('result-gap-section');
+  const giveKey = amorGive.primary + '+' + amorReceive.primary;
+  if (amorGive.primary !== amorReceive.primary && AMOR_GAP_PARAS[giveKey]) {
+    gapSection.style.display = '';
+    document.getElementById('result-gap-card').className = 'gap-card amor';
+    document.getElementById('result-gap-title').textContent =
+      'You give as ' + AMOR_LABELS[amorGive.primary] + '. You receive as ' + AMOR_LABELS[amorReceive.primary] + '.';
+    document.getElementById('result-gap-text').textContent = AMOR_GAP_PARAS[giveKey];
+  } else {
+    gapSection.style.display = 'none';
+  }
+
+  // Matches
+  const matchesEl = document.getElementById('result-matches');
+  matchesEl.innerHTML = '';
+  const driveMatches = DRIVE_COMPLEMENTS[driveLead.primary] || [];
+  const amorMatches = AMOR_COMPLEMENTS[amorGive.primary] || [];
+  const matchProfiles = [
+    PROFILES[driveMatches[0] + '+' + amorGive.primary],
+    PROFILES[driveLead.primary + '+' + amorMatches[0]]
+  ].filter(Boolean);
+
+  const matchKeys = [
+    driveLead.primary + '+' + driveMatches[0],
+    amorGive.primary + '+' + amorMatches[0]
+  ];
+
+  matchProfiles.slice(0, 2).forEach((mp, i) => {
+    if (!mp) return;
+    const card = document.createElement('div');
+    card.className = 'match-card';
+    const sentence = MATCH_SENTENCES[matchKeys[i]] || 'A natural pairing based on your Drive and Amor Code.';
+    card.innerHTML = `<h4>${mp}</h4><p>${sentence}</p>`;
+    matchesEl.appendChild(card);
+  });
+
+  // Closing
+  document.getElementById('result-closing').textContent = CLOSINGS[status] || CLOSINGS['not-looking'];
+
+  showScreen('results');
+  window.scrollTo(0, 0);
+}
+
+function upgradeToPaid() {
+  // Stripe checkout — wire in later
+  alert('Paid report coming soon. Check your email for your free report.');
+}
+</script>
+</body>
+</html>
