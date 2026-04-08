@@ -1351,15 +1351,55 @@ function showResults() {
   });
 
   // Closing
-  document.getElementById('result-closing').textContent = CLOSINGS[status] || CLOSINGS['not-looking'];
+  const closingText = CLOSINGS[status] || CLOSINGS['not-looking'];
+  document.getElementById('result-closing').textContent = closingText;
 
   showScreen('results');
   window.scrollTo(0, 0);
+
+  // Build match data for email
+  const driveMatches = DRIVE_COMPLEMENTS[driveLead.primary] || [];
+  const amorMatchKeys = AMOR_COMPLEMENTS[amorGive.primary] || [];
+  const emailMatches = [
+    {
+      name: PROFILES[driveMatches[0] + '+' + amorGive.primary],
+      sentence: MATCH_SENTENCES[driveLead.primary + '+' + driveMatches[0]] || ''
+    },
+    {
+      name: PROFILES[driveLead.primary + '+' + amorMatchKeys[0]],
+      sentence: MATCH_SENTENCES[amorGive.primary + '+' + amorMatchKeys[0]] || ''
+    }
+  ].filter(m => m.name);
+
+  // Build gap data for email
+  const giveKey = amorGive.primary + '+' + amorReceive.primary;
+  const emailGap = (amorGive.primary !== amorReceive.primary && AMOR_GAP_PARAS[giveKey]) ? {
+    title: 'You give as ' + AMOR_LABELS[amorGive.primary] + '. You receive as ' + AMOR_LABELS[amorReceive.primary] + '.',
+    text: AMOR_GAP_PARAS[giveKey]
+  } : null;
+
+  // Send email
+  fetch('/api/send-report', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      name: userData.name,
+      email: userData.email,
+      profileName,
+      driveLabel: DRIVE_LABELS[driveLead.primary],
+      amorLabel: AMOR_LABELS[amorGive.primary],
+      drivePara: DRIVE_PARAS[driveLead.primary],
+      amorPara: AMOR_PARAS[amorGive.primary],
+      gap: emailGap,
+      matches: emailMatches,
+      closing: closingText
+    })
+  }).catch(err => console.error('Email send failed:', err));
 }
 
 function upgradeToPaid() {
   // Stripe checkout — wire in later
-  alert('Paid report coming soon. Check your email for your free report.');
+  window.location.href = '/upgrade';
 }
 </script>
 </body>
