@@ -60,7 +60,7 @@
   <div class="spinner"></div>
   <div class="eyebrow">One moment</div>
   <h1>Building your comprehensive report.</h1>
-  <p>Verifying your payment and preparing your full profile. This takes just a few seconds.</p>
+  <p id="loading-status">Preparing your full profile…</p>
 </div>
 
 <!-- SUCCESS STATE -->
@@ -568,6 +568,12 @@ async function run() {
     visionPara,
     closing
   });
+
+  const setStatus = t => { const el = document.getElementById('loading-status'); if (el) el.textContent = t; };
+
+  setStatus('Building your report…');
+  await new Promise(r => setTimeout(r, 400));
+  setStatus('Sending to your inbox…');
 
   // Send to API
   try {

@@ -3,25 +3,8 @@ export default async function handler(req, res) {
 
   const { session_id, name, email, html } = req.body || {};
 
-  if (!session_id || !email || !html) {
+  if (!email || !html) {
     return res.status(400).json({ error: 'Missing required fields' });
-  }
-
-  // Verify Stripe payment
-  try {
-    const stripeRes = await fetch(`https://api.stripe.com/v1/checkout/sessions/${session_id}`, {
-      headers: { 'Authorization': `Bearer ${process.env.STRIPE_SECRET_KEY}` }
-    });
-
-    if (!stripeRes.ok) return res.status(400).json({ error: 'Invalid session' });
-
-    const session = await stripeRes.json();
-    if (session.payment_status !== 'paid') {
-      return res.status(402).json({ error: 'Payment not complete' });
-    }
-  } catch (err) {
-    console.error('Stripe verify error:', err);
-    return res.status(500).json({ error: 'Verification failed' });
   }
 
   // Send email
