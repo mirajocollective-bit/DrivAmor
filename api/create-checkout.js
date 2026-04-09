@@ -13,6 +13,7 @@ export default async function handler(req, res) {
     params.append('line_items[0][quantity]', '1');
     params.append('success_url', 'https://www.drivamor.com/success?session_id={CHECKOUT_SESSION_ID}');
     params.append('cancel_url', 'https://www.drivamor.com/upgrade');
+    params.append('allow_promotion_codes', 'true');
     if (email) params.append('customer_email', email);
     if (name) params.append('metadata[name]', name);
     if (email) params.append('metadata[email]', email);
