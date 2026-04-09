@@ -183,6 +183,7 @@
       text-decoration: none;
     }
     .btn-checkout:hover { opacity: 0.9; transform: translateY(-1px); }
+    .btn-checkout:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
     .secure-note {
       font-size: 12px;
       color: rgba(255,255,255,0.25);
@@ -296,9 +297,38 @@
 </div>
 
 <script>
-function handleCheckout() {
-  // Stripe checkout — wire in with price ID when ready
-  alert('Checkout coming soon. Thank you for your interest!');
+async function handleCheckout() {
+  const btn = document.querySelector('.btn-checkout');
+  btn.disabled = true;
+  btn.textContent = 'Redirecting to checkout…';
+
+  let name = '', email = '';
+  try {
+    const profile = JSON.parse(localStorage.getItem('drivamor_profile') || '{}');
+    name = profile.name || '';
+    email = profile.email || '';
+  } catch(e) {}
+
+  try {
+    const res = await fetch('/api/create-checkout', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, email })
+    });
+
+    if (!res.ok) throw new Error('Checkout creation failed');
+
+    const data = await res.json();
+    if (data.url) {
+      window.location.href = data.url;
+    } else {
+      throw new Error('No redirect URL returned');
+    }
+  } catch(err) {
+    btn.disabled = false;
+    btn.textContent = 'Get my full report';
+    alert('Something went wrong. Please try again or email hello@drivamor.com');
+  }
 }
 </script>
 

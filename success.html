@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DrivAmor — Your Report Is On Its Way</title>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --drive: #1E5F8E;
+      --drive-light: #4A90C4;
+      --amor: #C42B28;
+      --amor-light: #E04A46;
+      --dark: #0F0D16;
+      --off: #F8F6F2;
+      --ink: #141414;
+      --ink-mid: #555;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--dark); color: #fff; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 40px 24px; text-align: center; }
+
+    .logo { font-family: 'Instrument Serif', serif; font-size: 22px; margin-bottom: 64px; }
+    .logo span.d { color: var(--drive-light); }
+    .logo span.a { color: var(--amor-light); }
+
+    .state { max-width: 520px; }
+    .state.hidden { display: none; }
+
+    .eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 20px; }
+
+    h1 { font-family: 'Instrument Serif', serif; font-size: clamp(28px, 5vw, 44px); font-weight: 400; line-height: 1.2; margin-bottom: 20px; }
+
+    p { font-size: 16px; color: rgba(255,255,255,0.55); line-height: 1.75; margin-bottom: 16px; }
+
+    .spinner { width: 40px; height: 40px; border: 3px solid rgba(255,255,255,0.1); border-top-color: rgba(255,255,255,0.6); border-radius: 50%; animation: spin 0.8s linear infinite; margin: 0 auto 32px; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .check { font-size: 48px; margin-bottom: 24px; }
+
+    .next-steps { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 28px 32px; margin-top: 32px; text-align: left; }
+    .next-steps h3 { font-size: 13px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 16px; }
+    .next-steps ul { list-style: none; }
+    .next-steps li { font-size: 14px; color: rgba(255,255,255,0.6); padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.06); display: flex; gap: 12px; align-items: flex-start; }
+    .next-steps li:last-child { border-bottom: none; }
+    .next-steps li::before { content: '→'; color: var(--drive-light); flex-shrink: 0; }
+
+    .btn { display: inline-block; background: #fff; color: var(--dark); font-family: 'Plus Jakarta Sans', sans-serif; font-size: 14px; font-weight: 700; letter-spacing: 0.04em; padding: 14px 32px; border-radius: 6px; text-decoration: none; margin-top: 32px; cursor: pointer; border: none; }
+
+    .error-msg { color: rgba(255,100,100,0.8); font-size: 14px; margin-top: 16px; }
+    .manual-note { font-size: 13px; color: rgba(255,255,255,0.3); margin-top: 24px; }
+    .manual-note a { color: rgba(255,255,255,0.5); }
+  </style>
+</head>
+<body>
+
+<a href="/" class="logo"><span class="d">Driv</span><span class="a">Amor</span></a>
+
+<!-- LOADING STATE -->
+<div class="state" id="state-loading">
+  <div class="spinner"></div>
+  <div class="eyebrow">One moment</div>
+  <h1>Building your comprehensive report.</h1>
+  <p>Verifying your payment and preparing your full profile. This takes just a few seconds.</p>
+</div>
+
+<!-- SUCCESS STATE -->
+<div class="state hidden" id="state-success">
+  <div class="check">✓</div>
+  <div class="eyebrow">Report delivered</div>
+  <h1>Check your inbox.</h1>
+  <p>Your comprehensive report is on its way. Check your email — including your spam folder if it doesn't show within a few minutes.</p>
+  <div class="next-steps">
+    <h3>What's in your report</h3>
+    <ul>
+      <li>Your full Drive — both the lead and follow version of you</li>
+      <li>Your Drive Gap — and what it means for your relationships</li>
+      <li>Your full Amor Code — how you give and how you need to receive</li>
+      <li>Your Amor Gap — the thing most people never see</li>
+      <li>Your secondary types and shadow behavior</li>
+      <li>Complete compatibility breakdown with natural matches and growth pairing</li>
+      <li>Your growth edges — honest, specific, and actionable</li>
+    </ul>
+  </div>
+  <a href="https://www.drivamor.com/quiz" class="btn">Take the quiz with your partner</a>
+</div>
+
+<!-- ERROR STATE -->
+<div class="state hidden" id="state-error">
+  <div class="eyebrow">Something went wrong</div>
+  <h1>We couldn't send your report.</h1>
+  <p>Your payment went through — but we ran into a problem generating your report.</p>
+  <p class="error-msg" id="error-detail"></p>
+  <p class="manual-note">Email us at <a href="mailto:hello@drivamor.com">hello@drivamor.com</a> and we'll send it manually. Include your name and the email you used to pay.</p>
+</div>
+
+<!-- NO DATA STATE -->
+<div class="state hidden" id="state-nodata">
+  <div class="eyebrow">Payment confirmed</div>
+  <h1>Your payment went through.</h1>
+  <p>We couldn't find your quiz results in this browser — which means we can't personalize your report automatically.</p>
+  <p class="manual-note">Email us at <a href="mailto:hello@drivamor.com">hello@drivamor.com</a> with your name and the email you used to complete the assessment. We'll send your report within 24 hours.</p>
+</div>
+
+<script>
+// ══════════════════════════════════════════
+// CONTENT LIBRARIES — PAID REPORT
+// ══════════════════════════════════════════
+
+const DRIVE_LABELS = { B: 'The Builder', Am: 'The Amplifier', An: 'The Anchor', Ar: 'The Architect' };
+const AMOR_LABELS  = { E: 'The Expressive', D: 'The Devoted', I: 'The Intentional', P: 'The Present', Im: 'The Intimate' };
+
+const PROFILES = {
+  'B+E':'The Commanding Heart','B+D':'The Proving Ground','B+I':'The Purposeful Partner',
+  'B+P':'The Grounded Force','B+Im':'The Searching Builder','Am+E':'The Radiant One',
+  'Am+D':'The Generous Engine','Am+I':'The Devoted Champion','Am+P':'The Warm Amplifier',
+  'Am+Im':'The Soulful Inspirer','An+E':'The Steady Voice','An+D':'The Faithful Anchor',
+  'An+I':'The Patient Presence','An+P':'The Quiet Harbor','An+Im':'The Still Depths',
+  'Ar+E':'The Thoughtful Affirmer','Ar+D':'The Devoted Strategist','Ar+I':'The Mindful Architect',
+  'Ar+P':'The Grounded Planner','Ar+Im':'The Deep Architect'
+};
+
+const DRIVE_PARAS = {
+  B: "You are a force of forward motion. You don't wait for permission, consensus, or ideal conditions — you move, and the environment reorganizes around your movement. In a relationship, you bring energy, initiative, and a relentless orientation toward the next thing. The gift: you make things happen. The shadow: when someone can't match your pace, you may mistake their rhythm for resistance.",
+  Am: "You are the energy in the room. You don't just participate in relationships — you elevate them. You make people feel capable, seen, and more alive than they felt before you showed up. In a relationship, you bring belief, warmth, and a generosity of spirit that is genuinely rare. The gift: you see the best in people and call it out. The shadow: when you pour endlessly, the well empties — and you often don't name it until it's already gone.",
+  An: "You are the ground underneath everything. You don't chase momentum — you create the conditions for it. In a relationship, you bring stability, consistency, and a depth of presence that most people spend their whole lives looking for without finding. The gift: the people you love feel safe. The shadow: because you absorb so much quietly, people may not realize how much you're carrying — or that you've already reached your limit.",
+  Ar: "You are the mind behind the motion. You see patterns others miss, risks others haven't considered, and paths others haven't mapped. In a relationship, you bring intentionality, precision, and the kind of foresight that protects people from outcomes they couldn't see coming. The gift: you think before you act, which means your actions land with purpose. The shadow: the thinking can become the thing — you may stay in analysis long past the moment when someone needed you to simply show up."
+};
+
+const AMOR_PARAS = {
+  E: "You love with words. Not vague ones — specific, named, meant. You tell people who they are to you, what they mean, why they matter. Most people in your life have been affirmed by you in ways they didn't expect. The gift: you make people feel seen. The blind spot: you assume the words land the same way for everyone. They don't.",
+  D: "You love through action. You fix things, show up, handle what needs handling — before anyone thinks to ask. Devotion, for you, is not something you declare. It's something you do. The gift: the people you love feel taken care of. The blind spot: you can do everything right and still leave someone feeling unloved — because they needed the word, not the act.",
+  I: "You love with time. Real time — chosen, protected, fully present. When you are with someone, you are with them. You don't half-attend. You don't check the phone. You are there. The gift: the people you love feel like a priority. The blind spot: you measure love by presence, but not everyone speaks that language back to you.",
+  P: "You love through closeness. Physical warmth, proximity, the language of touch. You reach, you hold, you stay near. For you, love is something you feel in the body before you understand it in the mind. The gift: the people you love feel wanted. The blind spot: when someone doesn't receive that language, the distance can register to you as rejection — even when it's just difference.",
+  Im: "The way you love goes deep. You don't do surface. You're not interested in the curated version of someone — you want the real one. This is a rare and demanding kind of love, and not everyone is ready for it. The blind spot: because you go deep, you also give depth — and when someone can't meet you there, it registers not just as a gap in connection but as a question about whether you're truly loved at all."
+};
+
+const DRIVE_FOLLOW_PARAS = {
+  B: "When you're not the one leading, you don't disappear — you push. You stay close to the outcome, hold the person driving to a high standard, and execute whatever they can't get to themselves. You are not a passive follower. You are a force operating from behind the front line. The tension: you have opinions about the direction and you will say so. That is not disloyalty — it is how you love. But the person you follow needs to know the difference between your challenge and your doubt.",
+  Am: "When you're not the one leading, you become the belief system behind the person who is. You keep the energy alive when it starts to hollow. You remind them why they're doing this when the reason gets blurry. You are the voice that says 'you've got this' before they believe it themselves. The tension: you pour into the person leading, which means you need them to pour back. If they take your energy for granted, you will eventually have nothing left to give.",
+  An: "When you're not the one leading, you hold the ground. You make sure everything the leader needs is in place — that the foundation doesn't shift while they're focused forward. You don't need the credit. You don't need the spotlight. You need to know that your stability matters to the outcome. The tension: because you give so quietly, people sometimes don't realize what you're carrying. Make sure the person you're supporting knows what it costs you to hold it all.",
+  Ar: "When you're not the one leading, you think. You become the sounding board, the pressure-test, the person who asks the question nobody else thought to ask. You protect the person leading from their own blind spots. The tension: you see gaps they don't, and sometimes you see them clearly enough to question the whole direction. That is a gift — but only if the person leading knows you're thinking with them, not against them."
+};
+
+const AMOR_RECEIVE_PARAS = {
+  E: "What you need, underneath everything, is to be told. Not assumed. Not implied. Told — specifically, in real words, about who you are and what you mean. You can absorb a lot of love expressed in other ways, but if the words stop coming, something in you starts to wonder. The question you carry, whether you say it or not: do you still choose me? The answer you need is spoken, not just shown.",
+  D: "What you need is proof. Not declarations — action. Someone who sees what's hard and moves toward it without being asked. Someone who handles the thing, shows up for the appointment, remembers the detail. You don't need grand gestures. You need consistent ones. The question you carry: am I worth the effort? The answer you need is in what someone does, not what they say.",
+  I: "What you need is to be chosen — deliberately, visibly, over everything else competing for attention. Not quality time as a leftover. Quality time as a decision. Phone down. Agenda cleared. Eyes up. The question you carry: am I actually a priority, or just a presence? The answer you need is undivided attention, on purpose.",
+  P: "What you need is closeness. Physical proximity, warmth, reach. Not as a bonus — as a baseline. Being near you is how someone tells you they want you. Distance — even ordinary, logistical distance — registers as something more to you. The question you carry: do you still want me near? The answer you need is a hand, a presence, someone who moves toward you instead of away.",
+  Im: "What you need is to be known. Not liked. Not wanted. Known — the real version, the unmanaged version, the version that doesn't make it into public. You need someone who asks the question underneath the question and actually waits for the answer. The question you carry: can you handle all of me? The answer you need is someone who goes to the hard place with you and doesn't flinch."
+};
+
+const DRIVE_GAP_PARAS = {
+  'B+An': "You drive hard when you're in front. But when you step back, something shifts — you become the ground instead of the force. Most people in your life have only seen one version of you. The ones who've seen both know there's a softness underneath the charge that only surfaces when you're not the one steering. This gap is a gift. It means you can hold space as well as take space. The risk: you may not know which one you're doing in a given moment — and neither does the person next to you.",
+  'B+Am': "You push from the front and energize from behind. Whether you're leading or supporting, the outcome is moving. The gap: when you follow, you bring fire to someone else's direction — which can feel like challenge instead of support if the person leading doesn't know you're behind them, not against them.",
+  'B+Ar': "You move when you lead. You think when you follow. Most people expect the same version of you in both roles. What they get is two very different kinds of value depending on who has the wheel. The gap: in the follow role, your instinct to analyze can slow down a leader who needs momentum. Learn to give your thinking as fuel, not friction.",
+  'Am+An': "You set the temperature when you lead. But when someone else is driving, you become the steady current underneath them. The gap: the people who follow your lead experience your energy. The people whose lead you follow experience your groundedness. Very few people get both. The ones who do know exactly how rare you are.",
+  'Am+B': "You inspire from the front and execute from behind. The gap: as a follower you push for results, which can read as impatience with the person leading. What looks like drive is actually loyalty — you want them to succeed and you won't let them settle.",
+  'Am+Ar': "You raise the vision when you lead. You map the gaps when you follow. The gap: your follow mode is quieter and more analytical than your lead mode — people who only know you in one role may be surprised by the other.",
+  'An+B': "You hold steady when you lead. But when someone else drives, a different instinct surfaces — you push. You stay close to the outcome and you won't let it drift. The gap: the people who experience your follow role may not recognize it as support. It is. It's just a more demanding kind.",
+  'An+Am': "You stabilize when you lead. You energize when you follow. The gap: the switch between these modes can feel jarring to people who expect the same version of you. Naming it — 'I'm in support mode, not lead mode right now' — makes the difference feel like a strength instead of an inconsistency.",
+  'An+Ar': "You hold the space when you lead. You think ahead when you follow. Both are quiet modes — neither demands the spotlight. The gap: in a relationship where neither person pushes forward easily, make sure someone is. The long game needs forward movement, not just patience.",
+  'Ar+B': "You plan when you lead. You build when you follow. Together these two modes cover the full arc from strategy to execution. The gap: your follow mode is more action-oriented than your lead mode — which can create a split that surprises the people around you when the gears shift.",
+  'Ar+Am': "You map when you lead. You motivate when you follow. The gap: as a follower you bring energy behind someone else's plan — which can look like enthusiasm but is actually strategic support. You believe in the direction and you're making sure everyone else does too.",
+  'Ar+An': "You think ahead when you lead. You hold ground when you follow. Two patient modes. Two long-game orientations. The gap: make sure someone in the relationship is also moving. Patience and steadiness are strengths — but growth requires a push, and neither of these modes pushes naturally."
+};
+
+const DRIVE_GAP_CONSISTENT = {
+  B: "Your Drive is consistent. Whether you're leading or following, you show up the same way — as a Builder. That consistency is a strength. The people in your life know exactly who they're getting. The growth edge: make sure consistency doesn't become control. Even your strongest mode has a shadow.",
+  Am: "Your Drive is consistent. Whether you're leading or following, you show up the same way — as an Amplifier. That consistency is a strength. The people in your life know exactly who they're getting. The growth edge: make sure the energy is real, not performed. Even your most natural mode can become armor.",
+  An: "Your Drive is consistent. Whether you're leading or following, you show up the same way — as an Anchor. That consistency is a strength. The people in your life know exactly who they're getting. The growth edge: make sure consistency doesn't become immovability. Holding space is a gift. Refusing to move is not.",
+  Ar: "Your Drive is consistent. Whether you're leading or following, you show up the same way — as an Architect. That consistency is a strength. The people in your life know exactly who they're getting. The growth edge: make sure consistency doesn't become distance. Thinking is your mode — but people need access to you, not just your conclusions."
+};
+
+const AMOR_GAP_PARAS = {
+  'D+E': "You love through action. But you feel loved through words. This means you may be doing everything right and still feeling like something is missing — because nobody is saying it. And the people you love may feel taken care of but not affirmed — because you show up in action but don't always say the thing out loud. Two people loving each other in silence, both wondering if the other really feels it.",
+  'E+D': "You say it well. But what you actually need is for someone to do something. Words land, but they don't stay. What stays is the act — the handled thing, the shown up moment, the proof. You may find yourself surrounded by people who know exactly how you feel about them but have never thought to wonder what you need done.",
+  'I+P': "You give time. But what you need is closeness. You can be fully present with someone for hours and still feel disconnected if they never reach for you. Presence isn't the same as proximity. What you give and what you need are almost the same thing — but the gap between them is physical, and it matters.",
+  'P+I': "You give closeness. But what you need is time — full, undivided, chosen. You can be physically next to someone all day and feel lonely if their attention was somewhere else the whole time. You love with your body. You need to be loved with someone's focus.",
+  'D+Im': "You love through doing. But what you need is to be known. No amount of handled tasks or shown-up moments fills the space inside you that needs someone to go deep. You may take care of everything around the people you love and still feel like a stranger to them — because the doing never asked them to see you.",
+  'Im+D': "You love by going deep. But what you need is for someone to do something. Depth is your offering. Action is your need. You may have profound emotional connection with someone who never once picks up the phone to say 'I took care of it.' And that gap — between the depth of the connection and the absence of the act — is where the loneliness lives.",
+  'E+I': "You say it. But you need time. Words are your love language — but the thing that fills you isn't a compliment, it's an hour with someone's complete attention. You may be told you're loved constantly and still feel like you're not the priority.",
+  'I+E': "You give time. But you need words. You can spend hours with someone and leave without hearing the thing you actually needed to hear. Time is your love — acknowledgment is your need. They are not the same.",
+  'P+Im': "You stay close. But you need to be known. Physical warmth is your language — but what fills you is someone who knows the real version of you and stays anyway. You may be the warmest, most physically available person in someone's life and still feel like a stranger to them.",
+  'Im+P': "You go deep. But you need closeness. Depth is your gift — proximity is your need. You may have the most profound conversations of someone's life and still feel unloved if they never reach for you physically. The soul and the body both need to be held."
+};
+
+const AMOR_GAP_CONSISTENT = {
+  E: "Your love language is consistent — you give and receive as The Expressive. This is a gift: you are relatively easy to love well once someone knows your code. The growth edge: don't assume your partner shares it. The most common mistake is loving others the way you love yourself.",
+  D: "Your love language is consistent — you give and receive as The Devoted. This is a gift: you are relatively easy to love well once someone knows your code. The growth edge: don't assume your partner shares it. The most common mistake is loving others the way you love yourself.",
+  I: "Your love language is consistent — you give and receive as The Intentional. This is a gift: you are relatively easy to love well once someone knows your code. The growth edge: don't assume your partner shares it. The most common mistake is loving others the way you love yourself.",
+  P: "Your love language is consistent — you give and receive as The Present. This is a gift: you are relatively easy to love well once someone knows your code. The growth edge: don't assume your partner shares it. The most common mistake is loving others the way you love yourself.",
+  Im: "Your love language is consistent — you give and receive as The Intimate. This is a gift: you are relatively easy to love well once someone knows your code. The growth edge: don't assume your partner shares it. The most common mistake is loving others the way you love yourself."
+};
+
+const SECONDARY_DRIVE_PARAS = {
+  'B+An': "Under pressure, the drive slows. You become more deliberate, more careful, more focused on holding what you have than charging toward what's next. It can feel like a retreat. It isn't. It's your system conserving what matters. The risk: the people around you may interpret stillness as defeat. It's not. It's recalibration.",
+  'B+Ar': "Under pressure, you stop executing and start analyzing. The action that usually comes naturally gets slower as you try to think through all the angles before you move. This is your system protecting you from making moves you'll regret. Let it. You'll charge again once you've thought it through.",
+  'B+Am': "Under pressure, you look for connection. The results-focus softens and what surfaces is a need to feel like the people around you are with you — not just performing beside you. This surprises people who only know your Builder. But it is real, and it needs to be fed.",
+  'Am+An': "Under pressure, the energy hollows. The performance continues but something inside goes quiet. You keep showing up for others but the source gets thin. What you need: someone who pours back into you before you run dry. Not after.",
+  'Am+B': "Under pressure, you push. The inspiration gives way to execution — you stop trying to motivate and start trying to get things done. This can read as urgency or impatience. It is neither. It is your system shifting from fuel to drive because the situation needs it.",
+  'Am+Ar': "Under pressure, you go internal. The outward energy decreases and you start to think before you speak. This shift can confuse people who rely on your energy. Let them know you're still in it — you're just working something out.",
+  'An+Ar': "Under pressure, you stop holding and start planning. The steadiness gives way to strategy as you try to think your way to safety. This is your system moving from absorbing the pressure to trying to prevent it next time.",
+  'An+Am': "Under pressure, the quiet cracks and the energy surfaces. You stop absorbing and start expressing. People who know your Anchor are sometimes startled by this version. But it is real, and it is telling you something: you have been holding for too long.",
+  'An+B': "Under pressure, you act. The steadiness breaks and you move — decisively, urgently, with a directness that can surprise the people around you. This is your limit speaking. When the Anchor finally moves, pay attention. Something real has shifted.",
+  'Ar+An': "Under pressure, you stop analyzing and start stabilizing. The planning gives way to holding — you become focused on keeping what exists intact rather than building toward what's next. This is your system choosing safety over strategy. Let it.",
+  'Ar+Am': "Under pressure, you externalize. The internal processing breaks open and you start talking — rallying, connecting, looking for energy outside yourself. This surprises people who know your quieter mode. But you need other people to think with when the weight gets heavy.",
+  'Ar+B': "Under pressure, you execute. The planning stops and you start doing — sometimes before you're ready, sometimes imperfectly, but moving. This is your system deciding that done is better than perfect. Trust it."
+};
+
+const AMOR_SHADOW_PARAS = {
+  withdrawal: "When your Expressive Receive goes unmet, you go quiet. The words stop — from you. You stop affirming others, stop reaching out, stop saying the things that come so naturally when you feel seen. The people who love you notice the silence before they understand it. They don't always know it's a signal. Tell them.",
+  overfunctioning: "When your Devoted Receive goes unmet, you do more. You take on more, give more, show up in more ways — as if volume of service will eventually produce the acknowledgment you need. It won't. But you'll keep trying until you're empty. The people who love you see the effort without always knowing it's a cry. Tell them what you need instead of doing more of what you're already doing.",
+  disappearing: "When your Intentional Receive goes unmet, you pour into work or purpose. You give your time to the things that feel like they deserve it, and you stop protecting the relationship's time the way you once did. The drift is slow and quiet. The people who love you may not realize they've lost you until you're already somewhere else entirely.",
+  distance: "When your Present Receive goes unmet, you pull back. The closeness you naturally give gets withheld — not as punishment, but as protection. Physical distance is your system saying 'I don't feel safe enough to be close right now.' The people who love you feel the cold before they understand the reason. Name it before the distance becomes a wall.",
+  closing: "When your Intimate Receive goes unmet, you surface. You stop going deep. The vulnerability gets packed away and what remains is a polished, functional performance of fine. The people who love you may not even realize the door closed — because you're still there, still showing up, still doing all the right things. Just not letting anyone in anymore."
+};
+
+// Maps amorReceive primary to shadow behavior key (when Q35 is not answered)
+const DEFAULT_SHADOW = { E: 'withdrawal', D: 'overfunctioning', I: 'disappearing', P: 'distance', Im: 'closing' };
+
+const DRIVE_SHADOW_PARAS = {
+  B: "Your drive, unchecked, becomes pressure. You stop collaborating and start dictating. You mistake urgency for leadership and pace for vision. The people who love you experience it as demand — they feel like they can't keep up, or like their input doesn't matter. The growth edge: momentum is your gift, but it belongs to the relationship, not just to you.",
+  Am: "Your energy, unchecked, becomes performance. You keep inspiring long after the well is empty. You keep showing up bright when the inside is dim. The people who love you experience it as inaccessibility — they can't find the real you underneath the energy. The growth edge: the people closest to you need access to the version of you that isn't on.",
+  An: "Your steadiness, unchecked, becomes immovability. You stop holding things together and start refusing to move at all. You mistake stillness for peace and endurance for health. The people who love you experience it as stonewalling — the most loving person in the room who has quietly left the room. The growth edge: stability is a foundation, not a final answer.",
+  Ar: "Your analysis, unchecked, becomes distance. You see every risk, every angle, every way it could go wrong — and you stop moving. The people who love you experience it as withdrawal. You disappear into your head and they're left on the outside wondering what happened. The growth edge: thinking is your mode, but the people you love need access to you — not just your conclusions."
+};
+
+const DRIVE_COMPLEMENTS = { B: ['An','Ar'], Am: ['An','B'], An: ['B','Am'], Ar: ['B','Am'] };
+const AMOR_COMPLEMENTS  = { E: ['D','Im'], D: ['E','P'], I: ['P','Im'], P: ['I','D'], Im: ['E','I'] };
+
+const MATCH_SENTENCES = {
+  'B+An': "Their steadiness gives your drive a home — and your momentum gives their stability a direction.",
+  'B+Ar': "They think it, you build it — together you move faster and smarter than either does alone.",
+  'B+Am': "They energize the room you're already moving through — your outputs multiply when someone believes in them out loud.",
+  'Am+An': "Their groundedness gives your energy somewhere to land — and you give their steadiness a reason to move.",
+  'Am+B': "You raise the belief, they build the thing — this pairing turns vision into reality.",
+  'Am+Ar': "You sell the future they've already mapped — together the vision has both wings and a runway.",
+  'An+B': "They move, you hold — the relationship runs because you never both leave the foundation at the same time.",
+  'An+Am': "Their energy gives your steadiness life — and you give their energy something solid to return to.",
+  'An+Ar': "Two patient people building something that lasts — you hold the space, they hold the map.",
+  'Ar+B': "You think three steps ahead, they execute — together nothing stays on the drawing board.",
+  'Ar+Am': "You map it, they sell it — the vision exists and it has a plan.",
+  'Ar+An': "Two people who take the long view — unhurried, intentional, building something that won't have to be rebuilt.",
+  'E+D': "They do what you say — the relationship has both words and proof.",
+  'E+Im': "You give the language, they give the depth — together nothing important goes unnamed.",
+  'D+E': "They say what you show — the relationship has both the action and the acknowledgment.",
+  'D+P': "Two people who love through what they do with their bodies — warmth, action, closeness.",
+  'I+P': "Time and touch — two people who want to be fully with each other in every sense.",
+  'I+Im': "You create the space, they fill it with depth — this pairing goes slow and goes far.",
+  'P+I': "Touch and time — the relationship is warm, close, and fully inhabited.",
+  'P+D': "Warmth and action — two people who love through what they do, not just what they say.",
+  'Im+E': "You go deep, they give it language — nothing true between you stays unspoken.",
+  'Im+I': "Depth needs space — and they create it without being asked."
+};
+
+// Growth pairings (the pairing that challenges you most)
+const DRIVE_GROWTH = { B: 'Am', Am: 'Ar', An: 'B', Ar: 'An' };
+const AMOR_GROWTH  = { E: 'I', D: 'Im', I: 'D', P: 'E', Im: 'P' };
+
+const GROWTH_PAIRING_NARRATIVES = {
+  'B+Am': "Two builders of momentum — but pointed in different directions. You execute; they inspire. You want results; they want belief first. The friction: you will push past the point where they feel ready, and they will slow you down when you want to move. What makes it worth it: you make things happen, and they make sure those things matter to people. Together, you can build something that is both real and meaningful — but only if neither of you makes the other wrong for being different.",
+  'Am+Ar': "You energize; they analyze. You lead with feeling; they lead with thinking. The friction: you'll want to rally before they've finished planning, and they'll want to map every risk while you're already in motion. What makes it worth it: their precision protects your momentum from misdirection, and your energy keeps their strategy from staying on paper. The relationship that grows you most is the one that asks you to slow down.",
+  'An+B': "You hold; they charge. Your strength is stability; theirs is momentum. The friction: you'll feel pressured by their pace, and they'll feel slowed by your caution. What makes it worth it: their drive keeps you from staying still past the point of growth, and your steadiness keeps them from outrunning the foundation. This pairing teaches both people what they can't give themselves.",
+  'Ar+An': "Two long-game thinkers — but one analyzes and one absorbs. The friction: you want to think it through before deciding; they want to hold it together before moving. Neither wants to be rushed, and neither likes pressure. What makes it worth it: this pairing creates depth. Real depth — the kind that doesn't get built by two people chasing momentum. The growth edge is the same for both of you: learn to move before you're ready."
+};
+
+const COMPAT_PREF_PARAS = {
+  complement: "You are looking for balance, not sameness. Someone whose Drive fills what yours doesn't cover, and whose Amor Code gives you what you struggle to give yourself. The relationship you thrive in has a natural rhythm — not because you're the same, but because your differences are complementary.",
+  challenge: "You are built for growth. You don't need easy — you need real. The relationships that have shaped you most were probably not the smoothest ones. What you're looking for isn't friction for its own sake. It's someone whose difference from you pulls something out of you that comfort never would.",
+  match: "You know what you need and you're not apologetic about it. You want someone who operates like you and loves like you. That's not a lack of imagination — it's self-knowledge. The growth edge: make sure sameness isn't standing in for safety."
+};
+
+const VISION_PARAS = {
+  momentum: "You are building something. A life, a business, a legacy — and you need a partner who is building too. Not someone who supports from the sideline, but someone who is in it with you. For you, love is not a destination — it is a direction. The growth edge: make sure you're building toward each other, not just beside each other.",
+  connection: "You are building to be known. Fully, without performance, without the curated version. For you, the greatest thing a relationship can give you is the experience of being completely seen and completely chosen. The growth edge: make sure you're as known as you want to be known. Depth requires both people in the water.",
+  stability: "You are building a foundation. The kind of relationship that is the safest place in a world that isn't. For you, love is not a feeling — it is a constant. The growth edge: make sure stability doesn't become stillness. A foundation is meant to hold something. Make sure you're building on top of it, not just living inside it.",
+  intention: "You are building with purpose. Nothing about your relationship is an accident — you plan it, protect it, and course-correct when it drifts. For you, love is a practice, not a feeling. The growth edge: make sure the people you love feel like the reason for the plan, not just part of it."
+};
+
+const CLOSINGS = {
+  partnered: "The next step is not finding the right person. You already have a person. The next step is showing them this report — and taking the assessment together. When two people know their profiles, the dynamic that used to be invisible becomes a conversation instead of a conflict.\n\nIf you want to go deeper — into how your partnership works at every level, including in business — the Couples in Entrepreneurship program was built for exactly where you are.\n\nEverything MiRAjO builds starts with one belief: you already have everything you need. We'll show you how to use it.",
+  single: "The next step is not searching harder. It is knowing more clearly what you're looking for — and what you're bringing. You have the profile. The platform is coming.\n\nWhen you're ready to go deeper into yourself before you go looking for someone else — 25 Days & 25 Nights was built for that.\n\nEverything MiRAjO builds starts with one belief: you already have everything you need. We'll show you how to use it.",
+  'not-looking': "The most important relationship you will ever be in is the one with yourself. You know more now. Take it somewhere.\n\nEverything MiRAjO builds starts with one belief: you already have everything you need. We'll show you how to use it."
+};
+
+// ══════════════════════════════════════════
+// EMAIL HTML BUILDER
+// ══════════════════════════════════════════
+
+function buildEmailHTML(p) {
+  const {
+    name, email, profileName,
+    driveLeadLabel, driveFollowLabel, amorGiveLabel, amorReceiveLabel,
+    driveLeadPara, driveFollowPara,
+    driveGapText, driveGapConsistent,
+    amorGivePara, amorReceivePara,
+    amorGapText, amorGapConsistent,
+    secondaryDrivePara,
+    amorShadowPara,
+    driveShadowPara,
+    match1Name, match1DriveKey, match1Sentence,
+    match2Name, match2AmorKey, match2Sentence,
+    growthName, growthNarrative,
+    compatPrefPara,
+    visionPara,
+    closing
+  } = p;
+
+  const driveGapBlock = driveGapConsistent
+    ? `<p style="font-family:Arial,sans-serif;font-size:15px;color:#555;line-height:1.85;margin:0;font-style:italic;">${driveGapConsistent}</p>`
+    : `<table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#EBF4FA;border-left:4px solid #1E5F8E;border-radius:8px;"><tr><td style="padding:24px 28px;"><p style="font-family:Arial,sans-serif;font-size:15px;color:#555;line-height:1.75;margin:0;">${driveGapText}</p></td></tr></table>`;
+
+  const amorGapBlock = amorGapConsistent
+    ? `<p style="font-family:Arial,sans-serif;font-size:15px;color:#555;line-height:1.85;margin:0;font-style:italic;">${amorGapConsistent}</p>`
+    : `<table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#FBF0EF;border-left:4px solid #C42B28;border-radius:8px;"><tr><td style="padding:24px 28px;"><p style="font-family:Arial,sans-serif;font-size:15px;color:#555;line-height:1.75;margin:0;">${amorGapText}</p></td></tr></table>`;
+
+  const matchBlock = (mName, mSentence) => mName ? `
+    <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#fff;border:1px solid #e8e8e8;border-radius:8px;margin-bottom:10px;">
+      <tr><td style="padding:20px 24px;">
+        <p style="font-family:Arial,sans-serif;font-size:15px;font-weight:700;color:#141414;margin:0 0 6px;">${mName}</p>
+        <p style="font-family:Arial,sans-serif;font-size:14px;color:#555;line-height:1.65;margin:0;">${mSentence}</p>
+      </td></tr>
+    </table>` : '';
+
+  return `<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Your DrivAmor Comprehensive Report</title></head>
+<body style="margin:0;padding:0;background:#F8F6F2;font-family:Arial,sans-serif;">
+<table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#F8F6F2;">
+<tr><td align="center" style="padding:40px 16px;">
+<table width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width:600px;">
+
+  <!-- HEADER -->
+  <tr><td style="background:#0F0D16;border-radius:12px 12px 0 0;padding:56px 48px 48px;text-align:center;">
+    <p style="font-family:Arial,sans-serif;font-size:11px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin:0 0 12px;">${name}, this is the full picture.</p>
+    <h1 style="font-family:Georgia,serif;font-size:44px;font-weight:400;color:#ffffff;margin:0 0 16px;line-height:1.1;">${profileName}</h1>
+    <p style="font-family:Arial,sans-serif;font-size:13px;color:rgba(255,255,255,0.5);margin:0 0 16px;line-height:1.6;">
+      ${driveLeadLabel} who leads &nbsp;·&nbsp; ${driveFollowLabel} who follows<br>
+      Loves as ${amorGiveLabel} &nbsp;·&nbsp; Needs ${amorReceiveLabel}
+    </p>
+    <p style="font-family:Georgia,serif;font-size:14px;color:rgba(255,255,255,0.3);font-style:italic;margin:0;">Eight minutes of questions. A lifetime of pattern.</p>
+  </td></tr>
+
+  <!-- BODY -->
+  <tr><td style="background:#ffffff;padding:48px 48px 0;">
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+
+    <!-- SECTION 1: FULL DRIVE -->
+    <tr><td style="padding:0 0 8px;">
+      <p style="font-family:Arial,sans-serif;font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#999;margin:0 0 12px;">Section 1 — Your Full Drive</p>
+      <p style="font-family:Georgia,serif;font-size:22px;font-weight:400;color:#141414;margin:0 0 16px;">How you operate — both seats.</p>
+      <p style="font-family:Arial,sans-serif;font-size:15px;color:#555;line-height:1.85;margin:0 0 20px;">${driveLeadPara}</p>
+      <p style="font-family:Arial,sans-serif;font-size:15px;color:#888;line-height:1.4;margin:0 0 16px;font-style:italic;">But that is only half of it.</p>
+      <p style="font-family:Arial,sans-serif;font-size:15px;color:#555;line-height:1.85;margin:0;">${driveFollowPara}</p>
+    </td></tr>
+
+    <tr><td style="border-top:1px solid #efefef;padding:0 0 32px;margin-top:32px;display:block;"></td></tr>
+
+    <!-- SECTION 2: DRIVE GAP -->
+    <tr><td style="padding:32px 0 0;">
+      <p style="font-family:Arial,sans-serif;font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#999;margin:0 0 12px;">Section 2 — The Drive Gap</p>
+      <p style="font-family:Georgia,serif;font-size:22px;font-weight:400;color:#141414;margin:0 0 20px;">The version of you most people miss.</p>
+      ${driveGapBlock}
+    </td></tr>
+
+    <tr><td style="border-top:1px solid #efefef;padding:32px 0 0;margin-top:32px;display:block;"></td></tr>
+
+    <!-- SECTION 3: FULL AMOR -->
+    <tr><td style="padding:32px 0 0;">
+      <p style="font-family:Arial,sans-serif;font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#999;margin:0 0 12px;">Section 3 — Your Full Amor Code</p>
+      <p style="font-family:Georgia,serif;font-size:22px;font-weight:400;color:#141414;margin:0 0 16px;">How you love — both directions.</p>
+      <p style="font-family:Arial,sans-serif;font-size:15px;color:#555;line-height:1.85;margin:0 0 20px;">${amorGivePara}</p>
+      <p style="font-family:Arial,sans-serif;font-size:15px;color:#888;line-height:1.4;margin:0 0 16px;font-style:italic;">And here is what the free report didn't tell you.</p>
+      <p style="font-family:Arial,sans-serif;font-size:15px;color:#555;line-height:1.85;margin:0;">${amorReceivePara}</p>
+    </td></tr>
+
+    <tr><td style="border-top:1px solid #efefef;padding:32px 0 0;margin-top:32px;display:block;"></td></tr>
+
+    <!-- SECTION 4: AMOR GAP -->
+    <tr><td style="padding:32px 0 0;">
+      <p style="font-family:Arial,sans-serif;font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#999;margin:0 0 12px;">Section 4 — The Amor Gap</p>
+      <p style="font-family:Georgia,serif;font-size:22px;font-weight:400;color:#141414;margin:0 0 20px;">The thing nobody knows to give you.</p>
+      ${amorGapBlock}
+    </td></tr>
+
+    <tr><td style="border-top:1px solid #efefef;padding:32px 0 0;margin-top:32px;display:block;"></td></tr>
+
+    <!-- SECTION 5: UNDER PRESSURE -->
+    <tr><td style="padding:32px 0 0;">
+      <p style="font-family:Arial,sans-serif;font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#999;margin:0 0 12px;">Section 5 — Under Pressure</p>
+      <p style="font-family:Georgia,serif;font-size:22px;font-weight:400;color:#141414;margin:0 0 16px;">The version of you that surfaces when the season gets hard.</p>
+      <p style="font-family:Arial,sans-serif;font-size:15px;color:#555;line-height:1.85;margin:0 0 16px;">Everyone has a primary type. But under sustained pressure — not a bad day, a hard season — a second type begins to surface. It is not a flaw. It is information.</p>
+      <p style="font-family:Arial,sans-serif;font-size:15px;color:#555;line-height:1.85;margin:0 0 20px;"><strong style="color:#141414;">Your secondary Drive type is ${driveFollowLabel}.</strong> Under pressure, this is what shifts:<br><br>${secondaryDrivePara}</p>
+      <p style="font-family:Arial,sans-serif;font-size:15px;color:#555;line-height:1.85;margin:0;"><strong style="color:#141414;">When your primary Amor Code goes unmet for too long, this is what your partner starts to experience:</strong><br><br>${amorShadowPara}</p>
+    </td></tr>
+
+    <tr><td style="border-top:1px solid #efefef;padding:32px 0 0;margin-top:32px;display:block;"></td></tr>
+
+    <!-- SECTION 6: COMPATIBILITY -->
+    <tr><td style="padding:32px 0 0;">
+      <p style="font-family:Arial,sans-serif;font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#999;margin:0 0 12px;">Section 6 — Your Compatibility</p>
+      <p style="font-family:Georgia,serif;font-size:22px;font-weight:400;color:#141414;margin:0 0 16px;">Who you're built to build with.</p>
+      <p style="font-family:Arial,sans-serif;font-size:15px;color:#555;line-height:1.85;margin:0 0 24px;">Compatibility in DrivAmor is not about finding someone identical to you. It is about finding someone whose Drive and Amor Code creates the right dynamic — the right friction, the right flow, the right growth.</p>
+
+      <p style="font-family:Arial,sans-serif;font-size:12px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#aaa;margin:0 0 12px;">Your Natural Matches</p>
+      ${matchBlock(match1Name, match1Sentence)}
+      ${matchBlock(match2Name, match2Sentence)}
+
+      <p style="font-family:Arial,sans-serif;font-size:12px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#aaa;margin:24px 0 12px;">Your Growth Pairing</p>
+      <p style="font-family:Arial,sans-serif;font-size:13px;color:#888;margin:0 0 12px;font-style:italic;">This profile will challenge you. The friction is real. But so is the ceiling.</p>
+      <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#f5f5f5;border-radius:8px;margin-bottom:20px;">
+        <tr><td style="padding:20px 24px;">
+          <p style="font-family:Arial,sans-serif;font-size:15px;font-weight:700;color:#141414;margin:0 0 8px;">${growthName}</p>
+          <p style="font-family:Arial,sans-serif;font-size:14px;color:#555;line-height:1.65;margin:0;">${growthNarrative}</p>
+        </td></tr>
+      </table>
+
+      <p style="font-family:Arial,sans-serif;font-size:12px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#aaa;margin:0 0 12px;">What You're Looking For</p>
+      <p style="font-family:Arial,sans-serif;font-size:15px;color:#555;line-height:1.85;margin:0;">${compatPrefPara}</p>
+    </td></tr>
+
+    <tr><td style="border-top:1px solid #efefef;padding:32px 0 0;margin-top:32px;display:block;"></td></tr>
+
+    <!-- SECTION 7: VISION -->
+    <tr><td style="padding:32px 0 0;">
+      <p style="font-family:Arial,sans-serif;font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#999;margin:0 0 12px;">Section 7 — Your Relationship Vision</p>
+      <p style="font-family:Georgia,serif;font-size:22px;font-weight:400;color:#141414;margin:0 0 16px;">What you're actually building.</p>
+      <p style="font-family:Arial,sans-serif;font-size:15px;color:#555;line-height:1.85;margin:0;">${visionPara}</p>
+    </td></tr>
+
+    <tr><td style="border-top:1px solid #efefef;padding:32px 0 0;margin-top:32px;display:block;"></td></tr>
+
+    <!-- SECTION 8: GROWTH EDGES -->
+    <tr><td style="padding:32px 0 48px;">
+      <p style="font-family:Arial,sans-serif;font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#999;margin:0 0 12px;">Section 8 — Your Growth Edges</p>
+      <p style="font-family:Georgia,serif;font-size:22px;font-weight:400;color:#141414;margin:0 0 16px;">The honest part.</p>
+      <p style="font-family:Arial,sans-serif;font-size:13px;font-weight:700;color:#141414;margin:0 0 8px;">Drive shadow</p>
+      <p style="font-family:Arial,sans-serif;font-size:15px;color:#555;line-height:1.85;margin:0 0 24px;">${driveShadowPara}</p>
+      <p style="font-family:Arial,sans-serif;font-size:13px;font-weight:700;color:#141414;margin:0 0 8px;">Amor shadow</p>
+      <p style="font-family:Arial,sans-serif;font-size:15px;color:#555;line-height:1.85;margin:0;">${amorShadowPara}</p>
+    </td></tr>
+
+  </table>
+  </td></tr>
+
+  <!-- CLOSING -->
+  <tr><td style="background:#0F0D16;padding:56px 48px;text-align:center;">
+    <p style="font-family:Georgia,serif;font-size:24px;font-weight:400;color:#ffffff;margin:0 0 24px;line-height:1.4;">The seed is in your hands.</p>
+    <p style="font-family:Arial,sans-serif;font-size:14px;color:rgba(255,255,255,0.55);margin:0 0 32px;line-height:1.85;">${closing.replace(/\n/g, '<br><br>')}</p>
+    <a href="https://www.mirajoco.org" style="display:inline-block;background:#ffffff;color:#0F0D16;font-family:Arial,sans-serif;font-size:14px;font-weight:700;letter-spacing:0.04em;text-decoration:none;padding:14px 36px;border-radius:4px;">Explore MiRAjO</a>
+  </td></tr>
+
+  <!-- FOOTER -->
+  <tr><td style="background:#F8F6F2;padding:32px 48px;border-radius:0 0 12px 12px;">
+    <p style="font-family:Arial,sans-serif;font-size:12px;color:#bbb;margin:0;">
+      DrivAmor · <a href="https://www.drivamor.com" style="color:#bbb;">drivamor.com</a><br>
+      You received this because you purchased the DrivAmor Comprehensive Report.<br>
+      <a href="https://www.drivamor.com/unsubscribe" style="color:#bbb;">Unsubscribe</a>
+    </p>
+  </td></tr>
+
+</table>
+</td></tr>
+</table>
+</body>
+</html>`;
+}
+
+// ══════════════════════════════════════════
+// MAIN LOGIC
+// ══════════════════════════════════════════
+
+function showState(id) {
+  document.querySelectorAll('.state').forEach(s => s.classList.add('hidden'));
+  document.getElementById('state-' + id).classList.remove('hidden');
+}
+
+async function run() {
+  const params = new URLSearchParams(window.location.search);
+  const sessionId = params.get('session_id');
+
+  if (!sessionId) {
+    showState('error');
+    document.getElementById('error-detail').textContent = 'No session ID found in URL.';
+    return;
+  }
+
+  // Load profile from localStorage
+  let profile;
+  try {
+    const raw = localStorage.getItem('drivamor_profile');
+    if (raw) profile = JSON.parse(raw);
+  } catch(e) {}
+
+  if (!profile || !profile.email) {
+    showState('nodata');
+    return;
+  }
+
+  // Build report data
+  const dl = profile.driveLead.primary;
+  const df = profile.driveFollow.primary;
+  const ag = profile.amorGive.primary;
+  const ar = profile.amorReceive.primary;
+  const dl2 = profile.driveLead.secondary;
+  const ag2 = profile.amorGive.secondary;
+
+  const driveGapKey = dl + '+' + df;
+  const driveGapText = DRIVE_GAP_PARAS[driveGapKey] || null;
+  const driveGapConsistent = (dl === df) ? DRIVE_GAP_CONSISTENT[dl] : null;
+
+  const amorGapKey = ag + '+' + ar;
+  const amorGapText = AMOR_GAP_PARAS[amorGapKey] || null;
+  const amorGapConsistent = (ag === ar) ? AMOR_GAP_CONSISTENT[ag] : null;
+
+  const secondaryDriveKey = dl + '+' + dl2;
+  const secondaryDrivePara = SECONDARY_DRIVE_PARAS[secondaryDriveKey] || SECONDARY_DRIVE_PARAS[dl + '+' + df] || 'Under pressure, a secondary mode surfaces. Pay attention to which version of you shows up — it has something to tell you.';
+
+  const shadowKey = profile.q35 || DEFAULT_SHADOW[ar];
+  const amorShadowPara = AMOR_SHADOW_PARAS[shadowKey] || AMOR_SHADOW_PARAS[DEFAULT_SHADOW[ar]];
+
+  const driveComplements = DRIVE_COMPLEMENTS[dl] || [];
+  const amorComplements = AMOR_COMPLEMENTS[ag] || [];
+
+  const match1Drive = driveComplements[0];
+  const match1Name = PROFILES[match1Drive + '+' + ag] || null;
+  const match1Sentence = MATCH_SENTENCES[dl + '+' + match1Drive] || '';
+
+  const match2Amor = amorComplements[0];
+  const match2Name = PROFILES[dl + '+' + match2Amor] || null;
+  const match2Sentence = MATCH_SENTENCES[ag + '+' + match2Amor] || '';
+
+  const growthDrive = DRIVE_GROWTH[dl];
+  const growthAmor = AMOR_GROWTH[ag];
+  const growthName = PROFILES[growthDrive + '+' + growthAmor] || 'Your Growth Pairing';
+  const growthNarrKey = dl + '+' + growthDrive;
+  const growthNarrative = GROWTH_PAIRING_NARRATIVES[growthNarrKey] || 'This pairing will challenge the assumptions you've built around how love works. The friction is real — and it's the point. Growth doesn\'t come from easy.';
+
+  const compatPref = profile.q36 || profile.q37 || 'complement';
+  const compatPrefPara = COMPAT_PREF_PARAS[compatPref] || COMPAT_PREF_PARAS.complement;
+
+  const visionPara = VISION_PARAS[profile.vision] || VISION_PARAS.momentum;
+  const closing = CLOSINGS[profile.status] || CLOSINGS['not-looking'];
+
+  const html = buildEmailHTML({
+    name: profile.name,
+    email: profile.email,
+    profileName: profile.profileName,
+    driveLeadLabel: DRIVE_LABELS[dl],
+    driveFollowLabel: DRIVE_LABELS[df],
+    amorGiveLabel: AMOR_LABELS[ag],
+    amorReceiveLabel: AMOR_LABELS[ar],
+    driveLeadPara: DRIVE_PARAS[dl],
+    driveFollowPara: DRIVE_FOLLOW_PARAS[df],
+    driveGapText,
+    driveGapConsistent,
+    amorGivePara: AMOR_PARAS[ag],
+    amorReceivePara: AMOR_RECEIVE_PARAS[ar],
+    amorGapText,
+    amorGapConsistent,
+    secondaryDrivePara,
+    amorShadowPara,
+    driveShadowPara: DRIVE_SHADOW_PARAS[dl],
+    match1Name, match1DriveKey: dl + '+' + match1Drive, match1Sentence,
+    match2Name, match2AmorKey: ag + '+' + match2Amor, match2Sentence,
+    growthName, growthNarrative,
+    compatPrefPara,
+    visionPara,
+    closing
+  });
+
+  // Send to API
+  try {
+    const res = await fetch('/api/send-paid-report', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        session_id: sessionId,
+        name: profile.name,
+        email: profile.email,
+        html
+      })
+    });
+
+    if (res.ok) {
+      localStorage.removeItem('drivamor_profile');
+      showState('success');
+    } else {
+      const data = await res.json().catch(() => ({}));
+      showState('error');
+      document.getElementById('error-detail').textContent = data.error || 'Unknown error — please contact hello@drivamor.com';
+    }
+  } catch(err) {
+    showState('error');
+    document.getElementById('error-detail').textContent = 'Connection error. Please try refreshing the page.';
+  }
+}
+
+run();
+</script>
+</body>
+</html>

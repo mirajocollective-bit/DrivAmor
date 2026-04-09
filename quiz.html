@@ -1299,6 +1299,25 @@ function showResults() {
   const status = answers[38] || userData.status || 'not-looking';
   const vision = answers[40] || 'momentum';
 
+  // Save to localStorage so upgrade/success pages can build paid report
+  try {
+    localStorage.setItem('drivamor_profile', JSON.stringify({
+      name: userData.name,
+      email: userData.email,
+      profileName,
+      status,
+      vision,
+      driveLead: { primary: driveLead.primary, secondary: driveLead.secondary },
+      driveFollow: { primary: driveFollow.primary, secondary: driveFollow.secondary },
+      amorGive: { primary: amorGive.primary, secondary: amorGive.secondary },
+      amorReceive: { primary: amorReceive.primary, secondary: amorReceive.secondary },
+      q33: answers[33],
+      q35: answers[35],
+      q36: answers[36],
+      q37: answers[37]
+    }));
+  } catch(e) { /* storage unavailable */ }
+
   // Header
   document.getElementById('result-name-label').textContent = userData.name + ', meet your profile.';
   document.getElementById('result-profile-name').textContent = profileName;
