@@ -87,7 +87,7 @@ export default async function handler(req, res) {
   <tr><td style="background:#0F0D16;padding:56px 48px;text-align:center;">
     <p style="font-family:Georgia,serif;font-size:26px;font-weight:400;color:#ffffff;margin:0 0 12px;line-height:1.3;">The full picture is in the comprehensive report.</p>
     <p style="font-family:Arial,sans-serif;font-size:14px;color:rgba(255,255,255,0.5);margin:0 0 32px;line-height:1.7;">Your secondary types, your Drive Gap, your Amor Gap, how your profile connects with others — and the pairing that will challenge you most.</p>
-    <a href="https://www.drivamor.com/upgrade" style="display:inline-block;background:#ffffff;color:#0F0D16;font-family:Arial,sans-serif;font-size:14px;font-weight:700;letter-spacing:0.04em;text-decoration:none;padding:16px 40px;border-radius:4px;">Get the full report — $37</a>
+    <a href="https://www.drivamor.com/upgrade" style="display:inline-block;background:#ffffff;color:#0F0D16;font-family:Arial,sans-serif;font-size:14px;font-weight:700;letter-spacing:0.04em;text-decoration:none;padding:16px 40px;border-radius:4px;">Get the full report — $14.99</a>
   </td></tr>
 
   <!-- CLOSING -->
