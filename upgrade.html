@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DrivAmor — Get Your Full Report</title>
+  <meta name="description" content="Unlock the complete picture — your secondary types, Drive Gap, Amor Gap, and full compatibility breakdown.">
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --drive: #1E5F8E;
+      --drive-light: #4A90C4;
+      --drive-tint: #EBF4FA;
+      --amor: #C42B28;
+      --amor-light: #E04A46;
+      --amor-tint: #FBF0EF;
+      --dark: #0F0D16;
+      --white: #FFFFFF;
+      --off: #F8F6F2;
+      --ink: #141414;
+      --ink-mid: #555;
+      --ink-light: #999;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--off); color: var(--ink); }
+
+    /* NAV */
+    nav {
+      background: var(--dark);
+      padding: 20px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .nav-logo {
+      font-family: 'Instrument Serif', serif;
+      font-size: 24px;
+      text-decoration: none;
+    }
+    .nav-logo span.d { color: var(--drive-light); }
+    .nav-logo span.a { color: var(--amor-light); }
+
+    /* HERO */
+    .hero {
+      background: var(--dark);
+      text-align: center;
+      padding: 72px 24px 80px;
+    }
+    .hero .eyebrow {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-family: 'Instrument Serif', serif;
+      font-size: clamp(32px, 5vw, 56px);
+      font-weight: 400;
+      color: #fff;
+      line-height: 1.2;
+      max-width: 640px;
+      margin: 0 auto 20px;
+    }
+    .hero p {
+      font-size: 16px;
+      color: rgba(255,255,255,0.5);
+      max-width: 480px;
+      margin: 0 auto;
+      line-height: 1.75;
+    }
+
+    /* WHAT YOU GET */
+    .what-section {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 72px 24px;
+    }
+    .what-section h2 {
+      font-family: 'Instrument Serif', serif;
+      font-size: clamp(24px, 3.5vw, 36px);
+      font-weight: 400;
+      color: var(--ink);
+      margin-bottom: 40px;
+      text-align: center;
+    }
+    .what-list { display: flex; flex-direction: column; gap: 16px; }
+    .what-item {
+      background: #fff;
+      border-radius: 12px;
+      padding: 28px 32px;
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+    }
+    .what-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+    .what-icon.drive { background: var(--drive-tint); }
+    .what-icon.amor { background: var(--amor-tint); }
+    .what-icon.dark { background: rgba(15,13,22,0.08); }
+    .what-item h3 { font-size: 16px; font-weight: 700; color: var(--ink); margin-bottom: 6px; }
+    .what-item p { font-size: 14px; color: var(--ink-mid); line-height: 1.7; }
+
+    /* PRICE */
+    .price-section {
+      background: var(--dark);
+      padding: 72px 24px;
+      text-align: center;
+    }
+    .price-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px;
+      padding: 56px 48px;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+    .price-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      margin-bottom: 16px;
+    }
+    .price-amount {
+      font-family: 'Instrument Serif', serif;
+      font-size: 64px;
+      color: #fff;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .price-note {
+      font-size: 13px;
+      color: rgba(255,255,255,0.35);
+      margin-bottom: 40px;
+    }
+    .price-features {
+      list-style: none;
+      margin-bottom: 40px;
+      text-align: left;
+    }
+    .price-features li {
+      font-size: 14px;
+      color: rgba(255,255,255,0.65);
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .price-features li:last-child { border-bottom: none; }
+    .price-features li::before {
+      content: '✓';
+      color: var(--drive-light);
+      font-weight: 700;
+      font-size: 13px;
+      flex-shrink: 0;
+    }
+    .btn-checkout {
+      display: block;
+      width: 100%;
+      background: #fff;
+      color: var(--dark);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      padding: 18px 32px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: opacity 0.2s, transform 0.15s;
+      text-decoration: none;
+    }
+    .btn-checkout:hover { opacity: 0.9; transform: translateY(-1px); }
+    .secure-note {
+      font-size: 12px;
+      color: rgba(255,255,255,0.25);
+      margin-top: 16px;
+    }
+
+    /* CLOSING */
+    .closing {
+      max-width: 560px;
+      margin: 0 auto;
+      padding: 72px 24px;
+      text-align: center;
+    }
+    .closing p {
+      font-family: 'Instrument Serif', serif;
+      font-size: clamp(20px, 3vw, 28px);
+      font-weight: 400;
+      color: var(--ink);
+      line-height: 1.5;
+      font-style: italic;
+    }
+
+    @media (max-width: 600px) {
+      nav { padding: 16px 24px; }
+      .price-card { padding: 40px 28px; }
+      .what-item { padding: 20px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo"><span class="d">Driv</span><span class="a">Amor</span></a>
+</nav>
+
+<div class="hero">
+  <div class="eyebrow">Comprehensive Report</div>
+  <h1>The full picture of who you are in relationship.</h1>
+  <p>The free report gave you your profile. This gives you everything underneath it — the gaps, the secondary types, the compatibility, and the growth edges.</p>
+</div>
+
+<div class="what-section">
+  <h2>What's in the full report</h2>
+  <div class="what-list">
+    <div class="what-item">
+      <div class="what-icon drive">⬡</div>
+      <div>
+        <h3>Your Drive Gap</h3>
+        <p>How you lead vs. how you follow — and what it means when they're different. Most people have never seen this about themselves.</p>
+      </div>
+    </div>
+    <div class="what-item">
+      <div class="what-icon amor">♡</div>
+      <div>
+        <h3>Your Amor Gap</h3>
+        <p>The gap between how you give love and how you need to receive it. This is the insight that changes relationships.</p>
+      </div>
+    </div>
+    <div class="what-item">
+      <div class="what-icon drive">◈</div>
+      <div>
+        <h3>Your Secondary Types</h3>
+        <p>The Drive Mode and Amor Code that surface under pressure — the version of you your partner sees in hard seasons.</p>
+      </div>
+    </div>
+    <div class="what-item">
+      <div class="what-icon amor">◎</div>
+      <div>
+        <h3>Shadow Behavior</h3>
+        <p>What the people who love you experience when your deepest need goes unmet for too long.</p>
+      </div>
+    </div>
+    <div class="what-item">
+      <div class="what-icon dark">⟐</div>
+      <div>
+        <h3>Full Compatibility Breakdown</h3>
+        <p>Your natural matches with full dynamic narrative, your growth pairing, and what each combination actually looks like in a relationship.</p>
+      </div>
+    </div>
+    <div class="what-item">
+      <div class="what-icon dark">◇</div>
+      <div>
+        <h3>Your Growth Edges</h3>
+        <p>The honest part. The shadow of your Drive Mode and the blind spot of your Amor Code — and what to do with them.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="price-section">
+  <div class="price-card">
+    <div class="price-label">Comprehensive Report</div>
+    <div class="price-amount">$37</div>
+    <div class="price-note">One-time. Yours to keep.</div>
+    <ul class="price-features">
+      <li>Full Drive Gap analysis</li>
+      <li>Full Amor Gap analysis</li>
+      <li>Secondary types — lead, follow, give, receive</li>
+      <li>Shadow behavior profile</li>
+      <li>Complete compatibility breakdown</li>
+      <li>Growth edges — honest, specific, actionable</li>
+      <li>Delivered to your inbox instantly</li>
+    </ul>
+    <button class="btn-checkout" onclick="handleCheckout()">Get my full report</button>
+    <p class="secure-note">Secure checkout · Instant delivery</p>
+  </div>
+</div>
+
+<div class="closing">
+  <p>You already have everything you need. This just shows you all of it.</p>
+</div>
+
+<script>
+function handleCheckout() {
+  // Stripe checkout — wire in with price ID when ready
+  alert('Checkout coming soon. Thank you for your interest!');
+}
+</script>
+
+</body>
+</html>
