@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DrivAmor — Sample Report</title>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --drive: #1E5F8E;
+      --amor: #C42B28;
+      --dark: #0F0D16;
+      --ink: #141414;
+      --ink-mid: #444;
+      --ink-light: #777;
+      --rule: #e0e0e0;
+      --tint-drive: #EBF4FA;
+      --tint-amor: #FBF0EF;
+      --off: #F8F6F2;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: #d0d0d0;
+      color: var(--ink);
+      padding: 40px 20px;
+    }
+
+    /* PRINT BUTTON */
+    .print-bar {
+      max-width: 720px;
+      margin: 0 auto 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .print-bar p {
+      font-size: 13px;
+      color: #666;
+    }
+    .btn-print {
+      background: var(--dark);
+      color: #fff;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      padding: 10px 24px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .btn-print:hover { opacity: 0.85; }
+
+    /* PAGE */
+    .page {
+      background: #fff;
+      max-width: 720px;
+      margin: 0 auto;
+      box-shadow: 0 4px 40px rgba(0,0,0,0.18);
+    }
+
+    /* COVER */
+    .cover {
+      background: var(--dark);
+      padding: 72px 64px 64px;
+      text-align: center;
+    }
+    .cover-logo {
+      font-family: 'Instrument Serif', serif;
+      font-size: 18px;
+      letter-spacing: 0.04em;
+      margin-bottom: 64px;
+    }
+    .cover-logo span.d { color: #4A90C4; }
+    .cover-logo span.a { color: #E04A46; }
+    .cover-eyebrow {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      margin-bottom: 20px;
+    }
+    .cover-name {
+      font-family: 'Instrument Serif', serif;
+      font-size: 52px;
+      font-weight: 400;
+      color: #fff;
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+    .cover-sub {
+      font-size: 13px;
+      color: rgba(255,255,255,0.45);
+      letter-spacing: 0.06em;
+      line-height: 1.8;
+      margin-bottom: 48px;
+    }
+    .cover-sub span.d { color: #4A90C4; }
+    .cover-sub span.a { color: #E04A46; }
+    .cover-tagline {
+      font-family: 'Instrument Serif', serif;
+      font-size: 16px;
+      font-style: italic;
+      color: rgba(255,255,255,0.25);
+    }
+
+    /* BODY */
+    .report-body {
+      padding: 64px;
+    }
+
+    /* SECTION */
+    .section {
+      margin-bottom: 56px;
+      padding-bottom: 56px;
+      border-bottom: 1px solid var(--rule);
+    }
+    .section:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .section-eyebrow {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      margin-bottom: 10px;
+    }
+    .section-title {
+      font-family: 'Instrument Serif', serif;
+      font-size: 28px;
+      font-weight: 400;
+      color: var(--ink);
+      line-height: 1.25;
+      margin-bottom: 24px;
+    }
+    .section-body p {
+      font-size: 15px;
+      color: var(--ink-mid);
+      line-height: 1.9;
+      margin-bottom: 20px;
+    }
+    .section-body p:last-child { margin-bottom: 0; }
+    .section-body p.bridge {
+      font-family: 'Instrument Serif', serif;
+      font-size: 17px;
+      color: var(--ink-light);
+      font-style: italic;
+      margin: 24px 0;
+    }
+
+    /* GAP CARD */
+    .gap-card {
+      border-radius: 8px;
+      padding: 28px 32px;
+      margin-top: 20px;
+    }
+    .gap-card.drive {
+      background: var(--tint-drive);
+      border-left: 4px solid var(--drive);
+    }
+    .gap-card.amor {
+      background: var(--tint-amor);
+      border-left: 4px solid var(--amor);
+    }
+    .gap-card p {
+      font-size: 15px;
+      color: var(--ink-mid);
+      line-height: 1.85;
+      margin: 0;
+    }
+    .gap-card-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      margin-bottom: 10px;
+    }
+
+    /* MATCH CARD */
+    .match-card {
+      border: 1px solid var(--rule);
+      border-radius: 8px;
+      padding: 20px 24px;
+      margin-bottom: 12px;
+    }
+    .match-card h4 {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 6px;
+    }
+    .match-card p {
+      font-size: 13px;
+      color: var(--ink-mid);
+      line-height: 1.65;
+      margin: 0;
+    }
+    .match-card.growth {
+      background: #f7f7f7;
+      border-color: #e0e0e0;
+    }
+    .match-label {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      margin: 28px 0 12px;
+    }
+
+    /* SHADOW CARD */
+    .shadow-row {
+      margin-bottom: 24px;
+    }
+    .shadow-label {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 8px;
+    }
+
+    /* CLOSING */
+    .closing-section {
+      background: var(--off);
+      padding: 48px 64px;
+      text-align: center;
+    }
+    .closing-section p.tagline {
+      font-family: 'Instrument Serif', serif;
+      font-size: 22px;
+      font-weight: 400;
+      color: var(--ink);
+      font-style: italic;
+      line-height: 1.5;
+      margin-bottom: 24px;
+    }
+    .closing-section p.body {
+      font-size: 14px;
+      color: var(--ink-mid);
+      line-height: 1.85;
+      max-width: 480px;
+      margin: 0 auto 16px;
+    }
+    .closing-section p.brand {
+      font-size: 12px;
+      color: var(--ink-light);
+      margin-top: 32px;
+    }
+
+    /* PRINT STYLES */
+    @media print {
+      body { background: none; padding: 0; }
+      .print-bar { display: none; }
+      .page { box-shadow: none; max-width: 100%; }
+      .section { page-break-inside: avoid; }
+      .cover { page-break-after: always; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="print-bar">
+  <p>Sample report — The Commanding Heart (Builder + Expressive)</p>
+  <button class="btn-print" onclick="window.print()">Print / Save as PDF</button>
+</div>
+
+<div class="page">
+
+  <!-- COVER -->
+  <div class="cover">
+    <div class="cover-logo"><span class="d">Driv</span><span class="a">Amor</span></div>
+    <div class="cover-eyebrow">Comprehensive Report</div>
+    <h1 class="cover-name">The Commanding Heart</h1>
+    <p class="cover-sub">
+      <span class="d">Builder</span> who leads &nbsp;·&nbsp; <span class="d">Anchor</span> who follows<br>
+      Loves as <span class="a">Expressive</span> &nbsp;·&nbsp; Needs <span class="a">Devoted</span>
+    </p>
+    <p class="cover-tagline">Twelve minutes of questions. A lifetime of pattern.</p>
+  </div>
+
+  <!-- BODY -->
+  <div class="report-body">
+
+    <!-- SECTION 1: FULL DRIVE -->
+    <div class="section">
+      <div class="section-eyebrow">Section 1 &nbsp;—&nbsp; Your Full Drive</div>
+      <h2 class="section-title">How you operate — both seats.</h2>
+      <div class="section-body">
+        <p>You are a force of forward motion. You don't wait for permission, consensus, or ideal conditions — you move, and the environment reorganizes around your movement. In a relationship, you bring energy, initiative, and a relentless orientation toward the next thing. The gift: you make things happen. The shadow: when someone can't match your pace, you may mistake their rhythm for resistance.</p>
+        <p class="bridge">But that is only half of it.</p>
+        <p>When you're not the one leading, you hold the ground. You make sure everything the leader needs is in place — that the foundation doesn't shift while they're focused forward. You don't need the credit. You don't need the spotlight. You need to know that your stability matters to the outcome. The tension: because you give so quietly, people sometimes don't realize what you're carrying. Make sure the person you're supporting knows what it costs you to hold it all.</p>
+      </div>
+    </div>
+
+    <!-- SECTION 2: DRIVE GAP -->
+    <div class="section">
+      <div class="section-eyebrow">Section 2 &nbsp;—&nbsp; The Drive Gap</div>
+      <h2 class="section-title">The version of you most people miss.</h2>
+      <div class="section-body">
+        <p>You drive hard when you're in front. But when you step back, something shifts — you become the ground instead of the force. Most people in your life have only seen one version of you. The ones who've seen both know there's a softness underneath the charge that only surfaces when you're not the one steering.</p>
+        <div class="gap-card drive">
+          <div class="gap-card-label">Your Drive Gap</div>
+          <p>This gap is a gift. It means you can hold space as well as take space. The risk: you may not know which one you're doing in a given moment — and neither does the person next to you. Naming it changes everything. When you're leading, say so. When you're holding, say that too. The people who love you need access to both versions.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 3: FULL AMOR -->
+    <div class="section">
+      <div class="section-eyebrow">Section 3 &nbsp;—&nbsp; Your Full Amor Code</div>
+      <h2 class="section-title">How you love — both directions.</h2>
+      <div class="section-body">
+        <p>You love with words. Not vague ones — specific, named, meant. You tell people who they are to you, what they mean, why they matter. Most people in your life have been affirmed by you in ways they didn't expect. The gift: you make people feel seen. The blind spot: you assume the words land the same way for everyone. They don't.</p>
+        <p class="bridge">And here is what the free report didn't tell you.</p>
+        <p>What you need is proof. Not declarations — action. Someone who sees what's hard and moves toward it without being asked. Someone who handles the thing, shows up for the appointment, remembers the detail. You don't need grand gestures. You need consistent ones. The question you carry: am I worth the effort? The answer you need is in what someone does, not what they say.</p>
+      </div>
+    </div>
+
+    <!-- SECTION 4: AMOR GAP -->
+    <div class="section">
+      <div class="section-eyebrow">Section 4 &nbsp;—&nbsp; The Amor Gap</div>
+      <h2 class="section-title">The thing nobody knows to give you.</h2>
+      <div class="section-body">
+        <div class="gap-card amor">
+          <div class="gap-card-label">You give as Expressive. You receive as Devoted.</div>
+          <p>You say it well. But what you actually need is for someone to do something. Words land, but they don't stay. What stays is the act — the handled thing, the shown-up moment, the proof. You may find yourself surrounded by people who know exactly how you feel about them but have never thought to wonder what you need done. You love out loud. You need to be loved in motion.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 5: UNDER PRESSURE -->
+    <div class="section">
+      <div class="section-eyebrow">Section 5 &nbsp;—&nbsp; Under Pressure</div>
+      <h2 class="section-title">The version of you that surfaces when the season gets hard.</h2>
+      <div class="section-body">
+        <p>Everyone has a primary type. But under sustained pressure — not a bad day, a hard season — a second type begins to surface. It is not a flaw. It is information.</p>
+        <div class="shadow-row">
+          <div class="shadow-label">Your secondary Drive type is Anchor. Under pressure, this is what shifts:</div>
+          <p>Under pressure, the drive slows. You become more deliberate, more careful, more focused on holding what you have than charging toward what's next. It can feel like a retreat. It isn't. It's your system conserving what matters. The risk: the people around you may interpret stillness as defeat. It's not. It's recalibration.</p>
+        </div>
+        <div class="shadow-row">
+          <div class="shadow-label">When your Amor Code goes unmet for too long, this is what your partner experiences:</div>
+          <p>When your Expressive Receive goes unmet, you go quiet. The words stop — from you. You stop affirming others, stop reaching out, stop saying the things that come so naturally when you feel seen. The people who love you notice the silence before they understand it. They don't always know it's a signal. Tell them.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 6: COMPATIBILITY -->
+    <div class="section">
+      <div class="section-eyebrow">Section 6 &nbsp;—&nbsp; Your Compatibility</div>
+      <h2 class="section-title">Who you're built to build with.</h2>
+      <div class="section-body">
+        <p>Compatibility in DrivAmor is not about finding someone identical to you. It is about finding someone whose Drive and Amor Code creates the right dynamic — the right friction, the right flow, the right growth.</p>
+
+        <div class="match-label">Your Natural Matches</div>
+        <div class="match-card">
+          <h4>The Quiet Harbor &nbsp;(Anchor + Present)</h4>
+          <p>Their steadiness gives your drive a home — and your momentum gives their stability a direction. You move the world; they make sure you have something to come back to.</p>
+        </div>
+        <div class="match-card">
+          <h4>The Faithful Anchor &nbsp;(Anchor + Devoted)</h4>
+          <p>They do what you say — the relationship has both words and proof. You name it; they show it. The dynamic is easy because neither of you has to translate.</p>
+        </div>
+
+        <div class="match-label">Your Growth Pairing</div>
+        <div class="match-card growth">
+          <h4>The Soulful Inspirer &nbsp;(Amplifier + Intimate)</h4>
+          <p>This pairing will challenge you. They want depth where you want declaration; they want to be known where you want to be affirmed. The friction is real. What makes it worth it: they will pull something out of you that no easy relationship ever would. The version of you that learns to go slow and go deep — that version is stronger. But you have to be willing to feel the friction first.</p>
+        </div>
+
+        <div class="match-label">What You're Looking For</div>
+        <p>You are looking for balance, not sameness. Someone whose Drive fills what yours doesn't cover, and whose Amor Code gives you what you struggle to give yourself. The relationship you thrive in has a natural rhythm — not because you're the same, but because your differences are complementary.</p>
+      </div>
+    </div>
+
+    <!-- SECTION 7: VISION -->
+    <div class="section">
+      <div class="section-eyebrow">Section 7 &nbsp;—&nbsp; Your Relationship Vision</div>
+      <h2 class="section-title">What you're actually building.</h2>
+      <div class="section-body">
+        <p>You are building something. A life, a business, a legacy — and you need a partner who is building too. Not someone who supports from the sideline, but someone who is in it with you. For you, love is not a destination — it is a direction. The growth edge: make sure you're building toward each other, not just beside each other. The momentum that serves you in every other area of life can carry you past the person you're building with if you're not intentional about it.</p>
+      </div>
+    </div>
+
+    <!-- SECTION 8: GROWTH EDGES -->
+    <div class="section">
+      <div class="section-eyebrow">Section 8 &nbsp;—&nbsp; Your Growth Edges</div>
+      <h2 class="section-title">The honest part.</h2>
+      <div class="section-body">
+        <div class="shadow-row">
+          <div class="shadow-label">Drive shadow</div>
+          <p>Your drive, unchecked, becomes pressure. You stop collaborating and start dictating. You mistake urgency for leadership and pace for vision. The people who love you experience it as demand — they feel like they can't keep up, or like their input doesn't matter. The growth edge: momentum is your gift, but it belongs to the relationship, not just to you.</p>
+        </div>
+        <div class="shadow-row">
+          <div class="shadow-label">Amor shadow</div>
+          <p>When your Expressive Receive goes unmet, you go quiet. The words stop — from you. You stop affirming others, stop reaching out, stop saying the things that come so naturally when you feel seen. The people who love you notice the silence before they understand it. They don't always know it's a signal. Tell them before the silence becomes the message.</p>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end report-body -->
+
+  <!-- CLOSING -->
+  <div class="closing-section">
+    <p class="tagline">The seed is in your hands.</p>
+    <p class="body">You now have something most people never get: a clear picture of who you are in relationship — how you lead, how you follow, how you love, and how you need to be loved. Both directions. All four dimensions.</p>
+    <p class="body">The next step is showing this to your partner — and having them take the assessment too. When two people know their profiles, the dynamic that used to be invisible becomes a conversation instead of a conflict.</p>
+    <p class="brand">DrivAmor &nbsp;·&nbsp; drivamor.com &nbsp;·&nbsp; A MiRAjO product</p>
+  </div>
+
+</div><!-- end page -->
+
+</body>
+</html>
