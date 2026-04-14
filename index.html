@@ -736,8 +736,8 @@
       <div class="feature-content">
         <p class="eyebrow drive">Drive Mode</p>
         <h3>How you show up<br>when it <em>matters.</em></h3>
-        <p>Your Drive Mode is your behavioral blueprint in relationship — how you make decisions, handle pressure, and lead. It is DISC-informed and built for partnership, not just the boardroom.</p>
         <p>Builder. Amplifier. Anchor. Architect. Four types — and one that explains why you operate the way you do in every relationship you have ever been in.</p>
+        <p>Your Drive Mode is your behavioral blueprint in relationship: how you make decisions, handle pressure, and lead. DISC-informed and built for partnership, not just the boardroom.</p>
         <a href="/quiz">Find your Drive Mode →</a>
       </div>
     </div>
@@ -755,8 +755,8 @@
       <div class="feature-content">
         <p class="eyebrow amor">Amor Code</p>
         <h3>How you love —<br>and need to be <em>loved.</em></h3>
-        <p>Your Amor Code is the language your heart speaks, whether or not you have ever had words for it. Five types built on love language research — sharper, more specific, and more honest.</p>
         <p>Expressive. Devoted. Intentional. Present. Intimate. One of them is what you have been trying to get your partner to understand for years.</p>
+        <p>Your Amor Code is the language your heart speaks, whether or not you have ever had words for it. Five types built on love language research — sharper, more specific, and more honest.</p>
         <a href="/quiz" style="color:var(--amor);">Find your Amor Code →</a>
       </div>
     </div>
@@ -942,15 +942,14 @@
   </a>
   <div>
     <a href="/quiz" class="fl">Take the Assessment</a>
-    <a href="/profiles" class="fl">All 20 Profiles</a>
     <a href="mailto:hello@drivamor.com" class="fl">Contact</a>
   </div>
   <p class="fc">A <a href="https://www.mirajoco.org" target="_blank">MiRAjO</a> product</p>
 </footer>
 
 <script>
-  // Skip intro on return visits (comment out to always show)
-  // if (localStorage.getItem('da_intro_seen')) { exitIntro(true); }
+  // Skip intro on return visits
+  if (localStorage.getItem('da_intro_seen')) { exitIntro(true); }
 
   const t = (id, delay, extraClass) => {
     setTimeout(() => {
