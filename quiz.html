@@ -42,45 +42,163 @@
       align-items: center;
       justify-content: center;
       text-align: center;
-      padding: 48px 24px;
+      padding: 40px 32px;
       background: var(--dark);
+      min-height: 100vh;
     }
+    .intro-inner { max-width: 1100px; width: 100%; }
+
     .intro-logo {
       font-family: 'Instrument Serif', serif;
-      font-size: 40px;
-      margin-bottom: 32px;
+      font-size: 32px;
+      margin-bottom: 10px;
       letter-spacing: -0.02em;
     }
     .intro-logo span.d { color: var(--drive-light); }
     .intro-logo span.a { color: var(--amor-light); }
     #screen-intro h1 {
       font-family: 'Instrument Serif', serif;
-      font-size: clamp(28px, 5vw, 48px);
+      font-size: clamp(22px, 3.5vw, 36px);
       font-weight: 400;
       line-height: 1.2;
-      max-width: 600px;
-      margin-bottom: 20px;
+      margin-bottom: 6px;
+      color: #fff;
     }
-    #screen-intro p {
-      font-size: 16px;
-      color: rgba(255,255,255,0.55);
-      max-width: 480px;
-      line-height: 1.7;
-      margin-bottom: 40px;
+    #screen-intro .intro-sub {
+      font-size: 14px;
+      color: rgba(255,255,255,0.4);
+      margin-bottom: 32px;
     }
+
+    /* Type rows */
+    .type-row { margin-bottom: 20px; }
+    .type-row-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .type-row-label.drive { color: var(--drive-light); }
+    .type-row-label.amor  { color: var(--amor-light); }
+
+    .type-cards {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+    }
+    .type-card {
+      flex: 1;
+      max-width: 220px;
+      background: linear-gradient(160deg, #1e1e1e 0%, #141414 100%);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 12px;
+      padding: 18px 16px;
+      text-align: left;
+      cursor: default;
+      box-shadow:
+        0 16px 40px rgba(0,0,0,0.45),
+        0 1px 0 rgba(255,255,255,0.06) inset,
+        0 -1px 0 rgba(0,0,0,0.5) inset;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .type-card:hover {
+      transform: translateY(-6px);
+      box-shadow:
+        0 28px 56px rgba(0,0,0,0.6),
+        0 1px 0 rgba(255,255,255,0.1) inset;
+    }
+    .drive-card { border-top: 2px solid var(--drive); }
+    .amor-card  { border-top: 2px solid var(--amor); }
+
+    .tc-name {
+      font-family: 'Instrument Serif', serif;
+      font-size: 18px;
+      font-weight: 400;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+    .tc-desc {
+      font-size: 11.5px;
+      color: rgba(255,255,255,0.4);
+      line-height: 1.5;
+    }
+
+    /* Sample profiles */
+    .sample-row { margin-bottom: 24px; }
+    .sample-row-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+      margin-bottom: 10px;
+    }
+    .sample-cards {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+    }
+    .sample-card {
+      flex: 1;
+      max-width: 300px;
+      background: linear-gradient(160deg, #1e1e1e 0%, #111 100%);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 14px;
+      padding: 22px 20px;
+      text-align: left;
+      box-shadow:
+        0 20px 50px rgba(0,0,0,0.5),
+        0 1px 0 rgba(255,255,255,0.06) inset;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      border-top: 3px solid;
+      cursor: default;
+    }
+    .sample-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 32px 64px rgba(0,0,0,0.65);
+    }
+    .sample-card.sc1 { border-top-color: var(--drive); }
+    .sample-card.sc2 { border-top-color: var(--amor); }
+    .sample-card.sc3 { border-top-color: #fff; }
+
+    .sc-combo {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      margin-bottom: 8px;
+    }
+    .sc-combo span.d { color: var(--drive-light); }
+    .sc-combo span.a { color: var(--amor-light); }
+    .sc-name {
+      font-family: 'Instrument Serif', serif;
+      font-size: 22px;
+      font-weight: 400;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+    .sc-line {
+      font-size: 13px;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.6;
+    }
+
+    /* Stats + CTA */
     .stats-row {
       display: flex;
-      gap: 40px;
+      gap: 36px;
       justify-content: center;
-      margin-bottom: 48px;
+      margin-bottom: 20px;
     }
     .stat { text-align: center; }
     .stat-num {
       font-family: 'Instrument Serif', serif;
-      font-size: 32px;
+      font-size: 28px;
       color: var(--white);
     }
-    .stat-label { font-size: 12px; color: rgba(255,255,255,0.45); letter-spacing: 0.06em; text-transform: uppercase; margin-top: 4px; }
+    .stat-label { font-size: 11px; color: rgba(255,255,255,0.4); letter-spacing: 0.06em; text-transform: uppercase; margin-top: 3px; }
 
     /* ── BUTTONS ── */
     .btn {
@@ -444,7 +562,16 @@
       font-style: italic;
     }
 
+    @media (max-width: 900px) {
+      .type-cards { flex-wrap: wrap; }
+      .type-card { max-width: calc(50% - 10px); flex: none; width: calc(50% - 10px); }
+      .sample-cards { flex-wrap: wrap; }
+      .sample-card { max-width: calc(50% - 12px); flex: none; width: calc(50% - 12px); }
+    }
     @media (max-width: 640px) {
+      #screen-intro { padding: 32px 16px; }
+      .type-card { max-width: 100%; width: 100%; }
+      .sample-card { max-width: 100%; width: 100%; }
       .intake-card { padding: 32px 24px; }
       .stats-row { gap: 24px; }
       .quiz-body { padding: 28px 16px 80px; }
@@ -455,26 +582,102 @@
 
 <!-- ══════════════ INTRO ══════════════ -->
 <div id="screen-intro" class="screen active">
-  <div class="intro-logo">
-    <span class="d">Driv</span><span class="a">Amor</span>
+  <div class="intro-inner">
+
+    <div class="intro-logo"><span class="d">Driv</span><span class="a">Amor</span></div>
+    <h1>Know how you drive.<br>Know how you love.</h1>
+    <p class="intro-sub">46 questions · ~12 minutes · No account needed</p>
+
+    <!-- Drive types -->
+    <div class="type-row">
+      <div class="type-row-label drive">Drive Mode — How you work &amp; lead</div>
+      <div class="type-cards">
+        <div class="type-card drive-card">
+          <div class="tc-name">The Builder</div>
+          <div class="tc-desc">Results-first. You move fast, decide fast, and expect others to keep up.</div>
+        </div>
+        <div class="type-card drive-card">
+          <div class="tc-name">The Amplifier</div>
+          <div class="tc-desc">Energy is your currency. You build momentum through people, not systems.</div>
+        </div>
+        <div class="type-card drive-card">
+          <div class="tc-name">The Anchor</div>
+          <div class="tc-desc">Steady and reliable. You're the foundation everyone else builds on.</div>
+        </div>
+        <div class="type-card drive-card">
+          <div class="tc-name">The Architect</div>
+          <div class="tc-desc">Systems and strategy. You see the whole board before anyone else moves.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Amor types -->
+    <div class="type-row">
+      <div class="type-row-label amor">Amor Code — How you love &amp; need love</div>
+      <div class="type-cards">
+        <div class="type-card amor-card">
+          <div class="tc-name">Expressive</div>
+          <div class="tc-desc">Words and affirmation. You love out loud and need to hear it back.</div>
+        </div>
+        <div class="type-card amor-card">
+          <div class="tc-name">Devoted</div>
+          <div class="tc-desc">Acts of service. Love is what you do, not just what you say.</div>
+        </div>
+        <div class="type-card amor-card">
+          <div class="tc-name">Intentional</div>
+          <div class="tc-desc">Quality time. Presence and attention are how you measure love.</div>
+        </div>
+        <div class="type-card amor-card">
+          <div class="tc-name">Present</div>
+          <div class="tc-desc">Touch and closeness. Physical presence is your language of love.</div>
+        </div>
+        <div class="type-card amor-card">
+          <div class="tc-name">Intimate</div>
+          <div class="tc-desc">Meaningful gifts and gestures. Thoughtfulness tells you someone sees you.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sample profiles -->
+    <div class="sample-row">
+      <div class="sample-row-label">Sample profiles</div>
+      <div class="sample-cards">
+        <div class="sample-card sc1">
+          <div class="sc-combo"><span class="d">Builder</span> · <span class="a">Expressive</span></div>
+          <div class="sc-name">The Forge</div>
+          <div class="sc-line">You build empires in the boardroom and need a partner who can match your fire — and tell you they see you.</div>
+        </div>
+        <div class="sample-card sc2">
+          <div class="sc-combo"><span class="d">Anchor</span> · <span class="a">Intentional</span></div>
+          <div class="sc-name">The Sanctuary</div>
+          <div class="sc-line">You are the still center of everyone around you. Your love language is showing up — fully, every time.</div>
+        </div>
+        <div class="sample-card sc3">
+          <div class="sc-combo"><span class="d">Amplifier</span> · <span class="a">Devoted</span></div>
+          <div class="sc-name">The Resonance</div>
+          <div class="sc-line">Your energy is contagious and your love is action. You carry people, and you need someone who carries you back.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stats + CTA -->
+    <div class="stats-row">
+      <div class="stat">
+        <div class="stat-num">46</div>
+        <div class="stat-label">Questions</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">12</div>
+        <div class="stat-label">Minutes</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">20</div>
+        <div class="stat-label">Profiles</div>
+      </div>
+    </div>
+    <button class="btn btn-white" onclick="showScreen('intake')">Find my profile — Free</button>
+
   </div>
-  <h1>Know how you drive.<br>Know how you love.</h1>
-  <p>40 questions across four dimensions — your Drive, your Amor Code, and the gap between who you are and what you actually need.</p>
-  <div class="stats-row">
-    <div class="stat">
-      <div class="stat-num">46</div>
-      <div class="stat-label">Questions</div>
-    </div>
-    <div class="stat">
-      <div class="stat-num">12</div>
-      <div class="stat-label">Minutes</div>
-    </div>
-    <div class="stat">
-      <div class="stat-num">20</div>
-      <div class="stat-label">Profiles</div>
-    </div>
-  </div>
-  <button class="btn btn-white" onclick="showScreen('intake')">Find my profile</button>
 </div>
 
 <!-- ══════════════ INTAKE ══════════════ -->
