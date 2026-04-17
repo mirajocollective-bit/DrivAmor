@@ -462,7 +462,7 @@
   <p>40 questions across four dimensions — your Drive, your Amor Code, and the gap between who you are and what you actually need.</p>
   <div class="stats-row">
     <div class="stat">
-      <div class="stat-num">40</div>
+      <div class="stat-num">46</div>
       <div class="stat-label">Questions</div>
     </div>
     <div class="stat">
@@ -612,7 +612,7 @@ const SECTIONS = [
     title: 'How you lead.',
     desc: 'These questions are about you as an individual — how you naturally think, decide, and operate. Answer as you are, not as you think you should be.',
     btnClass: 'btn-drive',
-    questions: [1,2,3,4,5,6,7]
+    questions: [1,2,3,4,5,6,7,41]
   },
   {
     id: 'drive-follow',
@@ -621,7 +621,7 @@ const SECTIONS = [
     title: 'How you follow.',
     desc: 'Now we look at the other seat. When your partner or someone you trust takes the lead — what role do you naturally play?',
     btnClass: 'btn-drive',
-    questions: [8,9,10,11,12,13,14,15]
+    questions: [8,9,10,11,12,13,14,15,42]
   },
   {
     id: 'amor-give',
@@ -648,7 +648,7 @@ const SECTIONS = [
     title: 'How it all connects.',
     desc: 'The final section looks at how your Drive and Amor Code interact — especially under pressure. There are no right answers here.',
     btnClass: 'btn-dark',
-    questions: [31,32,33,34,35,36,37,38,39,40]
+    questions: [31,32,33,34,35,36,37,38,39,40,43,44,45,46]
   }
 ];
 
@@ -1070,6 +1070,69 @@ const QUESTIONS = {
       { text: "Stability — a relationship that is the foundation everything else stands on", value: "stability" },
       { text: "Intention — a relationship that is designed, not just lived", value: "intention" }
     ]
+  },
+  // ── NEW DRIVE LEAD (Q41)
+  41: {
+    text: "In your professional life, the way you get results:",
+    type: 'drive',
+    options: [
+      { text: "You move fast and adjust as you go — action over analysis", value: "B" },
+      { text: "You bring people with you — your energy multiplies the output", value: "Am" },
+      { text: "You stay the course — reliability and consistency are your edge", value: "An" },
+      { text: "You think it through first — the right plan matters more than speed", value: "Ar" }
+    ]
+  },
+  // ── NEW DRIVE FOLLOW (Q42)
+  42: {
+    text: "When your partner is building something and needs your involvement:",
+    type: 'drive',
+    options: [
+      { text: "Give me a task — I execute", value: "B" },
+      { text: "You champion it — you talk about what they're building like it's already won", value: "Am" },
+      { text: "You make sure the foundation is solid — the details they don't see", value: "An" },
+      { text: "You pressure-test it — ask the questions that make the vision stronger", value: "Ar" }
+    ]
+  },
+  // ── NEW BRIDGE (Q43–46)
+  43: {
+    text: "Being acknowledged as someone's partner on social media:",
+    type: 'bridge',
+    options: [
+      { text: "Matters to you — private love that never goes public can start to feel like a secret", value: "public" },
+      { text: "You appreciate it but don't need it — you know what's real regardless of what's posted", value: "neutral" },
+      { text: "You prefer keeping the relationship off the feed — some things lose something when they're public", value: "private" },
+      { text: "You haven't landed on it — it shifts depending on the relationship", value: "figuring" }
+    ]
+  },
+  44: {
+    text: "Your partner is active online — engaging with people, liking posts, leaving comments. You:",
+    type: 'bridge',
+    options: [
+      { text: "Notice it and feel it — digital attention is still attention", value: "sensitive" },
+      { text: "Trust until you have a reason not to — what they do online isn't the relationship", value: "trusting" },
+      { text: "Don't track it — if it doesn't show up in how they treat you, it doesn't matter", value: "unbothered" },
+      { text: "Would rather name it out loud than quietly let it build", value: "communicator" }
+    ]
+  },
+  45: {
+    text: "When you're physically with someone you love and one of you reaches for the phone:",
+    type: 'bridge',
+    options: [
+      { text: "It registers — partial presence is still a kind of absence", value: "presence" },
+      { text: "Depends on context — you both know the difference between urgent and a habit", value: "contextual" },
+      { text: "You barely notice — you're comfortable in the same space without total focus", value: "independent" },
+      { text: "You do it too — phones are just part of how you both live now", value: "habitual" }
+    ]
+  },
+  46: {
+    text: "When it comes to your professional life, the role you want your partner to play:",
+    type: 'bridge',
+    options: [
+      { text: "Separate — work is work, relationship is relationship, and that's healthy", value: "separate" },
+      { text: "Supporter — believe in what I'm building and celebrate with me", value: "supporter" },
+      { text: "Thinking partner — push back, challenge me, help me see what I'm missing", value: "partner" },
+      { text: "Stabilizer — keep things steady at home so I can focus on the work", value: "stabilizer" }
+    ]
   }
 };
 
@@ -1214,7 +1277,7 @@ function renderQuestion() {
   const section = SECTIONS[currentSectionIdx];
   const qId = currentQuestionIds[currentQIdx];
   const q = QUESTIONS[qId];
-  const total = 40;
+  const total = 46;
   const answered = Object.keys(answers).filter(k => parseInt(k) !== 38).length;
 
   // Header theme
@@ -1293,8 +1356,8 @@ function score(qIds, values) {
 }
 
 function showResults() {
-  const driveLead = score([1,2,3,4,5,6,7], ['B','Am','An','Ar']);
-  const driveFollow = score([8,9,10,11,12,13,14,15], ['B','Am','An','Ar']);
+  const driveLead = score([1,2,3,4,5,6,7,41], ['B','Am','An','Ar']);
+  const driveFollow = score([8,9,10,11,12,13,14,15,42], ['B','Am','An','Ar']);
   const amorGive = score([16,17,18,19,20,21,22], ['E','D','I','P','Im']);
   const amorReceive = score([23,24,25,26,27,28,29,30], ['E','D','I','P','Im']);
 
@@ -1318,7 +1381,11 @@ function showResults() {
       q33: answers[33],
       q35: answers[35],
       q36: answers[36],
-      q37: answers[37]
+      q37: answers[37],
+      q43: answers[43],
+      q44: answers[44],
+      q45: answers[45],
+      q46: answers[46]
     }));
   } catch(e) { /* storage unavailable */ }
 
