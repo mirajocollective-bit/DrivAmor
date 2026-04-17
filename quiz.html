@@ -8,15 +8,15 @@
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --drive: #1E5F8E;
-      --drive-light: #4A90C4;
-      --drive-tint: #EBF4FA;
-      --amor: #C42B28;
-      --amor-light: #E04A46;
-      --amor-tint: #FBF0EF;
+      --drive: #B82038;
+      --drive-light: #D43A56;
+      --drive-tint: #FDE8EC;
+      --amor: #E8547A;
+      --amor-light: #F2899E;
+      --amor-tint: #FFF0F4;
       --bridge: #3D2B5A;
       --bridge-tint: #F4F0FA;
-      --dark: #0F0D16;
+      --dark: #0D0D0D;
       --white: #FFFFFF;
       --off: #F8F6F2;
       --ink: #141414;
@@ -463,7 +463,7 @@
       <div class="stat-label">Questions</div>
     </div>
     <div class="stat">
-      <div class="stat-num">8</div>
+      <div class="stat-num">12</div>
       <div class="stat-label">Minutes</div>
     </div>
     <div class="stat">
@@ -837,14 +837,14 @@ const QUESTIONS = {
     ]
   },
   19: {
-    text: "In your work relationships, you build trust by:",
+    text: "When you're away from someone you love for more than a day, you stay connected by:",
     type: 'amor',
     options: [
-      { text: "Communicating clearly and acknowledging people often", value: "E" },
-      { text: "Following through — every time, without fail", value: "D" },
-      { text: "Being fully present when you're with someone", value: "I" },
-      { text: "Showing up with calm, grounded energy people want to be near", value: "P" },
-      { text: "Going deeper than the surface — real conversations build real trust", value: "Im" }
+      { text: "Sending real messages — not check-ins, but the specific thought you had about them", value: "E" },
+      { text: "Handling something for them while you're gone — it shows them they're still on your mind", value: "D" },
+      { text: "Scheduling a proper call — phone down, fully present even across the distance", value: "I" },
+      { text: "Sending voice notes or videos just so they can hear you, feel you near", value: "P" },
+      { text: "Saying the thing you don't usually say — distance makes the real stuff easier to put into words", value: "Im" }
     ]
   },
   20: {
@@ -991,11 +991,13 @@ const QUESTIONS = {
     ]
   },
   33: {
-    text: "In a relationship, which truth is harder for you to live with:",
+    text: "When something is unresolved between you and your partner, your default is:",
     type: 'bridge',
     options: [
-      { text: "Being with someone so similar that nothing ever challenges you to grow", value: "growth" },
-      { text: "Being with someone so different that the friction never fully resolves", value: "natural" }
+      { text: "Address it the moment you can — unresolved things move around in you until they're named", value: "A" },
+      { text: "Text or message about it first — you think better in writing and it gives them time too", value: "B" },
+      { text: "Let it breathe — you know when to push and when to wait", value: "C" },
+      { text: "Wait until you're face to face — some things need to happen in person, not in a thread", value: "D" }
     ]
   },
   34: {
@@ -1037,12 +1039,13 @@ const QUESTIONS = {
     ]
   },
   38: {
-    text: "Right now, you are:",
+    text: "Your relationship to social media when it comes to someone you love:",
     type: 'bridge',
     options: [
-      { text: "Single and open to finding the right person", value: "single" },
-      { text: "In a relationship and want to understand it better", value: "partnered" },
-      { text: "Not in a relationship and not actively looking — I took this for myself", value: "not-looking" }
+      { text: "What's real between us stays offline — I keep the meaningful stuff private", value: "private" },
+      { text: "I share when something genuinely matters to me, not to perform it", value: "selective" },
+      { text: "I like documenting what I care about — including people I love", value: "open" },
+      { text: "I'm honestly still figuring out what feels right here", value: "figuring" }
     ]
   },
   39: {
@@ -1174,8 +1177,6 @@ function startQuiz() {
   const status = document.getElementById('intake-status').value;
   if (!name || !email || !age || !status) { alert('Please fill in all fields to continue.'); return; }
   userData = { name, email, age, status };
-  // Pre-set Q38 from intake status
-  answers[38] = status;
   currentSectionIdx = -1;
   advanceToNextSection();
 }
@@ -1296,7 +1297,7 @@ function showResults() {
 
   const profileKey = driveLead.primary + '+' + amorGive.primary;
   const profileName = PROFILES[profileKey] || 'Your Profile';
-  const status = answers[38] || userData.status || 'not-looking';
+  const status = userData.status || 'not-looking';
   const vision = answers[40] || 'momentum';
 
   // Save to localStorage so upgrade/success pages can build paid report

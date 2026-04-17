@@ -10,33 +10,19 @@
 
     /* ━━━━ INTRO OVERLAY ━━━━ */
     #intro {
-      position: fixed;
-      inset: 0;
-      z-index: 9999;
+      position: fixed; inset: 0; z-index: 9999;
       background: #000;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 40px 24px;
-      overflow: hidden;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      padding: 40px 24px; overflow: hidden;
     }
-    #intro.hidden {
-      pointer-events: none;
-      animation: introFadeOut 1s ease forwards;
-    }
-    @keyframes introFadeOut {
-      to { opacity: 0; }
-    }
+    #intro.hidden { pointer-events: none; animation: introFadeOut 1s ease forwards; }
+    @keyframes introFadeOut { to { opacity: 0; } }
 
-    /* Parable text stage */
     .intro-stage {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
       padding: 40px 24px;
       transition: opacity 0.8s ease;
     }
@@ -46,9 +32,7 @@
       font-family: 'Instrument Serif', serif;
       font-size: clamp(16px, 2.5vw, 22px);
       color: rgba(255,255,255,0);
-      line-height: 1.9;
-      text-align: center;
-      max-width: 600px;
+      line-height: 1.9; text-align: center; max-width: 600px;
       transition: color 0.8s ease;
     }
     .intro-line.visible { color: rgba(255,255,255,0.85); }
@@ -56,8 +40,7 @@
     .intro-line.answer  {
       font-size: clamp(22px, 4vw, 36px);
       color: rgba(255,255,255,0);
-      margin-top: 8px;
-      font-style: italic;
+      margin-top: 8px; font-style: italic;
     }
     .intro-line.answer.visible { color: rgba(255,255,255,0.95); }
     .intro-line.pivot {
@@ -71,65 +54,36 @@
       color: rgba(255,255,255,0);
       letter-spacing: -0.01em;
     }
-    .intro-line.big.d.visible { color: #4A90C4; }
-    .intro-line.big.a.visible { color: #E04A46; }
-
-    /* spacer */
+    .intro-line.big.d.visible { color: #D43A56; }
+    .intro-line.big.a.visible { color: #F2899E; }
     .intro-gap { height: 28px; }
     .intro-gap.sm { height: 12px; }
 
     /* Logo reveal stage */
     .intro-logo-stage {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-      transition: opacity 1s ease;
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      opacity: 0; transition: opacity 1s ease;
     }
     .intro-logo-stage.visible { opacity: 1; }
-
-    .wolf-mark {
-      width: clamp(120px, 20vw, 180px);
-      height: clamp(120px, 20vw, 180px);
-      margin-bottom: 28px;
-      opacity: 0;
-      transform: scale(0.85);
-      transition: opacity 1.2s ease, transform 1.2s ease;
-    }
-    .wolf-mark.visible { opacity: 1; transform: scale(1); }
 
     .intro-wordmark {
       font-family: 'Instrument Serif', serif;
       font-size: clamp(44px, 8vw, 72px);
-      font-weight: 400;
-      letter-spacing: 0.01em;
-      display: flex;
-      gap: 0;
-      opacity: 0;
-      transition: opacity 1s ease 0.4s;
+      font-weight: 400; letter-spacing: 0.01em;
+      display: flex; gap: 0;
+      opacity: 0; transition: opacity 1s ease 0.3s;
     }
     .intro-wordmark.visible { opacity: 1; }
-    .intro-wordmark .d {
-      color: rgba(74,144,196,0);
-      transition: color 0.8s ease 0.6s;
-    }
-    .intro-wordmark .a {
-      color: rgba(224,74,70,0);
-      transition: color 0.8s ease 1.0s;
-    }
-    .intro-wordmark.visible .d { color: #4A90C4; }
-    .intro-wordmark.visible .a { color: #E04A46; }
+    .intro-wordmark .d { color: rgba(212,58,86,0); transition: color 0.8s ease 0.6s; }
+    .intro-wordmark .a { color: rgba(242,137,158,0); transition: color 0.8s ease 1.0s; }
+    .intro-wordmark.visible .d { color: #D43A56; }
+    .intro-wordmark.visible .a { color: #F2899E; }
 
     .intro-tagline {
-      font-size: 13px;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0);
-      font-weight: 600;
-      margin-top: 16px;
+      font-size: 13px; letter-spacing: 3px; text-transform: uppercase;
+      color: rgba(255,255,255,0); font-weight: 600; margin-top: 16px;
       transition: color 0.8s ease 1.4s;
     }
     .intro-wordmark.visible ~ .intro-tagline { color: rgba(255,255,255,0.35); }
@@ -141,34 +95,21 @@
       border: 1.5px solid rgba(255,255,255,0.25);
       border-radius: 6px;
       color: rgba(255,255,255,0.7);
-      font-size: 14px;
-      font-weight: 700;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      cursor: pointer;
-      background: transparent;
+      font-size: 14px; font-weight: 700;
+      letter-spacing: 1px; text-transform: uppercase;
+      cursor: pointer; background: transparent;
       font-family: 'Plus Jakarta Sans', sans-serif;
-      opacity: 0;
-      transition: opacity 0.6s ease, background 0.2s, color 0.2s, border-color 0.2s;
+      opacity: 0; transition: opacity 0.6s ease, background 0.2s, color 0.2s, border-color 0.2s;
     }
     .intro-enter.visible { opacity: 1; }
-    .intro-enter:hover {
-      background: rgba(255,255,255,0.08);
-      color: white;
-      border-color: rgba(255,255,255,0.5);
-    }
+    .intro-enter:hover { background: rgba(255,255,255,0.08); color: white; border-color: rgba(255,255,255,0.5); }
 
-    /* Skip button */
     .intro-skip {
-      position: absolute;
-      bottom: 32px; right: 32px;
-      font-size: 12px;
-      color: rgba(255,255,255,0.2);
-      cursor: pointer;
-      background: none; border: none;
+      position: absolute; bottom: 32px; right: 32px;
+      font-size: 12px; color: rgba(255,255,255,0.2);
+      cursor: pointer; background: none; border: none;
       font-family: 'Plus Jakarta Sans', sans-serif;
-      letter-spacing: 1px;
-      text-transform: uppercase;
+      letter-spacing: 1px; text-transform: uppercase;
       transition: color 0.2s;
     }
     .intro-skip:hover { color: rgba(255,255,255,0.5); }
@@ -176,20 +117,19 @@
   </style>
   <style>
     :root {
-      --drive:     #1E5F8E;
-      --drive-lt:  #4A90C4;
-      --drive-bg:  #EBF4FA;
-      --amor:      #C42B28;
-      --amor-lt:   #E04A46;
-      --amor-bg:   #FBF0EF;
-      --dark:      #0F0D16;
-      --dark-nav:  #0F0D16;
-      --white:     #FFFFFF;
-      --off:       #F8F6F2;
-      --ink:       #141414;
-      --ink-mid:   #555555;
-      --ink-lt:    #999999;
-      --border:    #E4DDD4;
+      --drive:    #B82038;
+      --drive-lt: #D43A56;
+      --drive-bg: #FDE8EC;
+      --amor:     #E8547A;
+      --amor-lt:  #F2899E;
+      --amor-bg:  #FFF0F4;
+      --dark:     #0D0D0D;
+      --white:    #FFFFFF;
+      --off:      #F9F7F7;
+      --ink:      #141414;
+      --ink-mid:  #555555;
+      --ink-lt:   #999999;
+      --border:   #E8E0E0;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -204,217 +144,131 @@
 
     /* ━━━━ NAV ━━━━ */
     nav {
-      position: fixed;
-      top: 0; left: 0; right: 0; z-index: 100;
-      background: var(--dark-nav);
-      padding: 0 48px;
-      height: 64px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: var(--dark);
+      padding: 0 48px; height: 64px;
+      display: flex; align-items: center; justify-content: space-between;
       border-bottom: 1px solid rgba(255,255,255,0.08);
     }
     .nav-logo {
       font-family: 'Instrument Serif', serif;
-      font-size: 24px;
-      text-decoration: none;
-      position: relative;
-      display: inline-flex;
-      align-items: center;
+      font-size: 24px; text-decoration: none;
     }
-    .nav-logo .d { color: var(--drive-lt); position: relative; z-index: 1; }
-    .nav-logo .a { color: var(--amor-lt);  position: relative; z-index: 1; }
-    /* Hidden wolf behind the wordmark */
-    .nav-wolf {
-      position: absolute;
-      left: 50%; top: 50%;
-      transform: translate(-50%, -50%);
-      width: 52px; height: 54px;
-      opacity: 0.09;
-      pointer-events: none;
-    }
-    .nav-logo:hover .nav-wolf { opacity: 0.2; transition: opacity 0.3s; }
+    .nav-logo .d { color: var(--drive-lt); }
+    .nav-logo .a { color: var(--amor-lt); }
     .nav-btn {
-      background: var(--amor);
-      color: white;
-      font-size: 13px;
-      font-weight: 700;
-      padding: 10px 24px;
-      border-radius: 6px;
+      background: var(--drive);
+      color: white; font-size: 13px; font-weight: 700;
+      padding: 10px 24px; border-radius: 6px;
       text-decoration: none;
       font-family: 'Plus Jakarta Sans', sans-serif;
       transition: background 0.2s;
     }
-    .nav-btn:hover { background: var(--amor-lt); }
+    .nav-btn:hover { background: var(--drive-lt); }
 
     /* ━━━━ HERO ━━━━ */
     .hero {
       min-height: 100vh;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      padding-top: 64px;
-    }
-
-    /* LEFT — content */
-    .hero-left {
-      padding: 72px 56px 72px 64px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
+      display: flex; align-items: center; justify-content: center;
+      padding: 120px 48px 80px;
       background: var(--white);
     }
+    .hero-content {
+      max-width: 760px; width: 100%;
+      text-align: center;
+    }
     .hero-eyebrow {
-      font-size: 11px;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      font-weight: 700;
-      color: var(--ink-lt);
-      margin-bottom: 20px;
+      font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+      font-weight: 700; color: var(--ink-lt); margin-bottom: 24px;
     }
     .hero h1 {
       font-family: 'Instrument Serif', serif;
-      font-size: clamp(36px, 3.8vw, 54px);
-      font-weight: 400;
-      line-height: 1.1;
-      color: var(--ink);
-      margin-bottom: 12px;
+      font-size: clamp(42px, 6vw, 72px);
+      font-weight: 400; line-height: 1.1;
+      color: var(--ink); margin-bottom: 20px;
     }
     .hero h1 em.d { font-style: italic; color: var(--drive); }
     .hero h1 em.a { font-style: italic; color: var(--amor); }
     .hero-sub {
-      font-size: 15px;
-      color: var(--ink-mid);
-      line-height: 1.75;
-      margin-bottom: 36px;
-      max-width: 400px;
+      font-size: 17px; color: var(--ink-mid);
+      line-height: 1.75; margin-bottom: 40px;
+      max-width: 520px; margin-left: auto; margin-right: auto;
     }
 
-    /* Type names — the hook */
     .type-panels {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      margin-bottom: 36px;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 14px; margin-bottom: 40px;
+      max-width: 540px; margin-left: auto; margin-right: auto;
     }
     .type-panel {
-      border-radius: 10px;
-      padding: 20px 20px 18px;
+      border-radius: 10px; padding: 22px 20px 20px; text-align: left;
     }
-    .type-panel.drive { background: var(--drive-bg); border: 1px solid rgba(30,95,142,0.15); }
-    .type-panel.amor  { background: var(--amor-bg);  border: 1px solid rgba(196,43,40,0.15);  }
+    .type-panel.drive { background: var(--drive-bg); border: 1px solid rgba(184,32,56,0.15); }
+    .type-panel.amor  { background: var(--amor-bg);  border: 1px solid rgba(232,84,122,0.18); }
     .type-panel-label {
-      font-size: 10px;
-      letter-spacing: 2.5px;
-      text-transform: uppercase;
-      font-weight: 700;
-      margin-bottom: 14px;
+      font-size: 10px; letter-spacing: 2.5px; text-transform: uppercase;
+      font-weight: 700; margin-bottom: 14px;
     }
     .type-panel.drive .type-panel-label { color: var(--drive); }
-    .type-panel.amor  .type-panel-label { color: var(--amor);  }
+    .type-panel.amor  .type-panel-label { color: var(--amor); }
     .type-list { display: flex; flex-direction: column; gap: 8px; }
     .type-item {
       font-family: 'Instrument Serif', serif;
-      font-size: 17px;
-      font-weight: 400;
-      display: flex;
-      align-items: center;
-      gap: 8px;
+      font-size: 17px; font-weight: 400;
+      display: flex; align-items: center; gap: 8px;
+      color: var(--ink);
     }
-    .type-panel.drive .type-item { color: var(--ink); }
-    .type-panel.amor  .type-item { color: var(--ink); }
-    .type-dot {
-      width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0;
-    }
+    .type-dot { width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; }
     .type-panel.drive .type-dot { background: var(--drive); }
-    .type-panel.amor  .type-dot { background: var(--amor);  }
+    .type-panel.amor  .type-dot { background: var(--amor); }
 
     .hero-cta {
-      display: inline-block;
-      padding: 16px 36px;
-      background: var(--amor);
-      color: white;
-      font-size: 15px;
-      font-weight: 700;
-      border-radius: 8px;
+      display: inline-block; padding: 17px 40px;
+      background: var(--drive); color: white;
+      font-size: 15px; font-weight: 700; border-radius: 8px;
       text-decoration: none;
       font-family: 'Plus Jakarta Sans', sans-serif;
       transition: background 0.2s, transform 0.15s;
-      align-self: flex-start;
     }
-    .hero-cta:hover { background: var(--amor-lt); transform: translateY(-1px); }
-    .hero-note { margin-top: 12px; font-size: 12px; color: var(--ink-lt); }
-
-    /* RIGHT — image */
-    .hero-right {
-      position: relative;
-      overflow: hidden;
-    }
-    .hero-img {
-      position: absolute;
-      inset: 0;
-      background: #D5CAC0; /* placeholder — swap for photo */
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .hero-img img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center top;
-      display: block;
-    }
-    /* Overlay for text contrast if needed */
-    .hero-img-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to right, rgba(255,255,255,0.12), transparent);
-    }
-    /* Placeholder text until real photo is dropped in */
-    .img-placeholder {
-      text-align: center;
-      color: rgba(0,0,0,0.25);
-    }
-    .img-placeholder p { font-size: 13px; margin-top: 8px; }
+    .hero-cta:hover { background: var(--drive-lt); transform: translateY(-1px); }
+    .hero-note { margin-top: 14px; font-size: 12px; color: var(--ink-lt); }
 
     /* ━━━━ SECTION SHARED ━━━━ */
-    .section { padding: 88px 64px; }
-    .section-inner { max-width: 1000px; margin: 0 auto; }
+    .section { padding: 88px 48px; }
+    .section-inner { max-width: 760px; margin: 0 auto; text-align: center; }
     .eyebrow {
       font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
-      font-weight: 700; text-align: center; margin-bottom: 12px;
+      font-weight: 700; margin-bottom: 12px;
     }
-    .eyebrow.drive { color: var(--drive); }
-    .eyebrow.amor  { color: var(--amor);  }
+    .eyebrow.drive  { color: var(--drive); }
+    .eyebrow.amor   { color: var(--amor); }
     .eyebrow.neutral { color: var(--ink-lt); }
     h2 {
       font-family: 'Instrument Serif', serif;
-      font-size: clamp(30px, 3.5vw, 44px);
+      font-size: clamp(30px, 4vw, 48px);
       font-weight: 400; line-height: 1.15;
-      text-align: center; margin-bottom: 12px;
-      color: var(--ink);
+      margin-bottom: 14px; color: var(--ink);
     }
     h2 em { font-style: italic; }
     .section-sub {
-      font-size: 15px; color: var(--ink-mid); line-height: 1.8;
-      text-align: center; max-width: 500px;
-      margin: 0 auto 56px;
+      font-size: 16px; color: var(--ink-mid); line-height: 1.8;
+      max-width: 580px; margin: 0 auto 56px;
     }
+    .section-body {
+      font-size: 16px; color: var(--ink-mid); line-height: 1.85;
+      max-width: 600px; margin: 0 auto;
+    }
+    .section-body p + p { margin-top: 16px; }
 
     /* ━━━━ PROFILES GRID ━━━━ */
     .profiles-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 14px;
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px;
+      text-align: left;
     }
     .profile-card {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 26px 22px;
-      transition: box-shadow 0.2s, transform 0.2s;
-      position: relative;
-      overflow: hidden;
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: 12px; padding: 24px 20px;
+      transition: box-shadow 0.2s, transform 0.2s; position: relative; overflow: hidden;
     }
     .profile-card:hover { box-shadow: 0 8px 28px rgba(0,0,0,0.09); transform: translateY(-2px); }
     .profile-card::before {
@@ -429,116 +283,59 @@
     .pc-dims .a { color: var(--amor); }
     .pc-name {
       font-family: 'Instrument Serif', serif;
-      font-size: 21px; font-weight: 400; color: var(--ink);
-      margin-bottom: 8px;
+      font-size: 20px; font-weight: 400; color: var(--ink); margin-bottom: 8px;
     }
     .pc-line { font-size: 12.5px; color: var(--ink-mid); line-height: 1.65; }
 
-    /* ━━━━ FEATURE ROW (image + text) ━━━━ */
-    .feature-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 64px;
-      align-items: center;
-    }
-    .feature-row.flip { direction: rtl; }
-    .feature-row.flip > * { direction: ltr; }
-    .feature-img {
-      border-radius: 16px;
-      overflow: hidden;
-      aspect-ratio: 4/3;
-      background: #D5CAC0;
-      position: relative;
-    }
-    .feature-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .feature-img-ph {
-      position: absolute; inset: 0;
-      display: flex; align-items: center; justify-content: center;
-      color: rgba(0,0,0,0.2); font-size: 13px; text-align: center; padding: 20px;
-    }
-    .feature-content {}
-    .feature-content .eyebrow { text-align: left; margin-bottom: 10px; }
-    .feature-content h3 {
-      font-family: 'Instrument Serif', serif;
-      font-size: clamp(26px, 2.8vw, 38px);
-      font-weight: 400; line-height: 1.2;
-      margin-bottom: 16px; color: var(--ink);
-    }
-    .feature-content h3 em { font-style: italic; }
-    .feature-content p {
-      font-size: 15px; color: var(--ink-mid); line-height: 1.8; margin-bottom: 14px;
-    }
-    .feature-content a {
-      font-size: 14px; font-weight: 700; color: var(--amor);
-      text-decoration: none; display: inline-flex; align-items: center; gap: 6px;
-    }
-    .feature-content a:hover { color: var(--amor-lt); }
-
     /* ━━━━ STEPS ━━━━ */
-    .steps-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 28px;
-    }
+    .steps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; text-align: left; }
     .step-card {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 36px 28px;
-      text-align: center;
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: 14px; padding: 36px 28px;
     }
     .step-n {
       width: 48px; height: 48px; border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
-      font-size: 17px; font-weight: 700;
-      margin: 0 auto 20px;
+      font-size: 17px; font-weight: 700; margin-bottom: 20px;
     }
     .step-n.n1 { background: var(--drive-bg); color: var(--drive); }
     .step-n.n2 { background: var(--amor-bg);  color: var(--amor); }
-    .step-n.n3 { background: #F0EBF8; color: #6B4FA8; }
+    .step-n.n3 { background: #F0E8EC; color: #8B2040; }
     .step-card h4 {
       font-family: 'Instrument Serif', serif;
-      font-size: 21px; font-weight: 400;
-      margin-bottom: 10px; color: var(--ink);
+      font-size: 21px; font-weight: 400; margin-bottom: 10px; color: var(--ink);
     }
     .step-card p { font-size: 13.5px; color: var(--ink-mid); line-height: 1.75; }
 
     /* ━━━━ FINAL CTA ━━━━ */
     .cta-section {
-      background: var(--dark);
-      padding: 96px 64px;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
+      background: var(--dark); padding: 96px 48px; text-align: center;
+      position: relative; overflow: hidden;
     }
     .cta-section::before {
       content: ''; position: absolute; inset: 0;
       background:
-        radial-gradient(ellipse at 20% 50%, rgba(30,95,142,0.22) 0%, transparent 50%),
-        radial-gradient(ellipse at 80% 50%, rgba(196,43,40,0.22) 0%, transparent 50%);
+        radial-gradient(ellipse at 20% 50%, rgba(184,32,56,0.25) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 50%, rgba(232,84,122,0.22) 0%, transparent 50%);
     }
     .cta-section .section-inner { position: relative; z-index: 2; }
     .cta-section h2 { color: white; }
-    .cta-section .section-sub { color: rgba(255,255,255,0.5); }
+    .cta-section .section-sub { color: rgba(255,255,255,0.5); margin-bottom: 40px; }
     .cta-btn {
-      display: inline-block;
-      padding: 18px 52px;
-      background: var(--amor);
-      color: white;
-      font-size: 16px;
-      font-weight: 700;
-      border-radius: 8px;
+      display: inline-block; padding: 18px 52px;
+      background: var(--drive); color: white;
+      font-size: 16px; font-weight: 700; border-radius: 8px;
       text-decoration: none;
       font-family: 'Plus Jakarta Sans', sans-serif;
       transition: background 0.2s, transform 0.15s;
     }
-    .cta-btn:hover { background: var(--amor-lt); transform: translateY(-2px); }
+    .cta-btn:hover { background: var(--drive-lt); transform: translateY(-2px); }
 
     /* ━━━━ FOOTER ━━━━ */
     footer {
       background: var(--dark);
       border-top: 1px solid rgba(255,255,255,0.06);
-      padding: 32px 64px;
+      padding: 32px 48px;
       display: flex; align-items: center;
       justify-content: space-between; flex-wrap: wrap; gap: 16px;
     }
@@ -552,16 +349,12 @@
     footer .fc a:hover { color: rgba(255,255,255,0.5); }
 
     /* ━━━━ MOBILE ━━━━ */
-    @media (max-width: 900px) {
-      .hero { grid-template-columns: 1fr; min-height: auto; }
-      .hero-right { height: 340px; }
-      .hero-left { padding: 56px 28px; }
-      .section { padding: 72px 28px; }
+    @media (max-width: 860px) {
+      .hero { padding: 100px 24px 60px; }
+      .section { padding: 64px 24px; }
       .profiles-grid { grid-template-columns: repeat(2, 1fr); }
-      .feature-row { grid-template-columns: 1fr; gap: 36px; }
-      .feature-row.flip { direction: ltr; }
       .steps-grid { grid-template-columns: 1fr; }
-      .cta-section { padding: 72px 28px; }
+      .cta-section { padding: 72px 24px; }
       nav { padding: 0 20px; }
       footer { padding: 28px 20px; flex-direction: column; align-items: flex-start; }
       footer a.fl { margin-left: 0; margin-right: 20px; }
@@ -569,13 +362,13 @@
     @media (max-width: 540px) {
       .type-panels { grid-template-columns: 1fr; }
       .profiles-grid { grid-template-columns: 1fr; }
-      .hero h1 { font-size: 34px; }
+      .hero h1 { font-size: 38px; }
     }
   </style>
 </head>
 <body>
 
-<!-- ━━━━ INTRO OVERLAY ━━━━ -->
+<!-- INTRO OVERLAY -->
 <div id="intro">
 
   <!-- Stage 1: The Parable -->
@@ -609,46 +402,10 @@
 
   <!-- Stage 3: Logo Reveal -->
   <div class="intro-logo-stage" id="stage-logo">
-
-    <!-- Wolf SVG Mark -->
-    <svg class="wolf-mark" id="wolf-svg" viewBox="0 0 200 210" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <!-- Left ear -->
-      <path d="M42,88 L58,18 L84,70" fill="white" opacity="0.9"/>
-      <!-- Right ear -->
-      <path d="M158,88 L142,18 L116,70" fill="white" opacity="0.9"/>
-      <!-- Ear inner - left -->
-      <path d="M48,82 L60,32 L78,68" fill="#1A1A1A" opacity="0.5"/>
-      <!-- Ear inner - right -->
-      <path d="M152,82 L140,32 L122,68" fill="#1A1A1A" opacity="0.5"/>
-      <!-- Head -->
-      <path d="M22,92 C18,112 20,138 28,158 C40,182 64,196 100,196 C136,196 160,182 172,158 C180,138 182,112 178,92 C170,68 140,58 100,58 C60,58 30,68 22,92 Z" fill="white" opacity="0.9"/>
-      <!-- Left eye (angular, fierce) -->
-      <path d="M46,110 L62,98 L78,110 L62,120 Z" fill="#0a0a0a"/>
-      <!-- Right eye -->
-      <path d="M122,110 L138,98 L154,110 L138,120 Z" fill="#0a0a0a"/>
-      <!-- Eye shine left -->
-      <circle cx="65" cy="104" r="3" fill="white" opacity="0.4"/>
-      <!-- Eye shine right -->
-      <circle cx="141" cy="104" r="3" fill="white" opacity="0.4"/>
-      <!-- Nose bridge line -->
-      <path d="M 88,130 C90,126 100,124 112,130" stroke="#0a0a0a" stroke-width="1.5" fill="none" opacity="0.4"/>
-      <!-- Nose -->
-      <path d="M84,148 C84,140 100,134 116,148 L108,158 L100,163 L92,158 Z" fill="#0a0a0a" opacity="0.8"/>
-      <!-- Muzzle fur line hints -->
-      <path d="M68,138 Q80,145 84,152" stroke="rgba(0,0,0,0.15)" stroke-width="1" fill="none"/>
-      <path d="M132,138 Q120,145 116,152" stroke="rgba(0,0,0,0.15)" stroke-width="1" fill="none"/>
-      <!-- Center line (subtle) -->
-      <line x1="100" y1="58" x2="100" y2="134" stroke="rgba(0,0,0,0.06)" stroke-width="1"/>
-      <!-- Drive/Amor color wash -->
-      <path d="M22,92 C18,112 20,138 28,158 C40,182 64,196 100,196 L100,58 C60,58 30,68 22,92 Z" fill="#1E5F8E" opacity="0.18"/>
-      <path d="M178,92 C182,112 180,138 172,158 C160,182 136,196 100,196 L100,58 C140,58 170,68 178,92 Z" fill="#C42B28" opacity="0.18"/>
-    </svg>
-
     <div class="intro-wordmark" id="intro-wm">
       <span class="d">Driv</span><span class="a">Amor</span>
     </div>
     <p class="intro-tagline">Drive Mode &nbsp;·&nbsp; Amor Code</p>
-
     <button class="intro-enter" id="intro-enter" onclick="exitIntro()">
       Discover Your Profile
     </button>
@@ -661,21 +418,15 @@
 <!-- NAV -->
 <nav>
   <a href="/" class="nav-logo">
-    <svg class="nav-wolf" viewBox="0 0 200 210" fill="white" xmlns="http://www.w3.org/2000/svg">
-      <path d="M42,88 L58,18 L84,70" opacity="0.9"/>
-      <path d="M158,88 L142,18 L116,70" opacity="0.9"/>
-      <path d="M22,92 C18,112 20,138 28,158 C40,182 64,196 100,196 C136,196 160,182 172,158 C180,138 182,112 178,92 C170,68 140,58 100,58 C60,58 30,68 22,92 Z" opacity="0.9"/>
-    </svg>
     <span class="d">Driv</span><span class="a">Amor</span>
   </a>
   <a href="/quiz" class="nav-btn">Take the Assessment</a>
 </nav>
 
 
-<!-- HERO — names above the fold -->
+<!-- HERO -->
 <div class="hero">
-
-  <div class="hero-left">
+  <div class="hero-content">
     <p class="hero-eyebrow">Relationship &amp; Personality Assessment</p>
     <h1>
       You know how<br>you <em class="d">lead.</em><br>
@@ -683,7 +434,6 @@
     </h1>
     <p class="hero-sub">Two dimensions. Twenty profiles. The clarity that usually takes years — in twelve minutes.</p>
 
-    <!-- Type names — the hook, above the fold -->
     <div class="type-panels">
       <div class="type-panel drive">
         <p class="type-panel-label">Drive Mode</p>
@@ -709,57 +459,32 @@
     <a href="/quiz" class="hero-cta">Discover Your Profile — Free</a>
     <p class="hero-note">40 questions &nbsp;·&nbsp; ~12 minutes &nbsp;·&nbsp; No account needed</p>
   </div>
-
-  <div class="hero-right">
-    <div class="hero-img">
-      <!-- PHOTO: swap src with real lifestyle image of a confident couple/person -->
-      <!-- Suggested: warm, natural light, professional but human. Not stock-cheesy. -->
-      <div class="img-placeholder">
-        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-        <p>Hero photo<br>goes here</p>
-      </div>
-    </div>
-  </div>
-
 </div>
 
 
-<!-- WHAT ARE THE TYPES (brief, light bg) -->
-<section class="section" style="background:var(--off);">
+<!-- DRIVE MODE -->
+<section class="section" style="background:var(--drive-bg);">
   <div class="section-inner">
-    <div class="feature-row">
-      <div class="feature-img">
-        <div class="feature-img-ph">
-          <p>Photo — person<br>in their element</p>
-        </div>
-      </div>
-      <div class="feature-content">
-        <p class="eyebrow drive">Drive Mode</p>
-        <h3>How you show up<br>when it <em>matters.</em></h3>
-        <p>Builder. Amplifier. Anchor. Architect. Four types — and one that explains why you operate the way you do in every relationship you have ever been in.</p>
-        <p>Your Drive Mode is your behavioral blueprint in relationship: how you make decisions, handle pressure, and lead. DISC-informed and built for partnership, not just the boardroom.</p>
-        <a href="/quiz">Find your Drive Mode →</a>
-      </div>
+    <p class="eyebrow drive">Drive Mode</p>
+    <h2>How you show up<br>when it <em>matters.</em></h2>
+    <div class="section-body">
+      <p>Builder. Amplifier. Anchor. Architect. Four types — and one that explains why you operate the way you do in every relationship you have ever been in.</p>
+      <p>Your Drive Mode is your behavioral blueprint in partnership: how you make decisions, handle pressure, and lead — in person, under stress, and in the digital spaces where so many relationships now live.</p>
     </div>
+    <a href="/quiz" style="display:inline-flex; align-items:center; gap:6px; margin-top:28px; font-size:14px; font-weight:700; text-decoration:none; color:var(--drive);">Find your Drive Mode →</a>
   </div>
 </section>
 
+<!-- AMOR CODE -->
 <section class="section" style="background:var(--white);">
   <div class="section-inner">
-    <div class="feature-row flip">
-      <div class="feature-img">
-        <div class="feature-img-ph">
-          <p>Photo — connection,<br>warmth, intimacy</p>
-        </div>
-      </div>
-      <div class="feature-content">
-        <p class="eyebrow amor">Amor Code</p>
-        <h3>How you love —<br>and need to be <em>loved.</em></h3>
-        <p>Expressive. Devoted. Intentional. Present. Intimate. One of them is what you have been trying to get your partner to understand for years.</p>
-        <p>Your Amor Code is the language your heart speaks, whether or not you have ever had words for it. Five types built on love language research — sharper, more specific, and more honest.</p>
-        <a href="/quiz" style="color:var(--amor);">Find your Amor Code →</a>
-      </div>
+    <p class="eyebrow amor">Amor Code</p>
+    <h2>How you love —<br>and need to be <em>loved.</em></h2>
+    <div class="section-body">
+      <p>Expressive. Devoted. Intentional. Present. Intimate. One of them is what you have been trying to get your partner to understand for years.</p>
+      <p>Your Amor Code is the language your heart speaks — in how you show up when they have a hard day, in how you text, in what it means to you when they reach for their phone while you're talking.</p>
     </div>
+    <a href="/quiz" style="display:inline-flex; align-items:center; gap:6px; margin-top:28px; font-size:14px; font-weight:700; text-decoration:none; color:var(--amor);">Find your Amor Code →</a>
   </div>
 </section>
 
@@ -832,7 +557,7 @@
       <div class="step-card">
         <div class="step-n n1">1</div>
         <h4>Take the Assessment</h4>
-        <p>40 questions across three sections — Drive Mode, Amor Code, and how the two interact under pressure.</p>
+        <p>40 questions across five sections — how you lead, how you follow, how you love, how you need to be loved, and how it all connects under pressure.</p>
       </div>
       <div class="step-card">
         <div class="step-n n2">2</div>
@@ -849,84 +574,10 @@
 </section>
 
 
-<!-- THE WOLF — brand story -->
-<section class="section" style="background:var(--dark); padding:96px 64px;">
-  <div class="section-inner" style="max-width:720px;">
-
-    <p class="eyebrow" style="color:rgba(255,255,255,0.3); text-align:center; letter-spacing:3px; font-size:11px; text-transform:uppercase; font-weight:700; margin-bottom:48px;">Why the Wolf</p>
-
-    <blockquote style="
-      font-family:'Instrument Serif',serif;
-      font-size:clamp(18px,2.5vw,24px);
-      font-weight:400;
-      color:rgba(255,255,255,0.85);
-      line-height:1.85;
-      text-align:center;
-      margin-bottom:40px;
-      font-style:italic;
-    ">
-      "An elder told his grandson: a fight is going on inside me.
-      Two wolves. One is darkness — anger, ego, fear.
-      The other is light — love, hope, truth.
-      The same fight is going on inside you."
-      <br><br>
-      "Which wolf wins?"
-      <br><br>
-      "The one you feed."
-    </blockquote>
-
-    <p style="
-      font-size:15px;
-      color:rgba(255,255,255,0.5);
-      line-height:1.9;
-      text-align:center;
-      max-width:580px;
-      margin:0 auto 24px;
-    ">
-      In every relationship, two forces are already inside you. The drive that moves you forward. The love that calls you back. Both are real. Both are necessary. Most people have spent years feeding one and starving the other — not because they chose wrong, but because they never had language for either.
-    </p>
-
-    <p style="
-      font-size:15px;
-      color:rgba(255,255,255,0.5);
-      line-height:1.9;
-      text-align:center;
-      max-width:580px;
-      margin:0 auto 48px;
-    ">
-      The wolf does not separate strength from loyalty. It leads the pack and it chooses one partner — for life. It is the only animal that is both.
-    </p>
-
-    <div style="display:flex; align-items:center; gap:20px; max-width:580px; margin:0 auto;">
-      <div style="flex:1; height:1px; background:linear-gradient(to right, transparent, rgba(74,144,196,0.4));"></div>
-      <svg width="36" height="38" viewBox="0 0 200 210" fill="white" opacity="0.3">
-        <path d="M42,88 L58,18 L84,70"/>
-        <path d="M158,88 L142,18 L116,70"/>
-        <path d="M22,92 C18,112 20,138 28,158 C40,182 64,196 100,196 C136,196 160,182 172,158 C180,138 182,112 178,92 C170,68 140,58 100,58 C60,58 30,68 22,92 Z"/>
-      </svg>
-      <div style="flex:1; height:1px; background:linear-gradient(to left, transparent, rgba(196,43,40,0.4));"></div>
-    </div>
-
-    <p style="
-      font-family:'Instrument Serif',serif;
-      font-size:clamp(20px,3vw,28px);
-      color:white;
-      text-align:center;
-      margin-top:40px;
-      line-height:1.4;
-    ">
-      DrivAmor is the one you understand.<br>
-      <em style="color:rgba(255,255,255,0.5); font-size:0.85em;">Which wolf have you been feeding?</em>
-    </p>
-
-  </div>
-</section>
-
-
 <!-- FINAL CTA -->
 <div class="cta-section">
   <div class="section-inner">
-    <p class="eyebrow" style="color:rgba(255,255,255,0.35); text-align:center; letter-spacing:3px; font-size:11px; text-transform:uppercase; font-weight:700; margin-bottom:14px;">Ready?</p>
+    <p class="eyebrow" style="color:rgba(255,255,255,0.35); letter-spacing:3px; font-size:11px; text-transform:uppercase; font-weight:700; margin-bottom:14px;">Ready?</p>
     <h2 style="color:white;">Two dimensions.<br><em>One path forward.</em></h2>
     <p class="section-sub">Most people spend years figuring out why they love the way they do. This takes twelve minutes.</p>
     <a href="/quiz" class="cta-btn">Discover Your Profile — Free</a>
@@ -948,59 +599,32 @@
 </footer>
 
 <script>
-  // Skip intro on return visits
   if (localStorage.getItem('da_intro_seen')) { exitIntro(true); }
 
-  const t = (id, delay, extraClass) => {
+  const t = (id, delay) => {
     setTimeout(() => {
       const el = document.getElementById(id);
-      if (el) {
-        el.classList.add('visible');
-        if (extraClass) el.classList.add(extraClass);
-      }
-    }, delay);
-  };
-
-  const dim = (id, delay) => {
-    setTimeout(() => {
-      const el = document.getElementById(id);
-      if (el) { el.classList.remove('visible'); el.classList.add('dim'); }
+      if (el) el.classList.add('visible');
     }, delay);
   };
 
   function runIntro() {
-    // ── Stage 1: Parable ──
-    t('l1', 600);
-    t('l2', 1800);
-    t('l3', 2800);
-    t('l4', 3900);
-    t('l5', 4900);
-    t('l6', 6100);
-    t('l7', 7500);
-    t('l8', 9200);  // "The one you feed."
+    t('l1', 600); t('l2', 1800); t('l3', 2800);
+    t('l4', 3900); t('l5', 4900); t('l6', 6100);
+    t('l7', 7500); t('l8', 9200);
 
-    // ── Transition to Stage 2 ──
     setTimeout(() => {
       const s1 = document.getElementById('stage-parable');
       s1.classList.add('fade-out');
       setTimeout(() => {
         s1.style.display = 'none';
         const s2 = document.getElementById('stage-pivot');
-        s2.style.opacity = '1';
-        s2.style.pointerEvents = 'auto';
-
-        // Stage 2: Pivot lines
-        t('p1', 200);
-        t('p2', 900);
-        t('p3', 2100);
-        t('p4', 2900);
-        t('p5', 4100);
-        t('p6', 4800);
-
+        s2.style.opacity = '1'; s2.style.pointerEvents = 'auto';
+        t('p1', 200); t('p2', 900); t('p3', 2100);
+        t('p4', 2900); t('p5', 4100); t('p6', 4800);
       }, 900);
     }, 11500);
 
-    // ── Transition to Stage 3: Logo ──
     setTimeout(() => {
       const s2 = document.getElementById('stage-pivot');
       s2.classList.add('fade-out');
@@ -1008,14 +632,8 @@
         s2.style.display = 'none';
         const s3 = document.getElementById('stage-logo');
         s3.classList.add('visible');
-
-        setTimeout(() => document.getElementById('wolf-svg').classList.add('visible'), 200);
-        setTimeout(() => {
-          const wm = document.getElementById('intro-wm');
-          wm.classList.add('visible');
-        }, 900);
-        setTimeout(() => document.getElementById('intro-enter').classList.add('visible'), 2400);
-
+        setTimeout(() => document.getElementById('intro-wm').classList.add('visible'), 300);
+        setTimeout(() => document.getElementById('intro-enter').classList.add('visible'), 1800);
       }, 800);
     }, 18200);
   }
@@ -1023,15 +641,13 @@
   function exitIntro(instant) {
     localStorage.setItem('da_intro_seen', '1');
     const intro = document.getElementById('intro');
-    if (instant) {
-      intro.style.display = 'none';
-    } else {
+    if (instant) { intro.style.display = 'none'; }
+    else {
       intro.classList.add('hidden');
       setTimeout(() => intro.style.display = 'none', 1000);
     }
   }
 
-  // Start
   runIntro();
 </script>
 </body>

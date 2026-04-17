@@ -7,11 +7,11 @@
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --drive: #1E5F8E;
-      --drive-light: #4A90C4;
-      --amor: #C42B28;
-      --amor-light: #E04A46;
-      --dark: #0F0D16;
+      --drive: #B82038;
+      --drive-light: #D43A56;
+      --amor: #E8547A;
+      --amor-light: #F2899E;
+      --dark: #0D0D0D;
       --off: #F8F6F2;
       --ink: #141414;
       --ink-mid: #555;
@@ -308,11 +308,11 @@ function buildEmailHTML(p) {
 
   const driveGapBlock = driveGapConsistent
     ? `<p style="font-family:Arial,sans-serif;font-size:15px;color:#555;line-height:1.85;margin:0;font-style:italic;">${driveGapConsistent}</p>`
-    : `<table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#EBF4FA;border-left:4px solid #1E5F8E;border-radius:8px;"><tr><td style="padding:24px 28px;"><p style="font-family:Arial,sans-serif;font-size:15px;color:#555;line-height:1.75;margin:0;">${driveGapText}</p></td></tr></table>`;
+    : `<table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#FDE8EC;border-left:4px solid #B82038;border-radius:8px;"><tr><td style="padding:24px 28px;"><p style="font-family:Arial,sans-serif;font-size:15px;color:#555;line-height:1.75;margin:0;">${driveGapText}</p></td></tr></table>`;
 
   const amorGapBlock = amorGapConsistent
     ? `<p style="font-family:Arial,sans-serif;font-size:15px;color:#555;line-height:1.85;margin:0;font-style:italic;">${amorGapConsistent}</p>`
-    : `<table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#FBF0EF;border-left:4px solid #C42B28;border-radius:8px;"><tr><td style="padding:24px 28px;"><p style="font-family:Arial,sans-serif;font-size:15px;color:#555;line-height:1.75;margin:0;">${amorGapText}</p></td></tr></table>`;
+    : `<table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#FFF0F4;border-left:4px solid #E8547A;border-radius:8px;"><tr><td style="padding:24px 28px;"><p style="font-family:Arial,sans-serif;font-size:15px;color:#555;line-height:1.75;margin:0;">${amorGapText}</p></td></tr></table>`;
 
   const matchBlock = (mName, mSentence) => mName ? `
     <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#fff;border:1px solid #e8e8e8;border-radius:8px;margin-bottom:10px;">
