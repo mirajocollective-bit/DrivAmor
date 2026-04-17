@@ -10,10 +10,10 @@
     :root {
       --drive: #B82038;
       --drive-light: #D43A56;
-      --drive-tint: #FDE8EC;
+      --drive-tint: #FFFFFF;
       --amor: #E8547A;
       --amor-light: #F2899E;
-      --amor-tint: #FFF0F4;
+      --amor-tint: #FFFFFF;
       --bridge: #3D2B5A;
       --bridge-tint: #F4F0FA;
       --dark: #0D0D0D;
@@ -165,12 +165,15 @@
       padding: 48px 24px;
       text-align: center;
     }
-    #screen-section.drive { background: var(--drive-tint); }
-    #screen-section.drive * { color: var(--ink); }
-    #screen-section.amor { background: var(--amor-tint); }
-    #screen-section.amor * { color: var(--ink); }
-    #screen-section.bridge { background: var(--bridge-tint); }
-    #screen-section.bridge * { color: var(--ink); }
+    #screen-section.drive { background: var(--dark); }
+    #screen-section.drive * { color: #fff; }
+    #screen-section.drive .section-label { color: var(--drive-light); opacity: 1; }
+    #screen-section.amor { background: var(--dark); }
+    #screen-section.amor * { color: #fff; }
+    #screen-section.amor .section-label { color: var(--amor-light); opacity: 1; }
+    #screen-section.bridge { background: var(--dark); }
+    #screen-section.bridge * { color: #fff; }
+    #screen-section.bridge .section-label { color: rgba(255,255,255,0.5); opacity: 1; }
     .section-card { max-width: 520px; }
     .section-label {
       font-size: 11px;
@@ -208,9 +211,9 @@
       top: 0;
       z-index: 10;
     }
-    .quiz-header.drive { background: var(--drive-tint); }
-    .quiz-header.amor { background: var(--amor-tint); }
-    .quiz-header.bridge { background: var(--bridge-tint); }
+    .quiz-header.drive { background: #fff; border-bottom: 1px solid #eee; }
+    .quiz-header.amor { background: #fff; border-bottom: 1px solid #eee; }
+    .quiz-header.bridge { background: #fff; border-bottom: 1px solid #eee; }
     .progress-label {
       font-size: 12px;
       font-weight: 600;
