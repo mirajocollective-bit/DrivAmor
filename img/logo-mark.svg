@@ -1,23 +1,35 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 92">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 102">
 
   <!--
     DrivAmor Mark
-    Left half  = Drive / Arm  — sharp angular bicep peak  (#B82038)
-    Right half = Amor / Heart — soft rounded curve        (#E8547A)
-    Tied together as one unified shape
+    LEFT  = flexed arm/bicep (Drive red)  — outer arm bulges left, bicep bump, concave inner arm
+    RIGHT = heart curve     (Amor pink)   — smooth round classic heart arc
+    Both meet at center top + bottom tip, tied as one unified shape
   -->
 
-  <!-- LEFT: Drive / Bicep — angular, pointed peak = strength -->
-  <path fill="#B82038" d="M50,84 C32,71 7,54 7,33 C7,12 21,2 38,8 C45,10 49,17 50,27 L50,84Z"/>
+  <!-- LEFT: FLEXED ARM / BICEP — Drive red -->
+  <!-- Path: up outer arm → bulges left (bicep) → concave inner arm back to center -->
+  <path fill="#B82038" d="
+    M 60,96
+    C 44,84 18,68 14,50
+    C 11,38 8,24 16,16
+    C 22,10 32,10 40,16
+    C 48,22 54,26 60,26
+    L 60,96 Z
+  "/>
 
-  <!-- RIGHT: Amor / Heart — soft, round peak = love -->
-  <path fill="#E8547A" d="M50,84 L50,27 C51,17 55,10 62,8 C79,2 93,12 93,33 C93,54 68,71 50,84Z"/>
+  <!-- RIGHT: HEART CURVE — Amor pink -->
+  <!-- Clean smooth arc — visually contrasts the angular left side -->
+  <path fill="#E8547A" d="
+    M 60,96
+    L 60,26
+    C 62,14 72,8 84,8
+    C 98,8 110,18 110,36
+    C 110,58 82,80 60,96 Z
+  "/>
 
-  <!-- Bicep definition line — muscle read at larger sizes -->
-  <path fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" opacity="0.28"
-        d="M 37,10 C 23,14 9,23 8,34"/>
-
-  <!-- Center seam — unifies the two halves -->
-  <line x1="50" y1="27" x2="50" y2="84" stroke="white" stroke-width="1" opacity="0.18"/>
+  <!-- Bicep definition line — the inner muscle edge that makes it read as a flexed arm -->
+  <path fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" opacity="0.35"
+        d="M 38,13 C 24,17 11,27 11,40"/>
 
 </svg>
