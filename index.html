@@ -47,9 +47,10 @@
       display:flex; align-items:center; justify-content:space-between;
       border-bottom:1px solid rgba(255,255,255,0.08);
     }
-    .nav-logo { font-family:'Instrument Serif',serif; font-size:24px; text-decoration:none; }
+    .nav-logo { font-family:'Instrument Serif',serif; font-size:24px; text-decoration:none; display:flex; align-items:center; gap:10px; }
     .nav-logo .d { color:var(--drive-lt); }
     .nav-logo .a { color:var(--amor-lt); }
+    .nav-mark { height:32px; width:auto; display:block; flex-shrink:0; }
     .nav-btn {
       background:var(--drive); color:white; font-size:13px; font-weight:700;
       padding:10px 24px; border-radius:6px; text-decoration:none; transition:background 0.2s;
@@ -321,7 +322,8 @@
 
     /* ── FOOTER ── */
     footer { background:var(--dark); border-top:1px solid rgba(255,255,255,0.06); padding:32px 48px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px; }
-    .footer-logo { font-family:'Instrument Serif',serif; font-size:20px; text-decoration:none; }
+    .footer-logo { font-family:'Instrument Serif',serif; font-size:20px; text-decoration:none; display:flex; align-items:center; gap:8px; }
+    .footer-mark { height:26px; width:auto; }
     .footer-logo .d { color:var(--drive-lt); }
     .footer-logo .a { color:var(--amor-lt); }
     footer a.fl { font-size:13px; color:rgba(255,255,255,0.65); text-decoration:none; margin-left:24px; }
@@ -368,7 +370,10 @@
 
 <!-- NAV -->
 <nav>
-  <a href="/" class="nav-logo"><span class="d">Driv</span><span class="a">Amor</span></a>
+  <a href="/" class="nav-logo">
+    <img src="/img/logo-mark.svg" alt="" class="nav-mark">
+    <span class="d">Driv</span><span class="a">Amor</span>
+  </a>
   <a href="/quiz" class="nav-btn">Take the Assessment</a>
 </nav>
 
@@ -765,7 +770,10 @@
 
 <!-- FOOTER -->
 <footer>
-  <a href="/" class="footer-logo"><span class="d">Driv</span><span class="a">Amor</span></a>
+  <a href="/" class="footer-logo">
+    <img src="/img/logo-mark.svg" alt="" class="footer-mark">
+    <span class="d">Driv</span><span class="a">Amor</span>
+  </a>
   <div>
     <a href="/quiz" class="fl">Take the Assessment</a>
     <a href="mailto:hello@drivamor.com" class="fl">Contact</a>
