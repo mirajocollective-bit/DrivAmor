@@ -4,11 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>DrivAmor — Know How You Drive. Know How You Love.</title>
-  <meta name="description" content="DrivAmor reveals the two forces shaping every relationship — your Drive Mode and your Amor Code. Free profile. 12 minutes.">
-
-  <!-- Social / OG -->
+  <meta name="description" content="DrivAmor reveals the two forces shaping every relationship — your Drive Mode and your Amor Code. Free profile. 10–15 minutes.">
   <meta property="og:title" content="DrivAmor — Know How You Drive. Know How You Love.">
-  <meta property="og:description" content="Two dimensions. Twenty profiles. The clarity that usually takes years — in twelve minutes. Free relationship assessment.">
+  <meta property="og:description" content="Two dimensions. Twenty profiles. The clarity that usually takes years — in under 15 minutes. Free relationship assessment.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.drivamor.com">
   <meta property="og:image" content="https://www.drivamor.com/img/og-cover.png">
@@ -16,7 +14,6 @@
   <meta name="twitter:title" content="DrivAmor — Know How You Drive. Know How You Love.">
   <meta name="twitter:description" content="Two dimensions. Twenty profiles. Free relationship assessment.">
   <meta name="twitter:image" content="https://www.drivamor.com/img/og-cover.png">
-
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -34,374 +31,336 @@
       --ink-lt:   #999999;
       --border:   #E8E0E0;
     }
-
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
     body {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      color: var(--ink);
-      background: var(--white);
-      -webkit-font-smoothing: antialiased;
-      overflow-x: hidden;
+      font-family:'Plus Jakarta Sans',sans-serif;
+      color:var(--ink); background:var(--white);
+      -webkit-font-smoothing:antialiased;
+      overflow-x:hidden;
     }
 
-    /* NAV */
+    /* ── NAV ── */
     nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      background: var(--dark);
-      padding: 0 48px; height: 64px;
-      display: flex; align-items: center; justify-content: space-between;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
+      position:fixed; top:0; left:0; right:0; z-index:100;
+      background:var(--dark); padding:0 48px; height:64px;
+      display:flex; align-items:center; justify-content:space-between;
+      border-bottom:1px solid rgba(255,255,255,0.08);
     }
-    .nav-logo {
-      font-family: 'Instrument Serif', serif;
-      font-size: 24px; text-decoration: none;
-    }
-    .nav-logo .d { color: var(--drive-lt); }
-    .nav-logo .a { color: var(--amor-lt); }
+    .nav-logo { font-family:'Instrument Serif',serif; font-size:24px; text-decoration:none; }
+    .nav-logo .d { color:var(--drive-lt); }
+    .nav-logo .a { color:var(--amor-lt); }
     .nav-btn {
-      background: var(--drive);
-      color: white; font-size: 13px; font-weight: 700;
-      padding: 10px 24px; border-radius: 6px;
-      text-decoration: none;
-      transition: background 0.2s;
+      background:var(--drive); color:white; font-size:13px; font-weight:700;
+      padding:10px 24px; border-radius:6px; text-decoration:none; transition:background 0.2s;
     }
-    .nav-btn:hover { background: var(--drive-lt); }
+    .nav-btn:hover { background:var(--drive-lt); }
 
-    /* HERO */
+    /* ── HERO ── */
     .hero {
-      background: var(--dark);
-      padding: 140px 48px 96px;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
+      background:var(--dark); padding:148px 48px 100px;
+      text-align:center; position:relative; overflow:hidden;
     }
     .hero::before {
-      content: '';
-      position: absolute; inset: 0;
+      content:''; position:absolute; inset:0;
       background:
-        radial-gradient(ellipse at 20% 50%, rgba(184,32,56,0.22) 0%, transparent 55%),
-        radial-gradient(ellipse at 80% 50%, rgba(232,84,122,0.16) 0%, transparent 55%);
+        radial-gradient(ellipse at 15% 60%, rgba(184,32,56,0.28) 0%, transparent 50%),
+        radial-gradient(ellipse at 85% 40%, rgba(232,84,122,0.2) 0%, transparent 50%);
     }
-    .hero-inner { position: relative; z-index: 2; max-width: 760px; margin: 0 auto; }
+    .hero-inner { position:relative; z-index:2; max-width:740px; margin:0 auto; }
     .hero-eyebrow {
-      font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
-      font-weight: 700; color: rgba(255,255,255,0.35); margin-bottom: 20px;
+      font-size:11px; letter-spacing:3px; text-transform:uppercase;
+      font-weight:700; color:rgba(255,255,255,0.3); margin-bottom:22px;
     }
     .hero h1 {
-      font-family: 'Instrument Serif', serif;
-      font-size: clamp(44px, 6vw, 74px);
-      font-weight: 400; line-height: 1.1;
-      color: white; margin-bottom: 22px;
+      font-family:'Instrument Serif',serif;
+      font-size:clamp(52px,7.5vw,90px);
+      font-weight:400; line-height:1.05; color:white; margin-bottom:24px;
     }
-    .hero h1 em.d { font-style: italic; color: var(--drive-lt); }
-    .hero h1 em.a { font-style: italic; color: var(--amor-lt); }
+    .hero h1 em.d { font-style:italic; color:var(--drive-lt); }
+    .hero h1 em.a { font-style:italic; color:var(--amor-lt); }
     .hero-sub {
-      font-size: 18px; color: rgba(255,255,255,0.5);
-      line-height: 1.75; margin-bottom: 40px;
-      max-width: 520px; margin-left: auto; margin-right: auto;
+      font-size:19px; color:rgba(255,255,255,0.48);
+      line-height:1.75; margin-bottom:44px;
+      max-width:500px; margin-left:auto; margin-right:auto;
     }
     .hero-cta {
-      display: inline-block; padding: 18px 48px;
-      background: var(--drive); color: white;
-      font-size: 16px; font-weight: 700; border-radius: 8px;
-      text-decoration: none;
-      transition: background 0.2s, transform 0.15s;
+      display:inline-block; padding:20px 56px;
+      background:var(--drive); color:white;
+      font-size:17px; font-weight:700; border-radius:8px;
+      text-decoration:none; letter-spacing:0.01em;
+      transition:background 0.2s, transform 0.15s;
     }
-    .hero-cta:hover { background: var(--drive-lt); transform: translateY(-1px); }
-    .hero-note { margin-top: 14px; font-size: 12px; color: rgba(255,255,255,0.25); }
+    .hero-cta:hover { background:var(--drive-lt); transform:translateY(-2px); }
+    .hero-note { margin-top:16px; font-size:12px; color:rgba(255,255,255,0.22); }
 
-    /* STATS STRIP */
+    /* ── TICKER ── */
+    .ticker-section { background:var(--dark); border-top:1px solid rgba(255,255,255,0.07); padding:32px 0; overflow:hidden; }
+    .ticker-label {
+      text-align:center; font-size:10px; letter-spacing:3px; text-transform:uppercase;
+      font-weight:700; color:rgba(255,255,255,0.2); margin-bottom:20px;
+    }
+    .ticker-row { overflow:hidden; margin-bottom:12px; }
+    .ticker-row:last-child { margin-bottom:0; }
+    .ticker-track {
+      display:flex; width:max-content; gap:0;
+    }
+    .ticker-track.left  { animation:tick-left  55s linear infinite; }
+    .ticker-track.right { animation:tick-right 50s linear infinite; }
+    @keyframes tick-left  { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+    @keyframes tick-right { 0%{transform:translateX(-50%)} 100%{transform:translateX(0)} }
+    .ticker-item {
+      display:inline-flex; align-items:center; gap:16px;
+      padding:10px 28px; white-space:nowrap;
+      font-size:13.5px; color:rgba(255,255,255,0.45); font-style:italic;
+    }
+    .ticker-item::after {
+      content:'·'; color:rgba(255,255,255,0.15); font-style:normal; font-size:18px;
+    }
+    .ticker-item.d { color:rgba(212,58,86,0.7); }
+    .ticker-item.a { color:rgba(242,137,158,0.7); }
+
+    /* ── STATS STRIP ── */
     .stats-strip {
-      background: var(--off);
-      border-bottom: 1px solid var(--border);
-      display: grid; grid-template-columns: repeat(4, 1fr);
+      background:var(--off); border-bottom:1px solid var(--border);
+      display:grid; grid-template-columns:repeat(4,1fr);
     }
-    .stat-item {
-      padding: 28px 24px; text-align: center;
-      border-right: 1px solid var(--border);
-    }
-    .stat-item:last-child { border-right: none; }
+    .stat-item { padding:32px 24px; text-align:center; border-right:1px solid var(--border); }
+    .stat-item:last-child { border-right:none; }
     .stat-num {
-      font-family: 'Instrument Serif', serif;
-      font-size: 40px; font-weight: 400; line-height: 1;
+      font-family:'Instrument Serif',serif; font-size:48px;
+      font-weight:400; line-height:1; display:block;
     }
-    .stat-num.d { color: var(--drive); }
-    .stat-num.a { color: var(--amor); }
-    .stat-num.n { color: var(--ink); }
-    .stat-label {
-      font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
-      font-weight: 700; color: var(--ink-lt); margin-top: 6px;
-    }
+    .stat-num.d { color:var(--drive); }
+    .stat-num.a { color:var(--amor); }
+    .stat-num.n { color:var(--ink); }
+    .stat-label { font-size:11px; letter-spacing:2px; text-transform:uppercase; font-weight:700; color:var(--ink-lt); margin-top:6px; }
 
-    /* SHARED SECTION */
-    .section { padding: 88px 48px; }
-    .section-inner { max-width: 1080px; margin: 0 auto; }
-    .section-header { text-align: center; margin-bottom: 56px; }
-    .eyebrow {
-      font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
-      font-weight: 700; margin-bottom: 12px; display: block;
-    }
-    .eyebrow.drive   { color: var(--drive); }
-    .eyebrow.amor    { color: var(--amor); }
-    .eyebrow.neutral { color: var(--ink-lt); }
+    /* ── SHARED ── */
+    .section { padding:96px 48px; }
+    .text-center { text-align:center; max-width:640px; margin:0 auto 56px; }
+    .eyebrow { font-size:11px; letter-spacing:3px; text-transform:uppercase; font-weight:700; margin-bottom:12px; display:block; }
+    .eyebrow.drive   { color:var(--drive); }
+    .eyebrow.amor    { color:var(--amor); }
+    .eyebrow.neutral { color:var(--ink-lt); }
     h2 {
-      font-family: 'Instrument Serif', serif;
-      font-size: clamp(30px, 4vw, 48px);
-      font-weight: 400; line-height: 1.15;
-      margin-bottom: 14px; color: var(--ink);
+      font-family:'Instrument Serif',serif;
+      font-size:clamp(32px,4.5vw,52px);
+      font-weight:400; line-height:1.12; margin-bottom:14px; color:var(--ink);
     }
-    h2 em { font-style: italic; }
-    .section-sub {
-      font-size: 16px; color: var(--ink-mid); line-height: 1.8;
-      max-width: 580px; margin: 0 auto;
-    }
+    h2 em { font-style:italic; }
+    .section-sub { font-size:16px; color:var(--ink-mid); line-height:1.8; }
 
-    /* WHY BOXES */
-    .why-grid {
-      display: grid; grid-template-columns: repeat(2, 1fr);
-      gap: 20px;
+    /* ── SIDEBAR LAYOUT ── */
+    .sidebar-section {
+      display:grid;
+      grid-template-columns:160px 1fr 160px;
+      gap:0 32px;
+      max-width:1360px;
+      margin:0 auto 56px;
+      align-items:center;
     }
+    .sidebar-panel {
+      display:flex; flex-direction:column; align-items:center;
+      justify-content:center; gap:16px; padding:24px 0;
+    }
+    .sidebar-panel.left  { align-items:flex-start; border-right:1px solid var(--border); padding-right:32px; }
+    .sidebar-panel.right { align-items:flex-end;   border-left:1px solid var(--border);  padding-left:32px; }
+    .sidebar-vert {
+      writing-mode:vertical-rl; text-orientation:mixed;
+      font-size:10px; letter-spacing:3px; text-transform:uppercase;
+      font-weight:700; color:var(--ink-lt); transform:rotate(180deg);
+    }
+    .sidebar-big {
+      font-family:'Instrument Serif',serif; font-size:60px; font-weight:400;
+      line-height:1; color:var(--border);
+    }
+    .sidebar-quote {
+      font-family:'Instrument Serif',serif; font-size:13px;
+      font-style:italic; color:var(--ink-lt); line-height:1.6;
+      text-align:center;
+    }
+    .sidebar-panel.left  .sidebar-quote { text-align:left; }
+    .sidebar-panel.right .sidebar-quote { text-align:right; }
+
+    /* dark sidebar variant */
+    .sidebar-panel.dark-left  { border-right:1px solid rgba(255,255,255,0.08); padding-right:32px; }
+    .sidebar-panel.dark-right { border-left:1px solid rgba(255,255,255,0.08);  padding-left:32px; }
+    .sidebar-panel.dark-left  .sidebar-vert,
+    .sidebar-panel.dark-right .sidebar-vert { color:rgba(255,255,255,0.18); }
+    .sidebar-panel.dark-left  .sidebar-big,
+    .sidebar-panel.dark-right .sidebar-big  { color:rgba(255,255,255,0.05); }
+    .sidebar-panel.dark-left  .sidebar-quote,
+    .sidebar-panel.dark-right .sidebar-quote { color:rgba(255,255,255,0.25); }
+
+    /* ── WHY BOXES ── */
+    .why-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:20px; max-width:1200px; margin:0 auto; }
     .why-card {
-      border-radius: 14px; padding: 36px 32px;
-      border: 1.5px solid var(--border);
-      background: var(--white);
-      position: relative; overflow: hidden;
+      border-radius:14px; padding:36px 32px;
+      border:1.5px solid var(--border); background:var(--white);
+      position:relative; overflow:hidden;
     }
-    .why-card::before {
-      content: ''; position: absolute;
-      top: 0; left: 0; right: 0; height: 3px;
-    }
-    .why-card.d::before  { background: var(--drive); }
-    .why-card.a::before  { background: var(--amor); }
-    .why-card.da::before { background: linear-gradient(to right, var(--drive), var(--amor)); }
-    .why-card.n::before  { background: var(--ink); }
-    .why-icon {
-      width: 44px; height: 44px; border-radius: 10px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 20px; margin-bottom: 18px;
-    }
-    .why-card.d  .why-icon { background: var(--drive-bg); }
-    .why-card.a  .why-icon { background: var(--amor-bg); }
-    .why-card.da .why-icon { background: #FDE8EC; }
-    .why-card.n  .why-icon { background: var(--off); }
-    .why-card h4 {
-      font-family: 'Instrument Serif', serif;
-      font-size: 21px; font-weight: 400; margin-bottom: 12px;
-      color: var(--ink); line-height: 1.3;
-    }
-    .why-card p { font-size: 14px; color: var(--ink-mid); line-height: 1.85; }
+    .why-card::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; }
+    .why-card.d::before  { background:var(--drive); }
+    .why-card.a::before  { background:var(--amor); }
+    .why-card.da::before { background:linear-gradient(to right,var(--drive),var(--amor)); }
+    .why-card.n::before  { background:var(--ink); }
+    .why-icon { font-size:26px; margin-bottom:18px; display:block; }
+    .why-card h4 { font-family:'Instrument Serif',serif; font-size:22px; font-weight:400; margin-bottom:12px; color:var(--ink); line-height:1.3; }
+    .why-card p  { font-size:14px; color:var(--ink-mid); line-height:1.85; }
 
-    /* DRIVE CARDS */
-    .drive-grid {
-      display: grid; grid-template-columns: repeat(4, 1fr);
-      gap: 16px;
-    }
-    .drive-card {
-      background: var(--white);
-      border: 1.5px solid var(--drive);
-      border-radius: 12px; padding: 28px 22px;
-    }
-    .drive-card .type-label {
-      font-size: 10px; letter-spacing: 2.5px; text-transform: uppercase;
-      font-weight: 700; color: var(--drive); margin-bottom: 10px;
-    }
-    .drive-card h4 {
-      font-family: 'Instrument Serif', serif;
-      font-size: 22px; font-weight: 400; margin-bottom: 10px; color: var(--ink);
-    }
-    .drive-card p { font-size: 13.5px; color: var(--ink-mid); line-height: 1.75; }
-    .type-badge {
-      display: inline-block; margin-top: 16px;
-      font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase;
-      font-weight: 700; padding: 4px 10px; border-radius: 4px;
-    }
-    .type-badge.d { background: var(--drive-bg); color: var(--drive); }
-    .type-badge.a { background: var(--amor-bg);  color: var(--amor); }
+    /* ── DRIVE GRID ── */
+    .drive-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; max-width:1360px; margin:0 auto; }
+    .drive-card { background:var(--white); border:1.5px solid var(--drive); border-radius:12px; padding:28px 22px; }
+    .drive-card .type-label { font-size:10px; letter-spacing:2.5px; text-transform:uppercase; font-weight:700; color:var(--drive); margin-bottom:10px; }
+    .drive-card h4 { font-family:'Instrument Serif',serif; font-size:22px; font-weight:400; margin-bottom:10px; color:var(--ink); }
+    .drive-card p  { font-size:13.5px; color:var(--ink-mid); line-height:1.75; }
+    .type-badge { display:inline-block; margin-top:16px; font-size:11px; letter-spacing:1.5px; text-transform:uppercase; font-weight:700; padding:4px 10px; border-radius:4px; }
+    .type-badge.d { background:var(--drive-bg); color:var(--drive); }
+    .type-badge.a { background:var(--amor-bg);  color:var(--amor); }
 
-    /* AMOR CARDS */
-    .amor-grid {
-      display: grid; grid-template-columns: repeat(5, 1fr);
-      gap: 16px;
-    }
-    .amor-card {
-      background: var(--white);
-      border: 1.5px solid var(--amor);
-      border-radius: 12px; padding: 28px 22px;
-    }
-    .amor-card .type-label {
-      font-size: 10px; letter-spacing: 2.5px; text-transform: uppercase;
-      font-weight: 700; color: var(--amor); margin-bottom: 10px;
-    }
-    .amor-card h4 {
-      font-family: 'Instrument Serif', serif;
-      font-size: 22px; font-weight: 400; margin-bottom: 10px; color: var(--ink);
-    }
-    .amor-card p { font-size: 13.5px; color: var(--ink-mid); line-height: 1.75; }
+    /* ── AMOR GRID ── */
+    .amor-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:16px; max-width:1360px; margin:0 auto; }
+    .amor-card { background:var(--white); border:1.5px solid var(--amor); border-radius:12px; padding:28px 22px; }
+    .amor-card .type-label { font-size:10px; letter-spacing:2.5px; text-transform:uppercase; font-weight:700; color:var(--amor); margin-bottom:10px; }
+    .amor-card h4 { font-family:'Instrument Serif',serif; font-size:22px; font-weight:400; margin-bottom:10px; color:var(--ink); }
+    .amor-card p  { font-size:13.5px; color:var(--ink-mid); line-height:1.75; }
 
-    /* PROFILE CARDS */
-    .profiles-grid {
-      display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px;
+    /* ── PROFILE ROTATOR ── */
+    .rotator-section {
+      background:var(--dark); padding:72px 48px; text-align:center;
+      position:relative; overflow:hidden;
     }
+    .rotator-section::before {
+      content:''; position:absolute; inset:0;
+      background:radial-gradient(ellipse at 50% 50%, rgba(184,32,56,0.15) 0%, transparent 60%);
+    }
+    .rotator-inner { position:relative; z-index:2; }
+    .rotator-label { font-size:11px; letter-spacing:3px; text-transform:uppercase; font-weight:700; color:rgba(255,255,255,0.25); margin-bottom:32px; }
+    .rotator-prompt { font-family:'Instrument Serif',serif; font-size:18px; color:rgba(255,255,255,0.35); margin-bottom:12px; }
+    .rotator-name {
+      font-family:'Instrument Serif',serif;
+      font-size:clamp(44px,6vw,72px); font-weight:400;
+      line-height:1.1; margin-bottom:10px;
+      transition:opacity 0.5s ease, transform 0.5s ease;
+    }
+    .rotator-name.d { color:var(--drive-lt); }
+    .rotator-name.a { color:var(--amor-lt); }
+    .rotator-name.da { background:linear-gradient(to right,var(--drive-lt),var(--amor-lt)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+    .rotator-dims  { font-size:13px; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.3); margin-bottom:8px; }
+    .rotator-line  { font-size:16px; color:rgba(255,255,255,0.5); font-style:italic; transition:opacity 0.5s ease; }
+    .rotator-fade  { opacity:0; transform:translateY(8px); }
+    .rotator-cta   { margin-top:36px; display:inline-block; font-size:14px; font-weight:700; color:rgba(255,255,255,0.45); text-decoration:none; border:1px solid rgba(255,255,255,0.15); padding:12px 32px; border-radius:6px; transition:all 0.2s; }
+    .rotator-cta:hover { color:white; border-color:rgba(255,255,255,0.4); }
+
+    /* ── PROFILES GRID ── */
+    .profiles-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; max-width:1360px; margin:0 auto; }
     .profile-card {
-      background: var(--white); border: 1px solid var(--border);
-      border-radius: 12px; padding: 24px 20px;
-      transition: box-shadow 0.2s, transform 0.2s;
-      position: relative; overflow: hidden;
+      background:var(--white); border:1px solid var(--border);
+      border-radius:12px; padding:24px 20px;
+      transition:box-shadow 0.2s, transform 0.2s;
+      position:relative; overflow:hidden;
     }
-    .profile-card:hover { box-shadow: 0 8px 28px rgba(0,0,0,0.09); transform: translateY(-2px); }
-    .profile-card::before {
-      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
-      background: linear-gradient(to right, var(--drive), var(--amor));
-    }
-    .pc-dims {
-      font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
-      font-weight: 700; color: var(--ink-lt); margin-bottom: 8px;
-    }
-    .pc-dims .d { color: var(--drive); }
-    .pc-dims .a { color: var(--amor); }
-    .pc-name {
-      font-family: 'Instrument Serif', serif;
-      font-size: 20px; font-weight: 400; color: var(--ink); margin-bottom: 8px;
-    }
-    .pc-line { font-size: 12.5px; color: var(--ink-mid); line-height: 1.65; }
+    .profile-card:hover { box-shadow:0 8px 28px rgba(0,0,0,0.09); transform:translateY(-2px); }
+    .profile-card::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background:linear-gradient(to right,var(--drive),var(--amor)); }
+    .pc-dims { font-size:10px; letter-spacing:2px; text-transform:uppercase; font-weight:700; color:var(--ink-lt); margin-bottom:8px; }
+    .pc-dims .d { color:var(--drive); }
+    .pc-dims .a { color:var(--amor); }
+    .pc-name { font-family:'Instrument Serif',serif; font-size:20px; font-weight:400; color:var(--ink); margin-bottom:8px; }
+    .pc-line { font-size:12.5px; color:var(--ink-mid); line-height:1.65; }
 
-    /* STEPS */
-    .steps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
-    .step-card {
-      background: var(--white); border: 1px solid var(--border);
-      border-radius: 14px; padding: 36px 28px; text-align: center;
-    }
-    .step-n {
-      width: 56px; height: 56px; border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 18px; font-weight: 700; margin: 0 auto 20px;
-    }
-    .step-n.n1 { background: var(--drive-bg); color: var(--drive); }
-    .step-n.n2 { background: var(--amor-bg);  color: var(--amor); }
-    .step-n.n3 { background: #F0E8EC; color: #8B2040; }
-    .step-card h4 {
-      font-family: 'Instrument Serif', serif;
-      font-size: 22px; font-weight: 400; margin-bottom: 10px; color: var(--ink);
-    }
-    .step-card p { font-size: 14px; color: var(--ink-mid); line-height: 1.75; }
-    .step-link {
-      display: inline-block; margin-top: 18px;
-      font-size: 13.5px; font-weight: 700; text-decoration: none;
-    }
+    /* ── STEPS ── */
+    .steps-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:28px; max-width:1080px; margin:0 auto; }
+    .step-card { background:var(--white); border:1px solid var(--border); border-radius:14px; padding:40px 32px; text-align:center; }
+    .step-n { width:56px; height:56px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:18px; font-weight:700; margin:0 auto 20px; }
+    .step-n.n1 { background:var(--drive-bg); color:var(--drive); }
+    .step-n.n2 { background:var(--amor-bg);  color:var(--amor); }
+    .step-n.n3 { background:#F0E8EC; color:#8B2040; }
+    .step-card h4 { font-family:'Instrument Serif',serif; font-size:24px; font-weight:400; margin-bottom:10px; color:var(--ink); }
+    .step-card p  { font-size:14px; color:var(--ink-mid); line-height:1.75; }
+    .step-link { display:inline-block; margin-top:20px; font-size:13.5px; font-weight:700; text-decoration:none; }
 
-    /* COMPATIBILITY STRIP */
+    /* ── COMPAT ── */
     .compat-strip {
-      background: linear-gradient(135deg, var(--drive-bg), var(--amor-bg));
-      border-radius: 16px; padding: 52px 48px;
-      display: flex; align-items: center; gap: 56px;
+      background:linear-gradient(135deg,var(--drive-bg),var(--amor-bg));
+      border-radius:16px; padding:52px 56px;
+      display:flex; align-items:center; gap:56px;
+      max-width:1200px; margin:0 auto;
     }
-    .compat-left { flex: 1; }
-    .compat-left h3 {
-      font-family: 'Instrument Serif', serif;
-      font-size: clamp(24px, 3vw, 36px); font-weight: 400;
-      color: var(--ink); margin-bottom: 14px; line-height: 1.25;
-    }
-    .compat-left p { font-size: 15px; color: var(--ink-mid); line-height: 1.8; }
-    .compat-right { flex-shrink: 0; }
-    .compat-combos { display: flex; flex-direction: column; gap: 10px; }
-    .compat-pair {
-      background: white; border-radius: 8px; padding: 12px 20px;
-      border: 1px solid var(--border);
-      font-size: 14px; font-weight: 500; color: var(--ink); white-space: nowrap;
-    }
-    .compat-pair .d { color: var(--drive); font-weight: 700; }
-    .compat-pair .a { color: var(--amor);  font-weight: 700; }
+    .compat-left { flex:1; }
+    .compat-left h3 { font-family:'Instrument Serif',serif; font-size:clamp(24px,3vw,38px); font-weight:400; color:var(--ink); margin-bottom:14px; line-height:1.2; }
+    .compat-left p { font-size:15px; color:var(--ink-mid); line-height:1.8; }
+    .compat-right { flex-shrink:0; }
+    .compat-combos { display:flex; flex-direction:column; gap:10px; }
+    .compat-pair { background:white; border-radius:8px; padding:12px 20px; border:1px solid var(--border); font-size:14px; font-weight:500; color:var(--ink); white-space:nowrap; }
+    .compat-pair .d { color:var(--drive); font-weight:700; }
+    .compat-pair .a { color:var(--amor);  font-weight:700; }
 
-    /* INSIGHTS */
-    .insights-grid {
-      display: grid; grid-template-columns: repeat(2, 1fr);
-      gap: 20px;
-    }
-    .insight-card {
-      background: var(--white); border: 1px solid var(--border);
-      border-radius: 14px; padding: 32px 28px;
-      transition: box-shadow 0.2s;
-    }
-    .insight-card:hover { box-shadow: 0 6px 24px rgba(0,0,0,0.07); }
-    .insight-tag {
-      font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
-      font-weight: 700; margin-bottom: 14px; display: inline-block;
-      padding: 4px 10px; border-radius: 4px;
-    }
-    .insight-tag.drive { background: var(--drive-bg); color: var(--drive); }
-    .insight-tag.amor  { background: var(--amor-bg);  color: var(--amor); }
-    .insight-tag.both  { background: var(--off);       color: var(--ink-mid); }
-    .insight-card h4 {
-      font-family: 'Instrument Serif', serif;
-      font-size: 20px; font-weight: 400; margin-bottom: 10px;
-      color: var(--ink); line-height: 1.35;
-    }
-    .insight-card p { font-size: 13.5px; color: var(--ink-mid); line-height: 1.85; }
+    /* ── INSIGHTS ── */
+    .insights-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:20px; max-width:1200px; margin:0 auto; }
+    .insight-card { background:var(--white); border:1px solid var(--border); border-radius:14px; padding:32px 28px; transition:box-shadow 0.2s; }
+    .insight-card:hover { box-shadow:0 6px 24px rgba(0,0,0,0.07); }
+    .insight-tag { font-size:10px; letter-spacing:2px; text-transform:uppercase; font-weight:700; margin-bottom:14px; display:inline-block; padding:4px 10px; border-radius:4px; }
+    .insight-tag.drive { background:var(--drive-bg); color:var(--drive); }
+    .insight-tag.amor  { background:var(--amor-bg);  color:var(--amor); }
+    .insight-tag.both  { background:var(--off);       color:var(--ink-mid); }
+    .insight-card h4 { font-family:'Instrument Serif',serif; font-size:21px; font-weight:400; margin-bottom:10px; color:var(--ink); line-height:1.35; }
+    .insight-card p  { font-size:13.5px; color:var(--ink-mid); line-height:1.85; }
 
-    /* FINAL CTA */
-    .cta-section {
-      background: var(--dark); padding: 96px 48px; text-align: center;
-      position: relative; overflow: hidden;
-    }
+    /* ── FINAL CTA ── */
+    .cta-section { background:var(--dark); padding:96px 48px; text-align:center; position:relative; overflow:hidden; }
     .cta-section::before {
-      content: ''; position: absolute; inset: 0;
-      background:
-        radial-gradient(ellipse at 20% 50%, rgba(184,32,56,0.25) 0%, transparent 50%),
-        radial-gradient(ellipse at 80% 50%, rgba(232,84,122,0.22) 0%, transparent 50%);
+      content:''; position:absolute; inset:0;
+      background:radial-gradient(ellipse at 20% 50%,rgba(184,32,56,0.25) 0%,transparent 50%),radial-gradient(ellipse at 80% 50%,rgba(232,84,122,0.22) 0%,transparent 50%);
     }
-    .cta-inner { position: relative; z-index: 2; max-width: 580px; margin: 0 auto; }
-    .cta-section h2 { color: white; margin-bottom: 14px; }
-    .cta-section p { color: rgba(255,255,255,0.5); font-size: 16px; line-height: 1.75; margin-bottom: 36px; }
-    .cta-btn {
-      display: inline-block; padding: 18px 52px;
-      background: var(--drive); color: white;
-      font-size: 16px; font-weight: 700; border-radius: 8px;
-      text-decoration: none;
-      transition: background 0.2s, transform 0.15s;
-    }
-    .cta-btn:hover { background: var(--drive-lt); transform: translateY(-2px); }
+    .cta-inner { position:relative; z-index:2; max-width:580px; margin:0 auto; }
+    .cta-section h2 { color:white; margin-bottom:14px; }
+    .cta-section p  { color:rgba(255,255,255,0.5); font-size:16px; line-height:1.75; margin-bottom:36px; }
+    .cta-btn { display:inline-block; padding:20px 56px; background:var(--drive); color:white; font-size:17px; font-weight:700; border-radius:8px; text-decoration:none; transition:background 0.2s, transform 0.15s; }
+    .cta-btn:hover { background:var(--drive-lt); transform:translateY(-2px); }
 
-    /* FOOTER */
-    footer {
-      background: var(--dark);
-      border-top: 1px solid rgba(255,255,255,0.06);
-      padding: 32px 48px;
-      display: flex; align-items: center;
-      justify-content: space-between; flex-wrap: wrap; gap: 16px;
-    }
-    .footer-logo { font-family: 'Instrument Serif', serif; font-size: 20px; text-decoration: none; }
-    .footer-logo .d { color: var(--drive-lt); }
-    .footer-logo .a { color: var(--amor-lt); }
-    footer a.fl { font-size: 13px; color: rgba(255,255,255,0.35); text-decoration: none; margin-left: 24px; }
-    footer a.fl:hover { color: white; }
-    footer .fc { font-size: 12px; color: rgba(255,255,255,0.22); }
-    footer .fc a { color: inherit; text-decoration: none; }
+    /* ── FOOTER ── */
+    footer { background:var(--dark); border-top:1px solid rgba(255,255,255,0.06); padding:32px 48px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px; }
+    .footer-logo { font-family:'Instrument Serif',serif; font-size:20px; text-decoration:none; }
+    .footer-logo .d { color:var(--drive-lt); }
+    .footer-logo .a { color:var(--amor-lt); }
+    footer a.fl { font-size:13px; color:rgba(255,255,255,0.35); text-decoration:none; margin-left:24px; }
+    footer a.fl:hover { color:white; }
+    footer .fc { font-size:12px; color:rgba(255,255,255,0.22); }
+    footer .fc a { color:inherit; text-decoration:none; }
 
-    /* MOBILE */
-    @media (max-width: 960px) {
-      .drive-grid    { grid-template-columns: repeat(2, 1fr); }
-      .amor-grid     { grid-template-columns: repeat(2, 1fr); }
-      .profiles-grid { grid-template-columns: repeat(2, 1fr); }
-      .compat-strip  { flex-direction: column; gap: 32px; }
-      .compat-combos { flex-direction: row; flex-wrap: wrap; }
+    /* ── SCROLL REVEAL ── */
+    .reveal { opacity:0; transform:translateY(28px); transition:opacity 0.65s ease, transform 0.65s ease; }
+    .reveal.visible { opacity:1; transform:translateY(0); }
+    .reveal-delay-1 { transition-delay:0.1s; }
+    .reveal-delay-2 { transition-delay:0.2s; }
+    .reveal-delay-3 { transition-delay:0.3s; }
+    .reveal-delay-4 { transition-delay:0.4s; }
+
+    /* ── MOBILE ── */
+    @media (max-width:1100px) {
+      .sidebar-section { grid-template-columns:1fr; }
+      .sidebar-panel { display:none; }
+      .drive-grid { grid-template-columns:repeat(2,1fr); }
+      .amor-grid  { grid-template-columns:repeat(2,1fr); }
+      .profiles-grid { grid-template-columns:repeat(2,1fr); }
+      .compat-strip { flex-direction:column; gap:32px; padding:36px 32px; }
     }
-    @media (max-width: 760px) {
-      .hero        { padding: 100px 24px 72px; }
-      .section     { padding: 64px 24px; }
-      .stats-strip { grid-template-columns: repeat(2, 1fr); }
-      .why-grid    { grid-template-columns: 1fr; }
-      .steps-grid  { grid-template-columns: 1fr; }
-      .insights-grid { grid-template-columns: 1fr; }
-      nav          { padding: 0 20px; }
-      footer       { padding: 28px 20px; flex-direction: column; align-items: flex-start; }
-      footer a.fl  { margin-left: 0; margin-right: 20px; }
-      .compat-strip { padding: 32px 24px; }
+    @media (max-width:760px) {
+      .hero { padding:100px 24px 72px; }
+      .section { padding:64px 24px; }
+      .stats-strip { grid-template-columns:repeat(2,1fr); }
+      .why-grid { grid-template-columns:1fr; }
+      .steps-grid { grid-template-columns:1fr; }
+      .insights-grid { grid-template-columns:1fr; }
+      nav { padding:0 20px; }
+      footer { padding:28px 20px; flex-direction:column; align-items:flex-start; }
+      footer a.fl { margin-left:0; margin-right:20px; }
     }
-    @media (max-width: 540px) {
-      .drive-grid    { grid-template-columns: 1fr; }
-      .amor-grid     { grid-template-columns: 1fr; }
-      .profiles-grid { grid-template-columns: 1fr; }
+    @media (max-width:540px) {
+      .drive-grid { grid-template-columns:1fr; }
+      .amor-grid  { grid-template-columns:1fr; }
+      .profiles-grid { grid-template-columns:1fr; }
     }
   </style>
 </head>
@@ -409,9 +368,7 @@
 
 <!-- NAV -->
 <nav>
-  <a href="/" class="nav-logo">
-    <span class="d">Driv</span><span class="a">Amor</span>
-  </a>
+  <a href="/" class="nav-logo"><span class="d">Driv</span><span class="a">Amor</span></a>
   <a href="/quiz" class="nav-btn">Take the Assessment</a>
 </nav>
 
@@ -420,293 +377,375 @@
 <section class="hero">
   <div class="hero-inner">
     <p class="hero-eyebrow">Relationship &amp; Personality Assessment</p>
-    <h1>
-      Know how you <em class="d">drive.</em><br>
-      Know how you <em class="a">love.</em>
-    </h1>
-    <p class="hero-sub">Most people spend years trying to figure out why their relationships feel off. DrivAmor gives you language for both sides — in twelve minutes.</p>
+    <h1>Know how you <em class="d">drive.</em><br>Know how you <em class="a">love.</em></h1>
+    <p class="hero-sub">Most people spend years trying to figure out why their relationships feel off. DrivAmor gives you language for both sides — in under 15 minutes.</p>
     <a href="/quiz" class="hero-cta">Take the Free Assessment</a>
-    <p class="hero-note">40 questions &nbsp;·&nbsp; ~12 minutes &nbsp;·&nbsp; No account needed</p>
+    <p class="hero-note">40 questions &nbsp;·&nbsp; 10–15 minutes &nbsp;·&nbsp; No account needed</p>
   </div>
 </section>
 
 
-<!-- STATS STRIP -->
+<!-- TICKER -->
+<div class="ticker-section">
+  <p class="ticker-label">What people are sitting with right now</p>
+
+  <div class="ticker-row">
+    <div class="ticker-track left" id="t1">
+      <span class="ticker-item">"Why does he shut down every time I bring something up"</span>
+      <span class="ticker-item a">"I give everything and still feel like I'm not enough"</span>
+      <span class="ticker-item">"We don't fight anymore — but we don't really talk either"</span>
+      <span class="ticker-item d">"I keep attracting the same type of person no matter what I do"</span>
+      <span class="ticker-item">"She says she's fine but I know she's not and I don't know how to reach her"</span>
+      <span class="ticker-item a">"I love him but I feel completely alone in this relationship"</span>
+      <span class="ticker-item">"Every time things get good, something in me pushes it away"</span>
+      <span class="ticker-item d">"I show up for everyone. I don't know who shows up for me"</span>
+      <span class="ticker-item">"Why does he shut down every time I bring something up"</span>
+      <span class="ticker-item a">"I give everything and still feel like I'm not enough"</span>
+      <span class="ticker-item">"We don't fight anymore — but we don't really talk either"</span>
+      <span class="ticker-item d">"I keep attracting the same type of person no matter what I do"</span>
+      <span class="ticker-item">"She says she's fine but I know she's not and I don't know how to reach her"</span>
+      <span class="ticker-item a">"I love him but I feel completely alone in this relationship"</span>
+      <span class="ticker-item">"Every time things get good, something in me pushes it away"</span>
+      <span class="ticker-item d">"I show up for everyone. I don't know who shows up for me"</span>
+    </div>
+  </div>
+
+  <div class="ticker-row">
+    <div class="ticker-track right" id="t2">
+      <span class="ticker-item a">"I don't know if I'm the problem or if we're just incompatible"</span>
+      <span class="ticker-item">"He works hard and provides but I need more than that"</span>
+      <span class="ticker-item d">"She lights up every room except the one we're both in"</span>
+      <span class="ticker-item">"I've said the same thing a hundred times and it still doesn't land"</span>
+      <span class="ticker-item a">"I feel like I'm always chasing a closeness that never quite arrives"</span>
+      <span class="ticker-item">"He loves me in every way except the one that actually matters to me"</span>
+      <span class="ticker-item d">"I used to know who I was in this relationship"</span>
+      <span class="ticker-item">"Why is it so hard to just be present with each other"</span>
+      <span class="ticker-item a">"I don't know if I'm the problem or if we're just incompatible"</span>
+      <span class="ticker-item">"He works hard and provides but I need more than that"</span>
+      <span class="ticker-item d">"She lights up every room except the one we're both in"</span>
+      <span class="ticker-item">"I've said the same thing a hundred times and it still doesn't land"</span>
+      <span class="ticker-item a">"I feel like I'm always chasing a closeness that never quite arrives"</span>
+      <span class="ticker-item">"He loves me in every way except the one that actually matters to me"</span>
+      <span class="ticker-item d">"I used to know who I was in this relationship"</span>
+      <span class="ticker-item">"Why is it so hard to just be present with each other"</span>
+    </div>
+  </div>
+</div>
+
+
+<!-- STATS -->
 <div class="stats-strip">
-  <div class="stat-item">
-    <p class="stat-num d">2</p>
+  <div class="stat-item reveal">
+    <span class="stat-num d" data-target="2">0</span>
     <p class="stat-label">Dimensions</p>
   </div>
-  <div class="stat-item">
-    <p class="stat-num n">20</p>
+  <div class="stat-item reveal reveal-delay-1">
+    <span class="stat-num n" data-target="20">0</span>
     <p class="stat-label">Combined Profiles</p>
   </div>
-  <div class="stat-item">
-    <p class="stat-num n">40</p>
+  <div class="stat-item reveal reveal-delay-2">
+    <span class="stat-num n" data-target="40">0</span>
     <p class="stat-label">Questions</p>
   </div>
-  <div class="stat-item">
-    <p class="stat-num a">12</p>
-    <p class="stat-label">Minutes</p>
+  <div class="stat-item reveal reveal-delay-3">
+    <span class="stat-num a" data-target="15">0</span>
+    <p class="stat-label">Minutes or Less</p>
   </div>
 </div>
 
 
 <!-- WHY YOUR SCORE MATTERS -->
-<section class="section" style="background: var(--off);">
-  <div class="section-inner">
-    <div class="section-header">
-      <span class="eyebrow neutral">Why Your Score Matters</span>
-      <h2>Most people are guessing.<br><em>You don't have to.</em></h2>
-      <p class="section-sub">Two forces shape every relationship you have ever been in. DrivAmor gives both of them a name.</p>
+<section class="section" style="background:var(--off);">
+  <div class="text-center reveal">
+    <span class="eyebrow neutral">Why Your Score Matters</span>
+    <h2>Most people are guessing.<br><em>You don't have to.</em></h2>
+    <p class="section-sub">Two forces shape every relationship you have ever been in. DrivAmor gives both of them a name.</p>
+  </div>
+  <div class="why-grid">
+    <div class="why-card d reveal reveal-delay-1">
+      <span class="why-icon">&#9889;</span>
+      <h4>You default to your Drive in every room you enter</h4>
+      <p>Your Drive Mode is how you operate under pressure, how you lead, how you show up when the relationship needs someone to move. You have been doing this your entire life — you just may not have had a word for it. Builder. Amplifier. Anchor. Architect. One of these explains more about you than years of reflection.</p>
     </div>
-    <div class="why-grid">
-      <div class="why-card d">
-        <div class="why-icon">&#9889;</div>
-        <h4>You default to your Drive in every room you enter</h4>
-        <p>Your Drive Mode is how you operate under pressure, how you lead, how you show up when the relationship needs someone to move. You have been doing this your entire life — you just may not have had a word for it. Builder. Amplifier. Anchor. Architect. One of these explains more about you than years of reflection.</p>
-      </div>
-      <div class="why-card a">
-        <div class="why-icon">&#9825;</div>
-        <h4>You love others the way you want to be loved — not the way they need</h4>
-        <p>Your Amor Code is the language you speak and the language you need spoken back to you. Most relationship friction is not a lack of love — it is a mismatch of code. You are giving what you would want. They are waiting for something different. Knowing your code is the first step to closing that gap.</p>
-      </div>
-      <div class="why-card da">
-        <div class="why-icon">&#128269;</div>
-        <h4>Your secondary types show up under stress — and change everything</h4>
-        <p>When things get hard, people shift. The Anchor becomes a Builder. The Expressive goes quiet. Your secondary Drive Mode and secondary Amor Code are the versions of you that appear when your primary type stops working. The full report surfaces both — so you understand yourself at your baseline and under pressure.</p>
-      </div>
-      <div class="why-card n">
-        <div class="why-icon">&#129517;</div>
-        <h4>Knowing your profile changes how you communicate, not just how you feel</h4>
-        <p>Self-awareness without language is still a guess. DrivAmor gives you and your partner a shared framework — specific words for what you need, how you show up, and why certain patterns repeat. That is not soft knowledge. That is a tool you can use in a real conversation tomorrow.</p>
-      </div>
+    <div class="why-card a reveal reveal-delay-2">
+      <span class="why-icon">&#9825;</span>
+      <h4>You love others the way you want to be loved — not the way they need</h4>
+      <p>Your Amor Code is the language you speak and the language you need spoken back to you. Most relationship friction is not a lack of love — it is a mismatch of code. You are giving what you would want. They are waiting for something different. Knowing your code is the first step to closing that gap.</p>
+    </div>
+    <div class="why-card da reveal reveal-delay-1">
+      <span class="why-icon">&#128269;</span>
+      <h4>Your secondary types show up under stress — and change everything</h4>
+      <p>When things get hard, people shift. The Anchor becomes a Builder. The Expressive goes quiet. Your secondary Drive Mode and secondary Amor Code are the versions of you that appear when your primary type stops working. The full report surfaces both — so you understand yourself at your baseline and under pressure.</p>
+    </div>
+    <div class="why-card n reveal reveal-delay-2">
+      <span class="why-icon">&#129517;</span>
+      <h4>Knowing your profile changes how you communicate, not just how you feel</h4>
+      <p>Self-awareness without language is still a guess. DrivAmor gives you and your partner a shared framework — specific words for what you need, how you show up, and why certain patterns repeat. That is not soft knowledge. That is a tool you can use in a real conversation tomorrow.</p>
     </div>
   </div>
 </section>
 
 
 <!-- DRIVE MODE -->
-<section class="section" style="background: var(--white);">
-  <div class="section-inner">
-    <div class="section-header">
+<section class="section" style="background:var(--white);">
+
+  <div class="sidebar-section">
+    <div class="sidebar-panel left reveal">
+      <span class="sidebar-vert">Drive Mode</span>
+      <span class="sidebar-big">4</span>
+      <span class="sidebar-quote">"How you move in every relationship you have ever had."</span>
+    </div>
+    <div class="text-center" style="margin-bottom:0;">
       <span class="eyebrow drive">Drive Mode</span>
       <h2>How you show up<br><em>when it matters.</em></h2>
       <p class="section-sub">Four types. One of them explains every pattern you have repeated in every relationship you have ever had.</p>
     </div>
-    <div class="drive-grid">
-      <div class="drive-card">
-        <p class="type-label">Drive Mode</p>
-        <h4>The Builder</h4>
-        <p>Executes, leads, makes things happen. Does not wait for permission. In a relationship, this looks like strength — and sometimes like control. The Builder's challenge is learning to slow down without feeling like they are falling behind.</p>
-        <span class="type-badge d">Action-First</span>
-      </div>
-      <div class="drive-card">
-        <p class="type-label">Drive Mode</p>
-        <h4>The Amplifier</h4>
-        <p>Energizes every room. Rallies people around a vision, lights up connection, keeps momentum alive. The Amplifier's challenge is sitting in the quiet without filling it — and trusting that presence is enough.</p>
-        <span class="type-badge d">Energy-First</span>
-      </div>
-      <div class="drive-card">
-        <p class="type-label">Drive Mode</p>
-        <h4>The Anchor</h4>
-        <p>Stabilizes, holds, stays. The Anchor is the reason the relationship does not fall apart under pressure. Their challenge is learning to ask for what they need without feeling like they are asking for too much.</p>
-        <span class="type-badge d">Stability-First</span>
-      </div>
-      <div class="drive-card">
-        <p class="type-label">Drive Mode</p>
-        <h4>The Architect</h4>
-        <p>Thinks ahead, builds systems, sees the future others cannot yet see. The Architect plans everything except the emotional present. Their challenge is being in the moment instead of designing it.</p>
-        <span class="type-badge d">Strategy-First</span>
-      </div>
+    <div class="sidebar-panel right reveal">
+      <span class="sidebar-vert">Builder &middot; Amplifier &middot; Anchor &middot; Architect</span>
+      <a href="/quiz" style="font-size:12px; letter-spacing:2px; text-transform:uppercase; font-weight:700; color:var(--drive); text-decoration:none;">Find yours &#8594;</a>
+    </div>
+  </div>
+
+  <div class="drive-grid" style="margin-top:48px;">
+    <div class="drive-card reveal reveal-delay-1">
+      <p class="type-label">Drive Mode</p>
+      <h4>The Builder</h4>
+      <p>Executes, leads, makes things happen. Does not wait for permission. In a relationship, this looks like strength — and sometimes like control. The Builder's challenge is learning to slow down without feeling like they are falling behind.</p>
+      <span class="type-badge d">Action-First</span>
+    </div>
+    <div class="drive-card reveal reveal-delay-2">
+      <p class="type-label">Drive Mode</p>
+      <h4>The Amplifier</h4>
+      <p>Energizes every room. Rallies people around a vision, keeps momentum alive. The Amplifier's challenge is sitting in the quiet without filling it — and trusting that presence is enough.</p>
+      <span class="type-badge d">Energy-First</span>
+    </div>
+    <div class="drive-card reveal reveal-delay-3">
+      <p class="type-label">Drive Mode</p>
+      <h4>The Anchor</h4>
+      <p>Stabilizes, holds, stays. The Anchor is the reason the relationship does not fall apart under pressure. Their challenge is learning to ask for what they need without feeling like they are asking for too much.</p>
+      <span class="type-badge d">Stability-First</span>
+    </div>
+    <div class="drive-card reveal reveal-delay-4">
+      <p class="type-label">Drive Mode</p>
+      <h4>The Architect</h4>
+      <p>Thinks ahead, builds systems, sees the future others cannot yet see. The Architect plans everything except the emotional present. Their challenge is being in the moment instead of designing it.</p>
+      <span class="type-badge d">Strategy-First</span>
     </div>
   </div>
 </section>
 
 
 <!-- AMOR CODE -->
-<section class="section" style="background: var(--off);">
-  <div class="section-inner">
-    <div class="section-header">
+<section class="section" style="background:var(--off);">
+
+  <div class="sidebar-section">
+    <div class="sidebar-panel left reveal">
+      <span class="sidebar-vert">Amor Code</span>
+      <span class="sidebar-big">5</span>
+      <span class="sidebar-quote">"The language your heart speaks — and needs heard."</span>
+    </div>
+    <div class="text-center" style="margin-bottom:0;">
       <span class="eyebrow amor">Amor Code</span>
       <h2>How you love —<br><em>and need to be loved.</em></h2>
       <p class="section-sub">Five codes. The one that fits you is probably the one your partner has been getting wrong — not because they do not love you, but because they are speaking their own code, not yours.</p>
     </div>
-    <div class="amor-grid">
-      <div class="amor-card">
-        <p class="type-label">Amor Code</p>
-        <h4>Expressive</h4>
-        <p>Needs words. Gives words. Silence feels like distance. When the Expressive does not hear it, they begin to wonder if it is still true.</p>
-        <span class="type-badge a">Words Matter</span>
-      </div>
-      <div class="amor-card">
-        <p class="type-label">Amor Code</p>
-        <h4>Devoted</h4>
-        <p>Shows love through action. Fixes the problem, shows up early, handles what you forgot. Devoted love is quiet and constant — and often invisible until it stops.</p>
-        <span class="type-badge a">Action = Love</span>
-      </div>
-      <div class="amor-card">
-        <p class="type-label">Amor Code</p>
-        <h4>Intentional</h4>
-        <p>Needs full presence. Not proximity — presence. Phone down, eyes up, actually here. Half-attention feels like disrespect to the Intentional.</p>
-        <span class="type-badge a">Full Presence</span>
-      </div>
-      <div class="amor-card">
-        <p class="type-label">Amor Code</p>
-        <h4>Present</h4>
-        <p>Touch matters. A hand on the shoulder, a reach across the table — these are not small gestures. Physical closeness is how the Present type knows the connection is real.</p>
-        <span class="type-badge a">Touch = Safety</span>
-      </div>
-      <div class="amor-card">
-        <p class="type-label">Amor Code</p>
-        <h4>Intimate</h4>
-        <p>Needs depth. Refuses surface. The Intimate is not satisfied by routine love — they need to be truly known. And they will create the conditions for that vulnerability, one conversation at a time.</p>
-        <span class="type-badge a">Depth Required</span>
-      </div>
+    <div class="sidebar-panel right reveal">
+      <span class="sidebar-vert">Expressive &middot; Devoted &middot; Intentional &middot; Present &middot; Intimate</span>
+      <a href="/quiz" style="font-size:12px; letter-spacing:2px; text-transform:uppercase; font-weight:700; color:var(--amor); text-decoration:none;">Find yours &#8594;</a>
+    </div>
+  </div>
+
+  <div class="amor-grid" style="margin-top:48px;">
+    <div class="amor-card reveal reveal-delay-1">
+      <p class="type-label">Amor Code</p>
+      <h4>Expressive</h4>
+      <p>Needs words. Gives words. Silence feels like distance. When the Expressive does not hear it, they begin to wonder if it is still true.</p>
+      <span class="type-badge a">Words Matter</span>
+    </div>
+    <div class="amor-card reveal reveal-delay-2">
+      <p class="type-label">Amor Code</p>
+      <h4>Devoted</h4>
+      <p>Shows love through action. Fixes the problem, shows up early, handles what you forgot. Devoted love is quiet and constant — and often invisible until it stops.</p>
+      <span class="type-badge a">Action = Love</span>
+    </div>
+    <div class="amor-card reveal reveal-delay-3">
+      <p class="type-label">Amor Code</p>
+      <h4>Intentional</h4>
+      <p>Needs full presence. Not proximity — presence. Phone down, eyes up, actually here. Half-attention feels like disrespect to the Intentional.</p>
+      <span class="type-badge a">Full Presence</span>
+    </div>
+    <div class="amor-card reveal reveal-delay-4">
+      <p class="type-label">Amor Code</p>
+      <h4>Present</h4>
+      <p>Touch matters. A hand on the shoulder, a reach across the table — these are not small gestures. Physical closeness is how the Present type knows the connection is real.</p>
+      <span class="type-badge a">Touch = Safety</span>
+    </div>
+    <div class="amor-card reveal reveal-delay-4">
+      <p class="type-label">Amor Code</p>
+      <h4>Intimate</h4>
+      <p>Needs depth. Refuses surface. The Intimate is not satisfied by routine love — they need to be truly known. One conversation at a time.</p>
+      <span class="type-badge a">Depth Required</span>
     </div>
   </div>
 </section>
 
 
+<!-- PROFILE ROTATOR -->
+<div class="rotator-section">
+  <div class="rotator-inner">
+    <p class="rotator-label">20 Profiles — which one are you?</p>
+    <p class="rotator-prompt">You might be...</p>
+    <div id="rotator-dims" class="rotator-dims"></div>
+    <div id="rotator-name" class="rotator-name da"></div>
+    <div id="rotator-line" class="rotator-line"></div>
+    <br>
+    <a href="/quiz" class="rotator-cta">Find out &#8594;</a>
+  </div>
+</div>
+
+
 <!-- 20 PROFILES -->
-<section class="section" style="background: var(--dark);">
-  <div class="section-inner">
-    <div class="section-header">
-      <span class="eyebrow neutral" style="color:rgba(255,255,255,0.35);">The 20 Profiles</span>
+<section class="section" style="background:var(--dark);">
+
+  <div class="sidebar-section" style="max-width:1360px;">
+    <div class="sidebar-panel dark-left reveal">
+      <span class="sidebar-vert" style="color:rgba(255,255,255,0.15);">The 20 Profiles</span>
+      <span class="sidebar-big" style="color:rgba(255,255,255,0.05);">20</span>
+    </div>
+    <div class="text-center" style="margin-bottom:0;">
+      <span class="eyebrow neutral" style="color:rgba(255,255,255,0.3);">The 20 Profiles</span>
       <h2 style="color:#fff;">Every combination<br>has <em>a name.</em></h2>
       <p class="section-sub" style="color:rgba(255,255,255,0.45);">Your Drive Mode and Amor Code combine into one of 20 profiles. Each one is specific. Each one is a little too accurate.</p>
     </div>
-    <div class="profiles-grid">
-      <div class="profile-card" style="background:#1a1a1a; border-color:#2a2a2a;">
-        <p class="pc-dims"><span class="d">Builder</span> + <span class="a">Intimate</span></p>
-        <p class="pc-name" style="color:#fff;">The Forge</p>
-        <p class="pc-line" style="color:rgba(255,255,255,0.55);">Works hard. Loves deep. No patience for surface-level anything.</p>
-      </div>
-      <div class="profile-card" style="background:#1a1a1a; border-color:#2a2a2a;">
-        <p class="pc-dims"><span class="d">Anchor</span> + <span class="a">Devoted</span></p>
-        <p class="pc-name" style="color:#fff;">The Sentinel</p>
-        <p class="pc-line" style="color:rgba(255,255,255,0.55);">Keeps everything running quietly. Wishes someone would notice.</p>
-      </div>
-      <div class="profile-card" style="background:#1a1a1a; border-color:#2a2a2a;">
-        <p class="pc-dims"><span class="d">Amplifier</span> + <span class="a">Expressive</span></p>
-        <p class="pc-name" style="color:#fff;">The Resonance</p>
-        <p class="pc-line" style="color:rgba(255,255,255,0.55);">Full of energy and full of words. The whole room feels it.</p>
-      </div>
-      <div class="profile-card" style="background:#1a1a1a; border-color:#2a2a2a;">
-        <p class="pc-dims"><span class="d">Architect</span> + <span class="a">Intimate</span></p>
-        <p class="pc-name" style="color:#fff;">The Sanctuary</p>
-        <p class="pc-line" style="color:rgba(255,255,255,0.55);">Built a safe world — and opened the door wide.</p>
-      </div>
-      <div class="profile-card" style="background:#1a1a1a; border-color:#2a2a2a;">
-        <p class="pc-dims"><span class="d">Builder</span> + <span class="a">Expressive</span></p>
-        <p class="pc-name" style="color:#fff;">The Torchbearer</p>
-        <p class="pc-line" style="color:rgba(255,255,255,0.55);">Carries the fire and names it out loud.</p>
-      </div>
-      <div class="profile-card" style="background:#1a1a1a; border-color:#2a2a2a;">
-        <p class="pc-dims"><span class="d">Anchor</span> + <span class="a">Intimate</span></p>
-        <p class="pc-name" style="color:#fff;">The Tether</p>
-        <p class="pc-line" style="color:rgba(255,255,255,0.55);">Stays through every storm. Asks the questions that make it mean something.</p>
-      </div>
-      <div class="profile-card" style="background:#1a1a1a; border-color:#2a2a2a;">
-        <p class="pc-dims"><span class="d">Architect</span> + <span class="a">Present</span></p>
-        <p class="pc-name" style="color:#fff;">The Compass</p>
-        <p class="pc-line" style="color:rgba(255,255,255,0.55);">Knows the direction. Stays right beside you the whole way.</p>
-      </div>
-      <div class="profile-card" style="background:#1a1a1a; border-color:#2a2a2a;">
-        <p class="pc-dims"><span class="d">Amplifier</span> + <span class="a">Intimate</span></p>
-        <p class="pc-name" style="color:#fff;">The Flame</p>
-        <p class="pc-line" style="color:rgba(255,255,255,0.55);">Intense in every direction. Refuses a lukewarm relationship.</p>
-      </div>
+    <div class="sidebar-panel dark-right reveal">
+      <span class="sidebar-vert" style="color:rgba(255,255,255,0.15);">8 of 20 shown</span>
     </div>
-    <p style="text-align:center; margin-top:32px; font-size:14px; color:rgba(255,255,255,0.3);">
-      8 of 20 shown. &nbsp;<a href="/quiz" style="color:rgba(255,255,255,0.7); font-weight:700; text-decoration:none;">Take the assessment to find yours &#8594;</a>
-    </p>
   </div>
+
+  <div class="profiles-grid" style="margin-top:48px;">
+    <div class="profile-card reveal reveal-delay-1" style="background:#1a1a1a; border-color:#2a2a2a;">
+      <p class="pc-dims"><span class="d">Builder</span> + <span class="a">Intimate</span></p>
+      <p class="pc-name" style="color:#fff;">The Forge</p>
+      <p class="pc-line" style="color:rgba(255,255,255,0.55);">Works hard. Loves deep. No patience for surface-level anything.</p>
+    </div>
+    <div class="profile-card reveal reveal-delay-2" style="background:#1a1a1a; border-color:#2a2a2a;">
+      <p class="pc-dims"><span class="d">Anchor</span> + <span class="a">Devoted</span></p>
+      <p class="pc-name" style="color:#fff;">The Sentinel</p>
+      <p class="pc-line" style="color:rgba(255,255,255,0.55);">Keeps everything running quietly. Wishes someone would notice.</p>
+    </div>
+    <div class="profile-card reveal reveal-delay-3" style="background:#1a1a1a; border-color:#2a2a2a;">
+      <p class="pc-dims"><span class="d">Amplifier</span> + <span class="a">Expressive</span></p>
+      <p class="pc-name" style="color:#fff;">The Resonance</p>
+      <p class="pc-line" style="color:rgba(255,255,255,0.55);">Full of energy and full of words. The whole room feels it.</p>
+    </div>
+    <div class="profile-card reveal reveal-delay-4" style="background:#1a1a1a; border-color:#2a2a2a;">
+      <p class="pc-dims"><span class="d">Architect</span> + <span class="a">Intimate</span></p>
+      <p class="pc-name" style="color:#fff;">The Sanctuary</p>
+      <p class="pc-line" style="color:rgba(255,255,255,0.55);">Built a safe world — and opened the door wide.</p>
+    </div>
+    <div class="profile-card reveal reveal-delay-1" style="background:#1a1a1a; border-color:#2a2a2a;">
+      <p class="pc-dims"><span class="d">Builder</span> + <span class="a">Expressive</span></p>
+      <p class="pc-name" style="color:#fff;">The Torchbearer</p>
+      <p class="pc-line" style="color:rgba(255,255,255,0.55);">Carries the fire and names it out loud.</p>
+    </div>
+    <div class="profile-card reveal reveal-delay-2" style="background:#1a1a1a; border-color:#2a2a2a;">
+      <p class="pc-dims"><span class="d">Anchor</span> + <span class="a">Intimate</span></p>
+      <p class="pc-name" style="color:#fff;">The Tether</p>
+      <p class="pc-line" style="color:rgba(255,255,255,0.55);">Stays through every storm. Asks the questions that make it mean something.</p>
+    </div>
+    <div class="profile-card reveal reveal-delay-3" style="background:#1a1a1a; border-color:#2a2a2a;">
+      <p class="pc-dims"><span class="d">Architect</span> + <span class="a">Present</span></p>
+      <p class="pc-name" style="color:#fff;">The Compass</p>
+      <p class="pc-line" style="color:rgba(255,255,255,0.55);">Knows the direction. Stays right beside you the whole way.</p>
+    </div>
+    <div class="profile-card reveal reveal-delay-4" style="background:#1a1a1a; border-color:#2a2a2a;">
+      <p class="pc-dims"><span class="d">Amplifier</span> + <span class="a">Intimate</span></p>
+      <p class="pc-name" style="color:#fff;">The Flame</p>
+      <p class="pc-line" style="color:rgba(255,255,255,0.55);">Intense in every direction. Refuses a lukewarm relationship.</p>
+    </div>
+  </div>
+  <p style="text-align:center; margin-top:32px; font-size:14px; color:rgba(255,255,255,0.3);">
+    8 of 20 shown. &nbsp;<a href="/quiz" style="color:rgba(255,255,255,0.7); font-weight:700; text-decoration:none;">Take the assessment to find yours &#8594;</a>
+  </p>
 </section>
 
 
 <!-- HOW IT WORKS -->
-<section class="section" style="background: var(--white);">
-  <div class="section-inner">
-    <div class="section-header">
-      <span class="eyebrow neutral">How It Works</span>
-      <h2>Take the test.<br><em>Know yourself.</em></h2>
-      <p class="section-sub">Free to start. The full picture is one step further.</p>
+<section class="section" style="background:var(--white);">
+  <div class="text-center reveal">
+    <span class="eyebrow neutral">How It Works</span>
+    <h2>Take the test.<br><em>Know yourself.</em></h2>
+    <p class="section-sub">Free to start. The full picture is one step further.</p>
+  </div>
+  <div class="steps-grid">
+    <div class="step-card reveal reveal-delay-1">
+      <div class="step-n n1">1</div>
+      <h4>Take the Assessment</h4>
+      <p>40 questions across three sections — how you drive, how you love, and how the two connect under pressure. Free. No account needed. 10–15 minutes.</p>
+      <a href="/quiz" class="step-link" style="color:var(--drive);">Start now &#8594;</a>
     </div>
-    <div class="steps-grid">
-      <div class="step-card">
-        <div class="step-n n1">1</div>
-        <h4>Take the Assessment</h4>
-        <p>40 questions across three sections — how you drive, how you love, and how the two connect under pressure. Free. No account needed. About 12 minutes.</p>
-        <a href="/quiz" class="step-link" style="color:var(--drive);">Start now &#8594;</a>
-      </div>
-      <div class="step-card">
-        <div class="step-n n2">2</div>
-        <h4>Get Your Free Profile</h4>
-        <p>Your Drive Mode, your Amor Code, your combined profile name — and the one line that makes you say "this is uncomfortably accurate." Delivered instantly.</p>
-      </div>
-      <div class="step-card">
-        <div class="step-n n3">3</div>
-        <h4>Go Deeper</h4>
-        <p>Unlock the full report for $14.99 — your secondary types, blind spots, growth edges, and how your profile plays with your partner's. The clarity that usually takes years.</p>
-        <span class="step-link" style="color:var(--ink-lt); font-size:13px; font-weight:600;">Available after your free profile</span>
+    <div class="step-card reveal reveal-delay-2">
+      <div class="step-n n2">2</div>
+      <h4>Get Your Free Profile</h4>
+      <p>Your Drive Mode, your Amor Code, your combined profile name — and the one line that makes you say "this is uncomfortably accurate." Delivered instantly.</p>
+    </div>
+    <div class="step-card reveal reveal-delay-3">
+      <div class="step-n n3">3</div>
+      <h4>Go Deeper</h4>
+      <p>Unlock the full report for $14.99 — your secondary types, blind spots, growth edges, and how your profile plays with your partner's. The clarity that usually takes years.</p>
+      <span class="step-link" style="color:var(--ink-lt); font-size:13px; font-weight:600;">Available after your free profile</span>
+    </div>
+  </div>
+</section>
+
+
+<!-- COMPATIBILITY -->
+<section class="section" style="background:var(--off);">
+  <div class="compat-strip reveal">
+    <div class="compat-left">
+      <h3>Your profile is one half<br>of a bigger picture.</h3>
+      <p style="margin-top:14px;">The full report includes a compatibility layer — how your Drive Mode and Amor Code interact with your partner's. Not just who you are, but how you two work together. The combinations that create friction. The ones that create flow. What to do with either.</p>
+      <a href="/quiz" style="display:inline-block; margin-top:24px; font-size:14px; font-weight:700; color:var(--drive); text-decoration:none;">Start with your free profile &#8594;</a>
+    </div>
+    <div class="compat-right">
+      <div class="compat-combos">
+        <div class="compat-pair"><span class="d">Builder</span> + <span class="a">Intentional</span> = <strong>The Craftsman</strong></div>
+        <div class="compat-pair"><span class="d">Anchor</span> + <span class="a">Expressive</span> = <strong>The Covenant</strong></div>
+        <div class="compat-pair"><span class="d">Amplifier</span> + <span class="a">Devoted</span> = <strong>The Beacon</strong></div>
+        <div class="compat-pair"><span class="d">Architect</span> + <span class="a">Intentional</span> = <strong>The Tailor</strong></div>
       </div>
     </div>
   </div>
 </section>
 
 
-<!-- COMPATIBILITY CALLOUT -->
-<section class="section" style="background: var(--off);">
-  <div class="section-inner">
-    <div class="compat-strip">
-      <div class="compat-left">
-        <h3>Your profile is one half<br>of a bigger picture.</h3>
-        <p style="margin-top:14px;">The full report includes a compatibility layer — how your Drive Mode and Amor Code interact with your partner's. Not just who you are, but how you two work together. The combinations that create friction. The ones that create flow. And what to do with either.</p>
-        <a href="/quiz" style="display:inline-block; margin-top:24px; font-size:14px; font-weight:700; color:var(--drive); text-decoration:none;">Start with your free profile &#8594;</a>
-      </div>
-      <div class="compat-right">
-        <div class="compat-combos">
-          <div class="compat-pair"><span class="d">Builder</span> + <span class="a">Intentional</span> = <strong>The Craftsman</strong></div>
-          <div class="compat-pair"><span class="d">Anchor</span> + <span class="a">Expressive</span> = <strong>The Covenant</strong></div>
-          <div class="compat-pair"><span class="d">Amplifier</span> + <span class="a">Devoted</span> = <strong>The Beacon</strong></div>
-          <div class="compat-pair"><span class="d">Architect</span> + <span class="a">Intentional</span> = <strong>The Tailor</strong></div>
-        </div>
-      </div>
-    </div>
+<!-- INSIGHTS -->
+<section class="section" style="background:var(--white);">
+  <div class="text-center reveal">
+    <span class="eyebrow neutral">Relationship Insights</span>
+    <h2>What your type<br><em>is trying to tell you.</em></h2>
+    <p class="section-sub">Real patterns. Real explanations. No generic advice.</p>
   </div>
-</section>
-
-
-<!-- RELATIONSHIP INSIGHTS -->
-<section class="section" style="background: var(--white);">
-  <div class="section-inner">
-    <div class="section-header">
-      <span class="eyebrow neutral">Relationship Insights</span>
-      <h2>What your type<br><em>is trying to tell you.</em></h2>
-      <p class="section-sub">Real patterns. Real explanations. No generic advice.</p>
+  <div class="insights-grid">
+    <div class="insight-card reveal reveal-delay-1">
+      <span class="insight-tag drive">Drive Mode</span>
+      <h4>Why Builders struggle to slow down — and what their partners actually need</h4>
+      <p>The Builder defaults to action. Problem identified. Solution in motion. But some relationship problems are not problems to solve — they are feelings to sit with. Builders who learn the difference become the partner their counterpart cannot imagine life without.</p>
     </div>
-    <div class="insights-grid">
-      <div class="insight-card">
-        <span class="insight-tag drive">Drive Mode</span>
-        <h4>Why Builders struggle to slow down — and what their partners actually need</h4>
-        <p>The Builder defaults to action. Problem identified. Solution in motion. But some relationship problems are not problems to solve — they are feelings to sit with. Builders who learn the difference become the partner their counterpart cannot imagine life without.</p>
-      </div>
-      <div class="insight-card">
-        <span class="insight-tag amor">Amor Code</span>
-        <h4>The Devoted Code: why the people who love hardest often feel the most unseen</h4>
-        <p>Devoted types show up through action. They handle the logistics, anticipate the need, stay late to fix it. But their partners often speak a different code — they needed words, or presence, or touch. The most loving people in the room can still miss each other completely.</p>
-      </div>
-      <div class="insight-card">
-        <span class="insight-tag both">Both Dimensions</span>
-        <h4>When your Drive Mode and your Amor Code are working against each other</h4>
-        <p>An Architect who needs Intimacy is building a future while craving a depth that lives in the present. An Amplifier with a Present code is energizing every room but quietly longing to be held still. The tension between your two dimensions is often the source of conflict that has never quite made sense.</p>
-      </div>
-      <div class="insight-card">
-        <span class="insight-tag amor">Amor Code</span>
-        <h4>Intentional vs. Expressive: the most common mismatch in long-term relationships</h4>
-        <p>One needs to be told. The other needs to be shown up for. One interprets a put-away phone as love. The other needs to hear the words regardless. This is not incompatibility — it is a code mismatch. And code mismatches, once named, can be closed.</p>
-      </div>
+    <div class="insight-card reveal reveal-delay-2">
+      <span class="insight-tag amor">Amor Code</span>
+      <h4>The Devoted Code: why the people who love hardest often feel the most unseen</h4>
+      <p>Devoted types show up through action. They handle the logistics, anticipate the need, stay late to fix it. But their partners often speak a different code — they needed words, or presence, or touch. The most loving people in the room can still miss each other completely.</p>
+    </div>
+    <div class="insight-card reveal reveal-delay-1">
+      <span class="insight-tag both">Both Dimensions</span>
+      <h4>When your Drive Mode and your Amor Code are working against each other</h4>
+      <p>An Architect who needs Intimacy is building a future while craving a depth that lives in the present. An Amplifier with a Present code is energizing every room but quietly longing to be held still. The tension between your two dimensions is often the source of conflict that has never quite made sense.</p>
+    </div>
+    <div class="insight-card reveal reveal-delay-2">
+      <span class="insight-tag amor">Amor Code</span>
+      <h4>Intentional vs. Expressive: the most common mismatch in long-term relationships</h4>
+      <p>One needs to be told. The other needs to be shown up for. One interprets a put-away phone as love. The other needs to hear the words regardless. This is not incompatibility — it is a code mismatch. And code mismatches, once named, can be closed.</p>
     </div>
   </div>
 </section>
@@ -717,7 +756,7 @@
   <div class="cta-inner">
     <span class="eyebrow" style="color:rgba(255,255,255,0.3);">Ready?</span>
     <h2 style="color:white;">Two dimensions.<br><em>One path forward.</em></h2>
-    <p>Most people spend years figuring out why they love the way they do. This takes twelve minutes. And it is free.</p>
+    <p>Most people spend years figuring out why they love the way they do. This takes fifteen minutes. And it is free.</p>
     <a href="/quiz" class="cta-btn">Take the Free Assessment</a>
     <p style="margin-top:16px; font-size:12.5px; color:rgba(255,255,255,0.28);">No account required &nbsp;·&nbsp; No spam &nbsp;·&nbsp; Just clarity</p>
   </div>
@@ -726,9 +765,7 @@
 
 <!-- FOOTER -->
 <footer>
-  <a href="/" class="footer-logo">
-    <span class="d">Driv</span><span class="a">Amor</span>
-  </a>
+  <a href="/" class="footer-logo"><span class="d">Driv</span><span class="a">Amor</span></a>
   <div>
     <a href="/quiz" class="fl">Take the Assessment</a>
     <a href="mailto:hello@drivamor.com" class="fl">Contact</a>
@@ -736,5 +773,80 @@
   <p class="fc">A <a href="https://www.mirajoco.org" target="_blank">MiRAjO</a> product</p>
 </footer>
 
+
+<script>
+  /* ── SCROLL REVEAL ── */
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        revealObserver.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+  /* ── COUNT-UP STATS ── */
+  function countUp(el, target, duration) {
+    let start = 0;
+    const step = target / (duration / 16);
+    const timer = setInterval(() => {
+      start = Math.min(start + step, target);
+      el.textContent = Math.round(start);
+      if (start >= target) clearInterval(timer);
+    }, 16);
+  }
+  const statsObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const nums = e.target.querySelectorAll('[data-target]');
+        nums.forEach(n => countUp(n, parseInt(n.dataset.target), 1200));
+        statsObserver.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.3 });
+  const statsStrip = document.querySelector('.stats-strip');
+  if (statsStrip) statsObserver.observe(statsStrip);
+
+  /* ── PROFILE ROTATOR ── */
+  const profiles = [
+    { dims:'Builder + Intimate',     name:'The Forge',       line:'Works hard. Loves deep. No patience for surface-level anything.' },
+    { dims:'Anchor + Devoted',       name:'The Sentinel',    line:'Keeps everything running quietly. Wishes someone would notice.' },
+    { dims:'Amplifier + Expressive', name:'The Resonance',   line:'Full of energy and full of words. The whole room feels it.' },
+    { dims:'Architect + Intimate',   name:'The Sanctuary',   line:'Built a safe world — and opened the door wide.' },
+    { dims:'Builder + Expressive',   name:'The Torchbearer', line:'Carries the fire and names it out loud.' },
+    { dims:'Anchor + Intimate',      name:'The Tether',      line:'Stays through every storm. Asks the questions that make it mean something.' },
+    { dims:'Architect + Present',    name:'The Compass',     line:'Knows the direction. Stays right beside you the whole way.' },
+    { dims:'Amplifier + Intimate',   name:'The Flame',       line:'Intense in every direction. Refuses a lukewarm relationship.' },
+    { dims:'Builder + Intentional',  name:'The Craftsman',   line:'Builds everything — including the time to be fully there.' },
+    { dims:'Anchor + Expressive',    name:'The Covenant',    line:'Steady and vocal. Stays and says it.' },
+    { dims:'Amplifier + Devoted',    name:'The Beacon',      line:'Inspires the room. Shows up in the quiet.' },
+    { dims:'Architect + Intentional',name:'The Tailor',      line:'Designs the future. Gives the present everything it needs.' },
+  ];
+  let rotatorIdx = 0;
+  const rDims = document.getElementById('rotator-dims');
+  const rName = document.getElementById('rotator-name');
+  const rLine = document.getElementById('rotator-line');
+
+  function rotateProfile() {
+    rName.classList.add('rotator-fade');
+    rLine.classList.add('rotator-fade');
+    setTimeout(() => {
+      rotatorIdx = (rotatorIdx + 1) % profiles.length;
+      const p = profiles[rotatorIdx];
+      rDims.textContent = p.dims;
+      rName.textContent = p.name;
+      rLine.textContent = p.line;
+      rName.classList.remove('rotator-fade');
+      rLine.classList.remove('rotator-fade');
+    }, 500);
+  }
+
+  const firstP = profiles[0];
+  rDims.textContent = firstP.dims;
+  rName.textContent = firstP.name;
+  rLine.textContent = firstP.line;
+  setInterval(rotateProfile, 3000);
+</script>
 </body>
 </html>
