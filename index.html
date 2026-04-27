@@ -80,7 +80,7 @@
     .hero h1 em.d { font-style:italic; color:var(--drive-lt); }
     .hero h1 em.a { font-style:italic; color:var(--amor-lt); }
     .hero-sub {
-      font-size:19px; color:rgba(255,255,255,0.48);
+      font-size:19px; color:rgba(255,255,255,0.78);
       line-height:1.75; margin-bottom:44px;
       max-width:500px; margin-left:auto; margin-right:auto;
     }
@@ -92,13 +92,13 @@
       transition:background 0.2s, transform 0.15s;
     }
     .hero-cta:hover { background:var(--drive-lt); transform:translateY(-2px); }
-    .hero-note { margin-top:16px; font-size:12px; color:rgba(255,255,255,0.22); }
+    .hero-note { margin-top:16px; font-size:12px; color:rgba(255,255,255,0.5); }
 
     /* ── TICKER ── */
     .ticker-section { background:var(--dark); border-top:1px solid rgba(255,255,255,0.07); padding:32px 0; overflow:hidden; }
     .ticker-label {
       text-align:center; font-size:10px; letter-spacing:3px; text-transform:uppercase;
-      font-weight:700; color:rgba(255,255,255,0.2); margin-bottom:20px;
+      font-weight:700; color:rgba(255,255,255,0.55); margin-bottom:20px;
     }
     .ticker-row { overflow:hidden; margin-bottom:12px; }
     .ticker-row:last-child { margin-bottom:0; }
@@ -112,13 +112,13 @@
     .ticker-item {
       display:inline-flex; align-items:center; gap:16px;
       padding:10px 28px; white-space:nowrap;
-      font-size:13.5px; color:rgba(255,255,255,0.45); font-style:italic;
+      font-size:13.5px; color:rgba(255,255,255,0.82); font-style:italic;
     }
     .ticker-item::after {
-      content:'·'; color:rgba(255,255,255,0.15); font-style:normal; font-size:18px;
+      content:'·'; color:rgba(255,255,255,0.3); font-style:normal; font-size:18px;
     }
-    .ticker-item.d { color:rgba(212,58,86,0.7); }
-    .ticker-item.a { color:rgba(242,137,158,0.7); }
+    .ticker-item.d { color:#E06070; }
+    .ticker-item.a { color:#F2899E; }
 
     /* ── STATS STRIP ── */
     .stats-strip {
@@ -187,11 +187,11 @@
     .sidebar-panel.dark-left  { border-right:1px solid rgba(255,255,255,0.08); padding-right:32px; }
     .sidebar-panel.dark-right { border-left:1px solid rgba(255,255,255,0.08);  padding-left:32px; }
     .sidebar-panel.dark-left  .sidebar-vert,
-    .sidebar-panel.dark-right .sidebar-vert { color:rgba(255,255,255,0.18); }
+    .sidebar-panel.dark-right .sidebar-vert { color:rgba(255,255,255,0.65); }
     .sidebar-panel.dark-left  .sidebar-big,
-    .sidebar-panel.dark-right .sidebar-big  { color:rgba(255,255,255,0.05); }
+    .sidebar-panel.dark-right .sidebar-big  { color:rgba(255,255,255,0.12); }
     .sidebar-panel.dark-left  .sidebar-quote,
-    .sidebar-panel.dark-right .sidebar-quote { color:rgba(255,255,255,0.25); }
+    .sidebar-panel.dark-right .sidebar-quote { color:rgba(255,255,255,0.7); }
 
     /* ── WHY BOXES ── */
     .why-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:20px; max-width:1200px; margin:0 auto; }
@@ -236,8 +236,8 @@
       background:radial-gradient(ellipse at 50% 50%, rgba(184,32,56,0.15) 0%, transparent 60%);
     }
     .rotator-inner { position:relative; z-index:2; }
-    .rotator-label { font-size:11px; letter-spacing:3px; text-transform:uppercase; font-weight:700; color:rgba(255,255,255,0.25); margin-bottom:32px; }
-    .rotator-prompt { font-family:'Instrument Serif',serif; font-size:18px; color:rgba(255,255,255,0.35); margin-bottom:12px; }
+    .rotator-label { font-size:11px; letter-spacing:3px; text-transform:uppercase; font-weight:700; color:rgba(255,255,255,0.6); margin-bottom:32px; }
+    .rotator-prompt { font-family:'Instrument Serif',serif; font-size:18px; color:rgba(255,255,255,0.7); margin-bottom:12px; }
     .rotator-name {
       font-family:'Instrument Serif',serif;
       font-size:clamp(44px,6vw,72px); font-weight:400;
@@ -247,11 +247,11 @@
     .rotator-name.d { color:var(--drive-lt); }
     .rotator-name.a { color:var(--amor-lt); }
     .rotator-name.da { background:linear-gradient(to right,var(--drive-lt),var(--amor-lt)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
-    .rotator-dims  { font-size:13px; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.3); margin-bottom:8px; }
-    .rotator-line  { font-size:16px; color:rgba(255,255,255,0.5); font-style:italic; transition:opacity 0.5s ease; }
+    .rotator-dims  { font-size:13px; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.65); margin-bottom:8px; }
+    .rotator-line  { font-size:16px; color:rgba(255,255,255,0.85); font-style:italic; transition:opacity 0.5s ease; }
     .rotator-fade  { opacity:0; transform:translateY(8px); }
-    .rotator-cta   { margin-top:36px; display:inline-block; font-size:14px; font-weight:700; color:rgba(255,255,255,0.45); text-decoration:none; border:1px solid rgba(255,255,255,0.15); padding:12px 32px; border-radius:6px; transition:all 0.2s; }
-    .rotator-cta:hover { color:white; border-color:rgba(255,255,255,0.4); }
+    .rotator-cta   { margin-top:36px; display:inline-block; font-size:14px; font-weight:700; color:white; text-decoration:none; border:1px solid rgba(255,255,255,0.4); padding:12px 32px; border-radius:6px; transition:all 0.2s; }
+    .rotator-cta:hover { background:rgba(255,255,255,0.08); border-color:rgba(255,255,255,0.7); }
 
     /* ── PROFILES GRID ── */
     .profiles-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; max-width:1360px; margin:0 auto; }
@@ -315,7 +315,7 @@
     }
     .cta-inner { position:relative; z-index:2; max-width:580px; margin:0 auto; }
     .cta-section h2 { color:white; margin-bottom:14px; }
-    .cta-section p  { color:rgba(255,255,255,0.5); font-size:16px; line-height:1.75; margin-bottom:36px; }
+    .cta-section p  { color:rgba(255,255,255,0.78); font-size:16px; line-height:1.75; margin-bottom:36px; }
     .cta-btn { display:inline-block; padding:20px 56px; background:var(--drive); color:white; font-size:17px; font-weight:700; border-radius:8px; text-decoration:none; transition:background 0.2s, transform 0.15s; }
     .cta-btn:hover { background:var(--drive-lt); transform:translateY(-2px); }
 
@@ -324,9 +324,9 @@
     .footer-logo { font-family:'Instrument Serif',serif; font-size:20px; text-decoration:none; }
     .footer-logo .d { color:var(--drive-lt); }
     .footer-logo .a { color:var(--amor-lt); }
-    footer a.fl { font-size:13px; color:rgba(255,255,255,0.35); text-decoration:none; margin-left:24px; }
+    footer a.fl { font-size:13px; color:rgba(255,255,255,0.65); text-decoration:none; margin-left:24px; }
     footer a.fl:hover { color:white; }
-    footer .fc { font-size:12px; color:rgba(255,255,255,0.22); }
+    footer .fc { font-size:12px; color:rgba(255,255,255,0.5); }
     footer .fc a { color:inherit; text-decoration:none; }
 
     /* ── SCROLL REVEAL ── */
@@ -613,9 +613,9 @@
       <span class="sidebar-big" style="color:rgba(255,255,255,0.05);">20</span>
     </div>
     <div class="text-center" style="margin-bottom:0;">
-      <span class="eyebrow neutral" style="color:rgba(255,255,255,0.3);">The 20 Profiles</span>
+      <span class="eyebrow neutral" style="color:rgba(255,255,255,0.65);">The 20 Profiles</span>
       <h2 style="color:#fff;">Every combination<br>has <em>a name.</em></h2>
-      <p class="section-sub" style="color:rgba(255,255,255,0.45);">Your Drive Mode and Amor Code combine into one of 20 profiles. Each one is specific. Each one is a little too accurate.</p>
+      <p class="section-sub" style="color:rgba(255,255,255,0.78);">Your Drive Mode and Amor Code combine into one of 20 profiles. Each one is specific. Each one is a little too accurate.</p>
     </div>
     <div class="sidebar-panel dark-right reveal">
       <span class="sidebar-vert" style="color:rgba(255,255,255,0.15);">8 of 20 shown</span>
@@ -626,42 +626,42 @@
     <div class="profile-card reveal reveal-delay-1" style="background:#1a1a1a; border-color:#2a2a2a;">
       <p class="pc-dims"><span class="d">Builder</span> + <span class="a">Intimate</span></p>
       <p class="pc-name" style="color:#fff;">The Forge</p>
-      <p class="pc-line" style="color:rgba(255,255,255,0.55);">Works hard. Loves deep. No patience for surface-level anything.</p>
+      <p class="pc-line" style="color:rgba(255,255,255,0.82);">Works hard. Loves deep. No patience for surface-level anything.</p>
     </div>
     <div class="profile-card reveal reveal-delay-2" style="background:#1a1a1a; border-color:#2a2a2a;">
       <p class="pc-dims"><span class="d">Anchor</span> + <span class="a">Devoted</span></p>
       <p class="pc-name" style="color:#fff;">The Sentinel</p>
-      <p class="pc-line" style="color:rgba(255,255,255,0.55);">Keeps everything running quietly. Wishes someone would notice.</p>
+      <p class="pc-line" style="color:rgba(255,255,255,0.82);">Keeps everything running quietly. Wishes someone would notice.</p>
     </div>
     <div class="profile-card reveal reveal-delay-3" style="background:#1a1a1a; border-color:#2a2a2a;">
       <p class="pc-dims"><span class="d">Amplifier</span> + <span class="a">Expressive</span></p>
       <p class="pc-name" style="color:#fff;">The Resonance</p>
-      <p class="pc-line" style="color:rgba(255,255,255,0.55);">Full of energy and full of words. The whole room feels it.</p>
+      <p class="pc-line" style="color:rgba(255,255,255,0.82);">Full of energy and full of words. The whole room feels it.</p>
     </div>
     <div class="profile-card reveal reveal-delay-4" style="background:#1a1a1a; border-color:#2a2a2a;">
       <p class="pc-dims"><span class="d">Architect</span> + <span class="a">Intimate</span></p>
       <p class="pc-name" style="color:#fff;">The Sanctuary</p>
-      <p class="pc-line" style="color:rgba(255,255,255,0.55);">Built a safe world — and opened the door wide.</p>
+      <p class="pc-line" style="color:rgba(255,255,255,0.82);">Built a safe world — and opened the door wide.</p>
     </div>
     <div class="profile-card reveal reveal-delay-1" style="background:#1a1a1a; border-color:#2a2a2a;">
       <p class="pc-dims"><span class="d">Builder</span> + <span class="a">Expressive</span></p>
       <p class="pc-name" style="color:#fff;">The Torchbearer</p>
-      <p class="pc-line" style="color:rgba(255,255,255,0.55);">Carries the fire and names it out loud.</p>
+      <p class="pc-line" style="color:rgba(255,255,255,0.82);">Carries the fire and names it out loud.</p>
     </div>
     <div class="profile-card reveal reveal-delay-2" style="background:#1a1a1a; border-color:#2a2a2a;">
       <p class="pc-dims"><span class="d">Anchor</span> + <span class="a">Intimate</span></p>
       <p class="pc-name" style="color:#fff;">The Tether</p>
-      <p class="pc-line" style="color:rgba(255,255,255,0.55);">Stays through every storm. Asks the questions that make it mean something.</p>
+      <p class="pc-line" style="color:rgba(255,255,255,0.82);">Stays through every storm. Asks the questions that make it mean something.</p>
     </div>
     <div class="profile-card reveal reveal-delay-3" style="background:#1a1a1a; border-color:#2a2a2a;">
       <p class="pc-dims"><span class="d">Architect</span> + <span class="a">Present</span></p>
       <p class="pc-name" style="color:#fff;">The Compass</p>
-      <p class="pc-line" style="color:rgba(255,255,255,0.55);">Knows the direction. Stays right beside you the whole way.</p>
+      <p class="pc-line" style="color:rgba(255,255,255,0.82);">Knows the direction. Stays right beside you the whole way.</p>
     </div>
     <div class="profile-card reveal reveal-delay-4" style="background:#1a1a1a; border-color:#2a2a2a;">
       <p class="pc-dims"><span class="d">Amplifier</span> + <span class="a">Intimate</span></p>
       <p class="pc-name" style="color:#fff;">The Flame</p>
-      <p class="pc-line" style="color:rgba(255,255,255,0.55);">Intense in every direction. Refuses a lukewarm relationship.</p>
+      <p class="pc-line" style="color:rgba(255,255,255,0.82);">Intense in every direction. Refuses a lukewarm relationship.</p>
     </div>
   </div>
   <p style="text-align:center; margin-top:32px; font-size:14px; color:rgba(255,255,255,0.3);">
