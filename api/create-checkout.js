@@ -7,7 +7,7 @@ export default async function handler(req, res) {
     const params = new URLSearchParams();
     params.append('mode', 'payment');
     params.append('line_items[0][price_data][currency]', 'usd');
-    params.append('line_items[0][price_data][unit_amount]', '1499');
+    params.append('line_items[0][price_data][unit_amount]', '3499');
     params.append('line_items[0][price_data][product_data][name]', 'DrivAmor Comprehensive Report');
     params.append('line_items[0][price_data][product_data][description]', 'Full Drive Gap, Amor Gap, secondary types, shadow behavior, and complete compatibility breakdown.');
     params.append('line_items[0][quantity]', '1');

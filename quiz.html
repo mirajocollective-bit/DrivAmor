@@ -46,143 +46,26 @@
       background: var(--dark);
       min-height: 100vh;
     }
-    .intro-inner { max-width: 1100px; width: 100%; }
-
     .intro-logo {
       font-family: 'Instrument Serif', serif;
       font-size: 32px;
-      margin-bottom: 10px;
+      margin-bottom: 16px;
       letter-spacing: -0.02em;
     }
     .intro-logo span.d { color: var(--drive-light); }
     .intro-logo span.a { color: var(--amor-light); }
     #screen-intro h1 {
       font-family: 'Instrument Serif', serif;
-      font-size: clamp(22px, 3.5vw, 36px);
+      font-size: clamp(26px, 4vw, 42px);
       font-weight: 400;
       line-height: 1.2;
-      margin-bottom: 6px;
+      margin-bottom: 10px;
       color: #fff;
     }
     #screen-intro .intro-sub {
       font-size: 14px;
       color: rgba(255,255,255,0.4);
-      margin-bottom: 32px;
-    }
-
-    /* Type rows */
-    .type-row { margin-bottom: 20px; }
-    .type-row-label {
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      margin-bottom: 10px;
-    }
-    .type-row-label.drive { color: var(--drive-light); }
-    .type-row-label.amor  { color: var(--amor-light); }
-
-    .type-cards {
-      display: flex;
-      gap: 10px;
-      justify-content: center;
-    }
-    .type-card {
-      flex: 1;
-      max-width: 220px;
-      background: linear-gradient(160deg, #1e1e1e 0%, #141414 100%);
-      border: 1px solid rgba(255,255,255,0.07);
-      border-radius: 12px;
-      padding: 18px 16px;
-      text-align: left;
-      cursor: default;
-      box-shadow:
-        0 16px 40px rgba(0,0,0,0.45),
-        0 1px 0 rgba(255,255,255,0.06) inset,
-        0 -1px 0 rgba(0,0,0,0.5) inset;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-    .type-card:hover {
-      transform: translateY(-6px);
-      box-shadow:
-        0 28px 56px rgba(0,0,0,0.6),
-        0 1px 0 rgba(255,255,255,0.1) inset;
-    }
-    .drive-card { border-top: 2px solid var(--drive); }
-    .amor-card  { border-top: 2px solid var(--amor); }
-
-    .tc-name {
-      font-family: 'Instrument Serif', serif;
-      font-size: 18px;
-      font-weight: 400;
-      color: #fff;
-      margin-bottom: 6px;
-    }
-    .tc-desc {
-      font-size: 11.5px;
-      color: rgba(255,255,255,0.4);
-      line-height: 1.5;
-    }
-
-    /* Sample profiles */
-    .sample-row { margin-bottom: 24px; }
-    .sample-row-label {
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.3);
-      margin-bottom: 10px;
-    }
-    .sample-cards {
-      display: flex;
-      gap: 12px;
-      justify-content: center;
-    }
-    .sample-card {
-      flex: 1;
-      max-width: 300px;
-      background: linear-gradient(160deg, #1e1e1e 0%, #111 100%);
-      border: 1px solid rgba(255,255,255,0.07);
-      border-radius: 14px;
-      padding: 22px 20px;
-      text-align: left;
-      box-shadow:
-        0 20px 50px rgba(0,0,0,0.5),
-        0 1px 0 rgba(255,255,255,0.06) inset;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-      border-top: 3px solid;
-      cursor: default;
-    }
-    .sample-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 32px 64px rgba(0,0,0,0.65);
-    }
-    .sample-card.sc1 { border-top-color: var(--drive); }
-    .sample-card.sc2 { border-top-color: var(--amor); }
-    .sample-card.sc3 { border-top-color: #fff; }
-
-    .sc-combo {
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.4);
-      margin-bottom: 8px;
-    }
-    .sc-combo span.d { color: var(--drive-light); }
-    .sc-combo span.a { color: var(--amor-light); }
-    .sc-name {
-      font-family: 'Instrument Serif', serif;
-      font-size: 22px;
-      font-weight: 400;
-      color: #fff;
-      margin-bottom: 8px;
-    }
-    .sc-line {
-      font-size: 13px;
-      color: rgba(255,255,255,0.5);
-      line-height: 1.6;
+      margin-bottom: 36px;
     }
 
     /* Stats + CTA */
@@ -792,7 +675,7 @@
   <div class="results-cta">
     <h2>The full picture is in the comprehensive report.</h2>
     <p>Your secondary types, your Drive Gap, your Amor Gap, how your profile connects with others — and the pairing that will challenge you most.</p>
-    <button class="btn btn-white" onclick="upgradeToPaid()">Get the full report — $14.99</button>
+    <button class="btn btn-white" onclick="upgradeToPaid()">Get the full report — $34.99</button>
   </div>
 
   <div class="results-closing">
